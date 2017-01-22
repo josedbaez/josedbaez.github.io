@@ -11,8 +11,8 @@ tags:
 <img class="hero-img" src="/images/contact.jpg" alt="Contact">
 ---
 How to retrieve xDb contacts data to use in EXM newsletter. When generating an EXM newsletter you might need to get contacts' details so you can personalise the newsletter further...
-
 <!-- more -->
+ 
 *Versions used: Sitecore 8.1 rev. 151207 (Update-1). EXM 3.2.0 rev. 151020*
 
 When generating an EXM newsletter you might need to get contacts' details so you can personalise the newsletter further than just OOTB token replacement. For example, render different datasource depending on a contact's preference.

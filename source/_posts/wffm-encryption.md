@@ -13,6 +13,7 @@ tags:
 ---
 How to encrypt any data stored by WFFM in both mongo and SQL databases. The code provided here will encrypt values in `FormData` and `FormFieldValues` tables. Also...
 <!-- more -->
+ 
 *Versions used: Sitecore 8.1 rev. 160519 (Update-3). Web Forms For Marketers 8.1 rev. 160523 (Update-3)*
 
 A client asked us to encrypt any data stored by WFFM in both mongo and SQL databases. Sitecorejunkie had posted a [solution](https://sitecorejunkie.com/2013/06/21/encrypt-web-forms-for-marketers-fields-in-sitecore/) that works in sitecore 7 but some things changed in Sitecore 8 and the solution does not work anymore.

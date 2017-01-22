@@ -120,4 +120,10 @@
         }
     });
 
+    //Jose
+    //hide summary
+    console.log("hide summary");
+    //$('.article-entry p').first().hide(); 
+    $(".article-entry a#more").parent().hide()  
+
 })(jQuery);

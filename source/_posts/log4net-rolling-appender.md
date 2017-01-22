@@ -8,13 +8,18 @@ tags:
 - logs
 
 ---
-<img class="hero-img" src="/images/parameters.png" alt="Parameters">
+<img class="hero-img" src="/images/logs.jpg" alt="Logs">
 ---
-A way to reduce log files by telling log4net to create multiple ones per day instead of one...
+A way to reduce log file size by telling log4net to create multiple files per day instead of one...
 <!-- more -->
+ 
 *Versions used: Sitecore 8.1 rev. 151207 (Update-1).*
 
+Have you ever had issues opening log files that are too big for text editors to process? I surely have. 
 
+Log4net can be configured to use a [rolling file appender](https://logging.apache.org/log4net/release/config-examples.html#rollingfileappender) that creates multiple files once it reaches the maximum size per file set.
+
+The following patch will delete default sitecore log4net appender and add a new one that tells log4net to create a log file every 50KB, per day. *Note: pick a much bigger number but not too big that editors struggle to open the files.*
 
 ``` xml
 <appender name="LogFileAppender" type="log4net.Appender.SitecoreLogFileAppender, Sitecore.Logging">
@@ -26,7 +31,7 @@ A way to reduce log files by telling log4net to create multiple ones per day ins
     <datePattern value="'.'yyyyMMdd'.txt'" />
     <rollingStyle value="Composite" />
     <maxSizeRollBackups value="-1" />
-    <maximumFileSize value="10KB" />
+    <maximumFileSize value="50KB" /> <!-- KB, MB, GB -->
     <preserveLogFileNameExtension value="true" />
     <staticLogFileName value="false" />
     <layout type="log4net.Layout.PatternLayout">
@@ -37,7 +42,9 @@ A way to reduce log files by telling log4net to create multiple ones per day ins
 
 ```
 
+And this is the result:
 
+<img class="hero-img" src="/images/rolling-logs.png" alt="Rolling logs">
 
 
 ---

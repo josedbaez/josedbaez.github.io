@@ -12,6 +12,7 @@ tags:
 ---
 A synthesis helper that gets a rendering/component rendering parameters. If you are not familiar with or not using rendering parameters in your solution, I’d suggest...
 <!-- more -->
+ 
 *Versions used: Sitecore 8.1 rev. 160519 (Update-3). Synthesis 8.2.0*
 
 One of the features provided by Sitecore to enrich content entry and separate concerns are Rendering Parameters. Rendering parameters should be used to empower editors to customise a component's behaviour, look-and-feel, or even functionality without changing its data source.
