@@ -12,10 +12,12 @@ tags:
 ---
 A way to reduce log file size by telling log4net to create multiple files per day instead of one...
 <!-- more -->
- 
+
 *Versions used: Sitecore 8.1 rev. 151207 (Update-1).*
 
-Have you ever had issues opening log files that are too big for text editors to process? I surely have. 
+**Update/Warning:** Using rolling appender, I occasionally experienced an issue where sitecore wouldn't create log files after application pool recycle. Was not able to pinpoint if this was the issue but keep it in mind.
+
+Have you ever had issues opening log files that are too big for text editors to process? I surely have.
 
 Log4net can be configured to use a [rolling file appender](https://logging.apache.org/log4net/release/config-examples.html#rollingfileappender) that creates multiple files once it reaches the maximum size per file set.
 
