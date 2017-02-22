@@ -150,6 +150,13 @@
     line-height: line-height
     p, table
         margin: line-height 0
+    li /* jose: fix ordered list spacing */
+        line-height: 1.8em
+        p
+            display: inline
+    > ol
+        > li
+            padding-bottom: 25px
     h1, h2, h3, h4, h5, h6
         font-weight: 600
     h1, h2, h3, h4, h5, h6
