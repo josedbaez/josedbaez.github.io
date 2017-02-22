@@ -12,8 +12,10 @@ tags:
 ---
 How to retrieve xDb contacts data to use in EXM newsletter. When generating an EXM newsletter you might need to get contacts' details so you can personalise the newsletter further...
 <!-- more -->
- 
+
 *Versions used: Sitecore 8.1 rev. 151207 (Update-1). EXM 3.2.0 rev. 151020*
+
+**Update:** Code updated to use tracker contact when delivering emails.
 
 When generating an EXM newsletter you might need to get contacts' details so you can personalise the newsletter further than just OOTB token replacement. For example, render different datasource depending on a contact's preference.
 
@@ -49,18 +51,25 @@ The function first gets the ID using sitecore's extension inside `Sitecore.Modul
 After you have the contact ID, you can retrieve the xDB contact like this:
 
 ``` csharp
-var contactRepo = Sitecore.Configuration.Factory.CreateObject("contactRepository", true) as Sitecore.Analytics.Data.ContactRepository;
+ Sitecore.Analytics.Tracking.Contact currentContact = null;
 
-if (contactRepo == null)
-    return null;
+//get contact from tracker (when delivering emails)
+if(Sitecore.Analytics.Tracker.Current != null && Sitecore.Analytics.Tracker.Current.Contact!=null)
+    currentContact = Sitecore.Analytics.Tracker.Current.Contact;
+else{ //this will catch test email and preview tabs
+    var contactRepo = Sitecore.Configuration.Factory.CreateObject("contactRepository", true) as Sitecore.Analytics.Data.ContactRepository;
 
-var leaseOwner = new LeaseOwner("admin", LeaseOwnerType.OutOfRequestWorker);
-var xContactid = new XdbContactId(contactGuid);
+    if (contactRepo == null)
+        return null;
 
-var contact = contactRepo.TryLoadContact(xContactid.Value.Guid, leaseOwner, TimeSpan.FromMinutes(1));
+    var leaseOwner = new LeaseOwner("admin", LeaseOwnerType.OutOfRequestWorker);
+    var xContactid = new XdbContactId(contactGuid);
 
-//facets
-var facets = contact.Object.Facets;
+    currentContact = contactRepo.TryLoadContact(xContactid.Value.Guid, leaseOwner, TimeSpan.FromMinutes(1)).Object;
+
+    //facets
+    var facets = currentContact.Facets;
+}
 ```
 
 

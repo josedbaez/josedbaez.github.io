@@ -72,8 +72,20 @@ deploy:
   repo: git@github.com:josedbaez/josedbaez.github.io.git
   branch: master
 
+# Feed
 feed:
   type: atom
   path: atom.xml
   limit: 10
   hub:
+
+# Marked configuration
+## Docs: https://github.com/hexojs/hexo-renderer-marked
+marked:
+  gfm: true
+  pedantic: false
+  sanitize: false
+  tables: true
+  breaks: true
+  smartLists: true
+  smartypants: true
