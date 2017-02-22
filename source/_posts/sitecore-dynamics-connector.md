@@ -49,7 +49,7 @@ That's it. You have configured the connection to Dynamics and can now run any pi
 
 <a name="assembly-error">If you get an error like:</a> `Could not load file or assembly 'Microsoft.Xrm.Sdk, Version=7.0.0.0...`
 
-You need to add the following dependency assembly to your web.config (This has been reported to sitecore support and the official docummentation will get amended).
+You need to add the following dependency assembly to your web.config (This has been reported to sitecore support and the official documentation will get amended).
 
 ~~~~ xml
 <dependentAssembly>
