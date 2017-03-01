@@ -9,7 +9,7 @@ tags:
 - bug
 
 ---
-<img class="hero-img" src="/images/sitecore-dynamics.jpg" alt="Sitecore Microsoft Dynamics CRM">
+<img class="hero-img" src="/images/sitecore-dynamics-bug.jpg" alt="Sitecore Microsoft Dynamics CRM">
 ---
 Fix issue with CRM connector not removing contacts from marketing lists after syncing...
 <!-- more -->
