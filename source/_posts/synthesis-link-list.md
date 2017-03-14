@@ -19,7 +19,7 @@ Map strongly typed Link List field type with Synthesis when generating objects..
 
 This post is an addendum to my previous post about [Monoco Link List field type in Sitecore 8](http://josedbaez.com/2016/09/synthesis-rendering-parameters-helper).
 
-I love using object mappers. On a previous project I was using [synthesis](https://github.com/kamsar/Synthesis) and Link List field; and we wanted to be able to map our slick link list when generating synthesis models. I'll show how to do this here.
+I love using object mappers. On a previous project I was using [synthesis](https://github.com/kamsar/Synthesis) and Link List field; and we wanted to be able to map our slick link list when generating synthesis models. I'll show how to do this here. [Source code here](#source-code)
 
 *NB: As mentioned in the previous post, this is an old code done in a rush, and might not be up to a good code standard, but it's a good start and does the job.*
 
@@ -67,7 +67,7 @@ foreach (var link in Model.MyProperty.Links)
 
 ====================
 
-<a name="source-code">Source code:</a> [Download here](https://github.com/josedbaez/josedbaez.github.io/raw/source/source/files/Monoco.CMS.FieldTypes.zip)
+<a name="source-code">Source code:</a> [Download here](https://github.com/josedbaez/josedbaez.github.io/blob/source/source/files/LinkListFieldSynthesis.cs)
 
 
 ---
