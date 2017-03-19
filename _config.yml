@@ -89,3 +89,8 @@ marked:
   breaks: true
   smartLists: true
   smartypants: true
+
+#sitemap
+sitemap:
+    path: sitemap.xml
+    
