@@ -16,12 +16,12 @@ Fix error related to maxJsonLength when using general link in content and experi
 
 *Versions used: Sitecore 8.1 rev. 151207 (Update-1).*
 
-When using general link, if you try to expand an item that has a large number of children (which should be avoided, but sometimes is out of your hands; in our case they were commerce items imported by the module) you will notice it never ends loading the children. If you open the browser console, you will see an error like the following:
+When using general link, if you try to expand an item that has a large number of children (which should be avoided, but sometimes is out of your hands; in our case, they were commerce items imported by the module) you will notice it never ends loading the children. If you open the browser console, you will see an error like the following:
 
 ``` JSON
-{  
+{
    "statusCode":500,
-   "error":{  
+   "error":{
       "message":"Error during serialization or deserialization using the JSON JavaScriptSerializer. The length of the string exceeds the value set on the maxJsonLength property."
    }
 }
@@ -29,7 +29,7 @@ When using general link, if you try to expand an item that has a large number of
 
 When you click on the `+` icon, an AJAX request is sent to an Item Web API method which is using the class `System.Web.Script.Serialization.JavaScriptSerializer` to serialize the object being returned. The issue? `maxJsonLength` default size is 2MB.  We tried adding setting `<jsonSerialization maxJsonLength="######"/>` in web.config but it didn't fix the issue.
 
-We contacted sitecore support about this and it was flagged as a bug (ref no. 94776). The official solution is [here](https://github.com/SitecoreSupport/Sitecore.Support.94776/releases/tag/8.1.1.0). As you can see, it modifies class xxxxx and allows us to set the maximum allowed size in a new setting called `JsonSerialization.MaxLength`
+We contacted sitecore support about this and it was flagged as a bug (ref no. 94776). The official solution is [here](https://github.com/SitecoreSupport/Sitecore.Support.94776/releases/tag/8.1.1.0). It now allows us to set the maximum allowed size in a new setting called `JsonSerialization.MaxLength`
 
 
 
