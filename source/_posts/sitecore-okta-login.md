@@ -1,4 +1,4 @@
-title: Log-in to Sitecore using OpenID Connect with Okta
+title: Log in to Sitecore using OpenID Connect with Okta
 date: 2017/09/30
 categories:
 - Sitecore
@@ -16,7 +16,7 @@ How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (
 <!-- more -->
 
 *Versions used: Sitecore 8.2 rev. 170614 (8.2 Update-4).*
- 
+
 In this post I will outline how to implement OpenID SSO with [Okta](https://www.okta.com/) to allow users to **log in to sitecore (backend NOT client facing site)** from Okta's dashboard or by being redirected to Okta's login screen when trying to directly access sitecore through custom url <sup>[custom url](#custom-url)</sup>. *Authentication logic has been copied/modified from [Okta's github example code.](https://github.com/oktadeveloper/okta-oauth-aspnet-codeflow)*
 
 The solution provided by OKTA uses [OWIN](http://owin.org/) libraries. I integrated the OWIN middleware through a sitecore pipeline following [VyacheslavPritykin Sitecore-Owin](https://github.com/VyacheslavPritykin/Sitecore-Owin) solution.
@@ -49,7 +49,7 @@ __Sign On tab__
 <img class="content-img" src="/images/okta-sign-on-tab.jpg" alt="Okta sign-on tab">
 <img class="content-img" src="/images/okta-sign-on-policy.png" alt="Okta sign-on policy">
 
-On this tab you can configure access policy and the OpenID token. We are telling okta to return all groups but here you can configure the groups claim to specify which groups you want included by entering expressions that will be used to filter groups. For example myapp.* means all groups prefixed with "myapp" will be included in the response attribute statement. [Go here](https://support.okta.com/help/Documentation/Knowledge_Article/Configuring-Okta-Template-SAML-20-application) for more information. 
+On this tab you can configure access policy and the OpenID token. We are telling okta to return all groups but here you can configure the groups claim to specify which groups you want included by entering expressions that will be used to filter groups. For example myapp.* means all groups prefixed with "myapp" will be included in the response attribute statement. [Go here](https://support.okta.com/help/Documentation/Knowledge_Article/Configuring-Okta-Template-SAML-20-application) for more information.
 
 __Assignments__
 Here you assign which users and or groups can access your app. I recommend using groups instead of users.
@@ -65,9 +65,9 @@ You can either install [VyacheslavPritykin Sitecore-Owin](https://github.com/Vya
   <pipelines>
     <initOwinMiddleware>
       <processor mode="on" type="MySite.OwinMiddleware, MySite"></processor>
-    </initOwinMiddleware>  
+    </initOwinMiddleware>
   </pipelines>
-</sitecore>    
+</sitecore>
 ```
 
 - The processor requires a custom `PipelineArgs` that sets the Owin app object on startup.
@@ -89,11 +89,11 @@ namespace MySite
 }
 ```
 
-- The `initOwinMiddleware` pipeline is called on startup by setting the `owin:AppStartup` class reference in our web.config. 
-The following transform: 
+- The `initOwinMiddleware` pipeline is called on startup by setting the `owin:AppStartup` class reference in our web.config.
+The following transform:
     - Adds settings `owin:AutomaticAppStartup` and `owin:AppStartup`.
     - Sets authentication to none. This is done to avoid an infinite loop from okta to sitecore.
-  
+
 ``` xml
 <appSettings xdt:Transform="InsertIfMissing">
   <add key="owin:AutomaticAppStartup" value="true" xdt:Transform="InsertIfMissing" xdt:Locator="Match(key)" />
@@ -200,7 +200,7 @@ namespace MySite
     }
 }
 ```
-See below for `MySite.Helpers.LogUser(princ)` implementation. 
+See below for `MySite.Helpers.LogUser(princ)` implementation.
 
 ## Sitecore login helper ##
 This helper extracts the required information from Okta's token response, logs in the user as a [virtual user](https://briancaos.wordpress.com/2015/11/13/sitecore-virtual-users-authenticate-users-from-external-systems/) and maps okta groups to sitecore roles.
@@ -227,9 +227,9 @@ namespace MySite
             var email = identity.FindFirstValue("email");
             var userName = identity.FindFirstValue("preferred_username");
             var sitecoreUsername = string.Format("{0}\\{1}", "sitecore", userName);
-            
+
             var user = AuthenticationManager.BuildVirtualUser(sitecoreUsername, true);
-            user.Profile.Name = identity.FindFirstValue("given_name");                
+            user.Profile.Name = identity.FindFirstValue("given_name");
             user.Profile.Email = email;
             user.Profile.FullName = identity.FindFirstValue("given_name");
 
@@ -258,7 +258,7 @@ namespace MySite
 ```
 
 ## Login controller ##
-All we have left to do now is create a method with the `[Authorize]` attribute on it, and redirect users to this route so OWIN middleware can take over. 
+All we have left to do now is create a method with the `[Authorize]` attribute on it, and redirect users to this route so OWIN middleware can take over.
 
 ``` csharp
 public class OktaController : Controller
