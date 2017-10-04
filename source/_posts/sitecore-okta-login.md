@@ -1,4 +1,4 @@
-title: Log-in to Sitecore using OpenID Connect with Okta
+title: Log in to Sitecore using OpenID Connect with Okta
 date: 2017/09/30
 categories:
 - Sitecore
