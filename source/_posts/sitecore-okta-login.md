@@ -16,6 +16,8 @@ How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (
 <!-- more -->
 
 *Versions used: Sitecore 8.2 rev. 170614 (8.2 Update-4).*
+
+**Update/Warning:** Preview mode fails for virtual users with the code below. To fix: 1- Call [this function](#ticket-function) after authenticating the user to create an authentication ticket in sitecore. 2- Contact sitecore support and quote public reference 192715 so they can provide a known bug related to `item:preview` command. 
  
 In this post I will outline how to implement OpenID SSO with [Okta](https://www.okta.com/) to allow users to **log in to sitecore (backend NOT client facing site)** from Okta's dashboard or by being redirected to Okta's login screen when trying to directly access sitecore through custom url <sup>[custom url](#custom-url)</sup>. *Authentication logic has been copied/modified from [Okta's github example code.](https://github.com/oktadeveloper/okta-oauth-aspnet-codeflow)*
 
@@ -296,6 +298,24 @@ Microsoft.Owin 3.1.0.0
 
 See [this](http://josedbaez.com/2017/08/binding-redirect-patch/) if you are having binding redirects issues.
 
+<a name="ticket-function">Create ticket</a> Extracted from: https://singh-prabhat.blogspot.com/2016/12/sitecore-enable-preview-mode-for.html
+``` csharp
+private void PerformAutoLogin()
+{
+    string userName = "extranet\\Preview Anonymous User";
+    AuthenticationManager.Login(userName);
+    string ticket = Sitecore.Web.Authentication.TicketManager.CreateTicket(userName, @"/sitecore/shell");
+    HttpContext current = HttpContext.Current;
+    if (current != null)
+    {
+        HttpCookie cookie = new HttpCookie(Sitecore.Web.Authentication.TicketManager.CookieName, ticket)
+        {
+            HttpOnly = true
+        };
+        current.Response.AppendCookie(cookie);
+    }
+}
+```
 ---
 
 Please let me know what you think and/or if you can spot any errors.
