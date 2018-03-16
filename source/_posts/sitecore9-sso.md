@@ -141,7 +141,7 @@ Then, let's add our providers and transformations. I'll just show facebook's `id
   </sitecore>
 </configuration>
 ```
-> The DefaultExternalUserBuilder class creates a sequence of user names for a given external user name. It then uses the first of these names that does not already exist in Sitecore. The values in the sequence depend only on the external username and the Sitecore domain configured for the given identity provider.
+> The DefaultExternalUserBuilder class creates a sequence of user names for a given external user name. It then uses the first of these names that does not already exist in Sitecore. The values in the sequence depend only on the external username and the Sitecore domain configured for the given identity provider. <sup>[1](#default-external-user-builder)</sup>
 
 If you want to use another claim from the user instead, and you know it's going to be unique, you can create your own processor and use whatever claim you like. Example below:
 
@@ -170,7 +170,7 @@ public class CustomExternalUserBuilder : Sitecore.Owin.Authentication.Services.D
 
 > Federated authentication supports two types of users:
 Persistent users – Sitecore stores information about persistent users (login name, email address, and so on) in the database, and uses the Membership provider by default
-Virtual users – information about these users is stored in the session and disappears after the session is over.
+Virtual users – information about these users is stored in the session and disappears after the session is over. <sup>[2](#authentication-types)</sup>
 
 The transformations above are doing 2 simple things. The first one `map role to idp` is adding the role `sitecore\Developer` to the user when its `idp` claim is equal to `Facebook`. This claim is added automatically by sitecore because of the shared claim transformation `setIdpClaim` under `<sharedTransformations>` in `Sitecore.Owin.Authentication.config`.
 
@@ -276,6 +276,12 @@ That's it. If you remove `extranet\anonymous` access to an item and allow access
 
 <img class="" src="/images/login-links.png" alt="Login List">
 
+====================
+References:
+<a name="default-external-user-builder">https://doc.sitecore.net/sitecore_experience_platform/developing/developing_with_sitecore/federated_authentication/configure_federated_authentication</a>
+<a name="authentication-types">https://doc.sitecore.net/sitecore_experience_platform/developing/developing_with_sitecore/federated_authentication/using_federated_authentication_with_sitecore</a>
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/facebook-logins?tabs=aspnetcore2x
+https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/google-logins?tabs=aspnetcore2x
 
 ---
 
