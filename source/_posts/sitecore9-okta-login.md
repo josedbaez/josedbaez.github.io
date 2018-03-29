@@ -5,9 +5,7 @@ categories:
 - Authentication
 tags:
 - openid
-- facebook
-- google
-- sso
+- okta
 - authentication
 
 ---
