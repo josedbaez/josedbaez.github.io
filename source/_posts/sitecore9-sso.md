@@ -18,6 +18,9 @@ How to implement federated authentication on sitecore 9 to allow visitors to log
 
 *Versions used: Sitecore Experience Platform 9.0 rev. 171219 (9.0 Update-1).*
 
+**Update/Warning:**
+Updated code so it passes the IdentityProvider name to the middleware so you can use whatever name you want instead of default one. `AuthenticationType = IdentityProvider.Name`.
+
 On a [previous post](http://josedbaez.com/2017/09/sitecore-okta-login/) I explained how to implement federated authentication on Sitecore 8 (using Okta). Things have changed on sitecore 9 and the implementation is easier than back then.
 
 Sitecore 9 comes with an OWIN implementation to delegate authentication to other providers. Most of the job required to achieve federated authentication is through configuration files. In this post I will outline how to implement federated authentication with Facebook and Google so visitors can log in to your sitecore 9 site. [Source code here.](https://github.com/josedbaez/sitecore9sso)
@@ -176,7 +179,7 @@ The transformations above are doing 2 simple things. The first one `map role to 
 
 The other one, `fullname`, is just transforming the claim to `FullName` so you can retrieve easier programmatically (this is just an example and not actually being used).
 
-The identity provider `id` must match the `IdentityProviderName` in your provider processor. __PS: for some reason I can't use a random name (e.g fcccc instead of facebook) and would like to know where this restriction is set!__
+The identity provider `id` must match the `IdentityProviderName` in your provider processor.
 
 ## Create providers’ processors to map claims received to Sitecore user properties and roles ##
 Create a processor (per provider) that inherits from `IdentityProvidersProcessor` and maps the claims received.
