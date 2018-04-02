@@ -2,16 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://josedbaez.com/2018/03/sitecore9-sso/</loc>
+    <loc>http://josedbaez.com/2018/04/sitecore9-okta-login/</loc>
     
-    <lastmod>2018-03-16T16:28:45.000Z</lastmod>
+    <lastmod>2018-04-02T16:31:21.325Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://josedbaez.com/2017/03/sitecore8-link-list/</loc>
+    
+    <lastmod>2018-03-29T14:12:51.000Z</lastmod>
     
   </url>
   
   <url>
     <loc>http://josedbaez.com/2017/09/sitecore-okta-login/</loc>
     
-    <lastmod>2018-03-15T23:25:20.216Z</lastmod>
+    <lastmod>2018-03-29T14:12:51.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://josedbaez.com/2018/03/sitecore9-sso/</loc>
+    
+    <lastmod>2018-03-29T14:12:50.000Z</lastmod>
     
   </url>
   
@@ -44,13 +58,6 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/03/synthesis-link-list/</loc>
-    
-    <lastmod>2018-02-06T23:08:23.708Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
     
     <lastmod>2018-02-06T23:08:23.708Z</lastmod>
@@ -58,28 +65,14 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/03/sitecore8-link-list/</loc>
+    <loc>http://josedbaez.com/2017/03/synthesis-link-list/</loc>
     
     <lastmod>2018-02-06T23:08:23.708Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/01/exm-get-contact/</loc>
-    
-    <lastmod>2018-02-06T23:08:23.707Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://josedbaez.com/2017/01/log4net-rolling-appender/</loc>
-    
-    <lastmod>2018-02-06T23:08:23.707Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://josedbaez.com/2016/09/hello-world/</loc>
+    <loc>http://josedbaez.com/2017/08/binding-redirect-patch/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
     
@@ -93,7 +86,21 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/08/binding-redirect-patch/</loc>
+    <loc>http://josedbaez.com/2017/01/log4net-rolling-appender/</loc>
+    
+    <lastmod>2018-02-06T23:08:23.707Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://josedbaez.com/2017/01/exm-get-contact/</loc>
+    
+    <lastmod>2018-02-06T23:08:23.707Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://josedbaez.com/2016/09/hello-world/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
     
