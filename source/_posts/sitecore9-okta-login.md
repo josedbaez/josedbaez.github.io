@@ -1,5 +1,5 @@
-title: Log in to sitecore 9 editor using OKTA provider
-date: 2018/04/04
+title: Log in to sitecore 9 editor using Okta provider
+date: 2018/04/02
 categories:
 - Sitecore
 - Authentication
@@ -7,9 +7,10 @@ tags:
 - openid
 - okta
 - authentication
+- sso
 
 ---
-<img class="hero-img" src="/images/sitecore9-sso.jpg" alt="Sitecore 9 SSO">
+<img class="hero-img" src="/images/sitecore9-okta.jpg" alt="Sitecore 9 Okta provider">
 ---
 How to implement federated authentication on sitecore 9 to allow content editors log in to sitecore using their okta accounts.
 <!-- more -->
@@ -107,11 +108,11 @@ We first create our `OpenIdConnectAuthenticationOptions` object and set the sett
 
 `AuthenticationType` is very important because, after authentication is triggered, a 401 status code will be set to the response and each owin middleware will inspect and decide if it should action the request by matching its `AuthenticationType`.
 
-Remember `Scope` defines the claims we are requesting from Okta. We are setting it to the enum `OpenIdConnectScope.OpenIdProfile` plus `email`. Sitecore requires email by default. See [OpenId specification](http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims) for more info on scope values. `AuthenticationType` determines the authorization processing flow to be used. See [OpenId specification](http://openid.net/specs/openid-connect-core-1_0.html#HybridAuthRequest) for more info on scope authentication request.
+Remember `Scope` defines the claims we are requesting from Okta. We are setting it to the enum `OpenIdConnectScope.OpenIdProfile` plus `email`. Sitecore requires email by default. See [OpenId specification](http://openid.net/specs/openid-connect-core-1_0.html#ScopeClaims) for more info on scope values. `ResponseType` determines the authorization processing flow to be used. See [OpenId specification](http://openid.net/specs/openid-connect-core-1_0.html#HybridAuthRequest) for more info on scope authentication request.
 
 `/identity/externallogincallback` is the callback URL sitecore creates to process external logins after they have been authenticated on the providers.
 
-Our AuthorizationCodeReceived task `ProcessAuthorizationCodeReceived` is making sure the token is valid and retrieving claims to be added to the context. It uses sitecore's `ApplyClaimsTransformations` helper to map claims according to configuration set in config file.
+Our `AuthorizationCodeReceived` task `ProcessAuthorizationCodeReceived` is making sure the token is valid and retrieving claims to be added to the context. It uses sitecore's `ApplyClaimsTransformations` helper to map claims according to configuration set in config file.
 
 
 ## Okta provider configuration ##
