@@ -17,7 +17,7 @@
 <meta property="og:description" content="How to encrypt any data stored by WFFM in both mongo and SQL databases. The code provided here will encrypt values in FormData and FormFieldValues tables. Also…">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://josedbaez.com/images/encryption-lock.jpg">
-<meta property="og:updated_time" content="2018-02-06T23:08:23.709Z">
+<meta property="og:updated_time" content="2018-06-04T11:16:02.923Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WFFM data encryption - Sitecore 8">
 <meta name="twitter:description" content="How to encrypt any data stored by WFFM in both mongo and SQL databases. The code provided here will encrypt values in FormData and FormFieldValues tables. Also…">
@@ -138,6 +138,7 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
             <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/encryption-lock.jpg" alt="Encryption"></h2><p>How to encrypt any data stored by WFFM in both mongo and SQL databases. The code provided here will encrypt values in <code>FormData</code> and <code>FormFieldValues</code> tables. Also…<br><a id="more"></a></p>
 <p><em>Versions used: Sitecore 8.1 rev. 160519 (Update-3). Web Forms For Marketers 8.1 rev. 160523 (Update-3)</em></p>
+<p><strong>Update/Warning:</strong><br>See Wilfred’s comment regarding the encryption of ‘data’ column.</p>
 <p>A client asked us to encrypt any data stored by WFFM in both mongo and SQL databases. Sitecorejunkie had posted a <a href="https://sitecorejunkie.com/2013/06/21/encrypt-web-forms-for-marketers-fields-in-sitecore/" target="_blank" rel="noopener">solution</a> that works in sitecore 7 but some things changed in Sitecore 8 and the solution does not work anymore.</p>
 <p>The code provided here will encrypt values in <code>FormData</code> and <code>FormFieldValues</code> tables. Also, will decrypt values when form report is exported to csv or xml as we need the real values.</p>
 <p><strong>The following solution is divided in 3 parts:</strong></p>
@@ -173,7 +174,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="http://josedbaez.com/2016/09/wffm-encryption/" data-id="cjfclmpz1000z1opb9s1uiol8" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://josedbaez.com/2016/09/wffm-encryption/" data-id="cji05tii3000umq99dpbgp6il" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
