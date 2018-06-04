@@ -216,7 +216,8 @@ public class FacebookIdentityProvider : IdentityProvidersProcessor
         {
             AppId = AppId,
             AppSecret = AppSecret,
-            Provider = provider
+            Provider = provider,
+            AuthenticationType = IdentityProvider.Name
         };
         args.App.UseFacebookAuthentication(fbAuthOptions);
     }
