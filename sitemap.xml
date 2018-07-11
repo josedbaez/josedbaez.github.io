@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://josedbaez.com/2018/04/sitecore9-okta-login/</loc>
+    
+    <lastmod>2018-07-11T09:51:18.014Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://josedbaez.com/2017/09/sitecore-okta-login/</loc>
+    
+    <lastmod>2018-07-11T09:49:27.245Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://josedbaez.com/2016/09/wffm-encryption/</loc>
     
     <lastmod>2018-06-04T11:16:02.923Z</lastmod>
@@ -16,21 +30,7 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2018/04/sitecore9-okta-login/</loc>
-    
-    <lastmod>2018-04-02T16:31:21.325Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://josedbaez.com/2017/03/sitecore8-link-list/</loc>
-    
-    <lastmod>2018-03-29T14:12:51.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://josedbaez.com/2017/09/sitecore-okta-login/</loc>
     
     <lastmod>2018-03-29T14:12:51.000Z</lastmod>
     
@@ -51,14 +51,14 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
+    <loc>http://josedbaez.com/2018/02/sitecore-dynamics-connector/</loc>
     
     <lastmod>2018-02-06T23:08:23.708Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2018/02/sitecore-dynamics-connector/</loc>
+    <loc>http://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
     
     <lastmod>2018-02-06T23:08:23.708Z</lastmod>
     
@@ -72,14 +72,7 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/08/binding-redirect-patch/</loc>
-    
-    <lastmod>2018-02-06T23:08:23.707Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://josedbaez.com/2017/04/linkfield-jsonmaxlength-error/</loc>
+    <loc>http://josedbaez.com/2016/09/hello-world/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
     
@@ -93,7 +86,7 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2016/09/hello-world/</loc>
+    <loc>http://josedbaez.com/2017/04/linkfield-jsonmaxlength-error/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
     
@@ -101,6 +94,13 @@
   
   <url>
     <loc>http://josedbaez.com/2017/01/exm-get-contact/</loc>
+    
+    <lastmod>2018-02-06T23:08:23.707Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://josedbaez.com/2017/08/binding-redirect-patch/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
     

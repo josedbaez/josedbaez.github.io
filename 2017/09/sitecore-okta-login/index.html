@@ -6,10 +6,10 @@
     <title>Log in to Sitecore using OpenID Connect with Okta | Jose Dominguez</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="openid,okta,authentication,sso" />
+        <meta name="keywords" content="openid,okta,sso,authentication" />
     
     <meta name="description" content="How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (backend NOT client facing site) by intercepting Authorize attribute.">
-<meta name="keywords" content="openid,okta,authentication,sso">
+<meta name="keywords" content="openid,okta,sso,authentication">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log in to Sitecore using OpenID Connect with Okta">
 <meta property="og:url" content="http://josedbaez.com/2017/09/sitecore-okta-login/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (backend NOT client facing site) by intercepting Authorize attribute.">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://josedbaez.com/images/okta-sso.png">
-<meta property="og:updated_time" content="2018-03-29T14:12:51.000Z">
+<meta property="og:updated_time" content="2018-07-11T09:49:27.245Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Log in to Sitecore using OpenID Connect with Okta">
 <meta name="twitter:description" content="How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (backend NOT client facing site) by intercepting Authorize attribute.">
@@ -138,7 +138,8 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
             <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/okta-sso.png" alt="Sitecore Okta SSO"></h2><p>How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (backend NOT client facing site) by intercepting Authorize attribute.<br><a id="more"></a></p>
 <p><em>Versions used: Sitecore 8.2 rev. 170614 (8.2 Update-4).</em></p>
-<p><strong>Update/Warning:</strong> Preview mode fails for virtual users with the code below. To fix: 1- Call <a href="#ticket-function">this function</a> after authenticating the user to create an authentication ticket in sitecore. 2- Contact sitecore support and quote public reference 192715 so they can provide a known bug related to <code>item:preview</code> command. </p>
+<p><em>Go <a href="http://josedbaez.com/2018/03/sitecore9-sso/">here</a> for solution on sitecore 9</em></p>
+<p><strong>Update/Warning:</strong> Preview mode fails for virtual users with the code below. To fix: 1- Call <a href="#ticket-function">this function</a> after authenticating the user to create an authentication ticket in sitecore. 2- Contact sitecore support and quote public reference 192715 so they can provide a known bug related to <code>item:preview</code> command.</p>
 <p>In this post I will outline how to implement OpenID SSO with <a href="https://www.okta.com/" target="_blank" rel="noopener">Okta</a> to allow users to <strong>log in to sitecore (backend NOT client facing site)</strong> from Okta’s dashboard or by being redirected to Okta’s login screen when trying to directly access sitecore through custom url <sup><a href="#custom-url">custom url</a></sup>. <em>Authentication logic has been copied/modified from <a href="https://github.com/oktadeveloper/okta-oauth-aspnet-codeflow" target="_blank" rel="noopener">Okta’s github example code.</a></em></p>
 <p>The solution provided by OKTA uses <a href="http://owin.org/" target="_blank" rel="noopener">OWIN</a> libraries. I integrated the OWIN middleware through a sitecore pipeline following <a href="https://github.com/VyacheslavPritykin/Sitecore-Owin" target="_blank" rel="noopener">VyacheslavPritykin Sitecore-Owin</a> solution.</p>
 <p><strong> The code flow of this solution: </strong><br>The user requests a method decorated with <code>Authorize</code><sup><a href="#all-authorize">Authorize</a></sup> attribute, if the user is not authenticated, the middleware will get triggered and the user is redirected to Okta. Once the user logs in to okta, the middleware gets notified, we extract the information returned by okta and log the user in as a virtual user with <code>AuthenticationManager</code>. The original request (to method decorated with Authorize) is sent again and the user now goes through because it has been authenticated.</p>
@@ -200,7 +201,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="http://josedbaez.com/2017/09/sitecore-okta-login/" data-id="cji05tii1000lmq998f5k3ajv" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://josedbaez.com/2017/09/sitecore-okta-login/" data-id="cjjgy2vd8000fhu99my795evf" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
