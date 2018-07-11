@@ -17,8 +17,10 @@ How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (
 
 *Versions used: Sitecore 8.2 rev. 170614 (8.2 Update-4).*
 
-**Update/Warning:** Preview mode fails for virtual users with the code below. To fix: 1- Call [this function](#ticket-function) after authenticating the user to create an authentication ticket in sitecore. 2- Contact sitecore support and quote public reference 192715 so they can provide a known bug related to `item:preview` command. 
- 
+*Go [here](http://josedbaez.com/2018/03/sitecore9-sso/) for solution on sitecore 9*
+
+**Update/Warning:** Preview mode fails for virtual users with the code below. To fix: 1- Call [this function](#ticket-function) after authenticating the user to create an authentication ticket in sitecore. 2- Contact sitecore support and quote public reference 192715 so they can provide a known bug related to `item:preview` command.
+
 In this post I will outline how to implement OpenID SSO with [Okta](https://www.okta.com/) to allow users to **log in to sitecore (backend NOT client facing site)** from Okta's dashboard or by being redirected to Okta's login screen when trying to directly access sitecore through custom url <sup>[custom url](#custom-url)</sup>. *Authentication logic has been copied/modified from [Okta's github example code.](https://github.com/oktadeveloper/okta-oauth-aspnet-codeflow)*
 
 The solution provided by OKTA uses [OWIN](http://owin.org/) libraries. I integrated the OWIN middleware through a sitecore pipeline following [VyacheslavPritykin Sitecore-Owin](https://github.com/VyacheslavPritykin/Sitecore-Owin) solution.

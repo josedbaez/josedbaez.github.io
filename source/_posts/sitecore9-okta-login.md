@@ -17,9 +17,12 @@ How to implement federated authentication on sitecore 9 to allow content editors
 
 *Versions used: Sitecore Experience Platform 9.0 rev. 171219 (9.0 Update-1).*
 
+**Update/Warning:**
+Okta has now introduced "OIDC Compliant" which does a GET redirect when user clicks on the Okta app (okta dashboard) instead of POST as it happens when user clicks on the login with okta button from sitecore.`.
+
 This post is a continuation of my [previous post](http://josedbaez.com/2018/03/sitecore9-sso/). Instead of logging visitors in using federated authentication, in this post I'll show how to implement Okta authentication to log in to sitecore editor. It's an udpated version of my [sitecore 8 okta post](http://josedbaez.com/2017/09/sitecore-okta-login/). [Source code here.](https://github.com/josedbaez/sitecore9sso)
 
-The good news is things have changed and the implementation is easier and shorter than before. I won't be going into details on how to configure the application in Okta because it hasn't changed much since last time. [Click here](http://josedbaez.com/2017/09/sitecore-okta-login/#OKTA-application-configuration) for previous configuration. 
+The good news is things have changed and the implementation is easier and shorter than before. I won't be going into details on how to configure the application in Okta because it hasn't changed much since last time. [Click here](http://josedbaez.com/2017/09/sitecore-okta-login/#OKTA-application-configuration) for previous configuration.
 
 Please see my [previous post](http://josedbaez.com/2018/03/sitecore9-sso/) or [download here](https://github.com/josedbaez/sitecore9sso/blob/master/App_Config/Include/SSO/SitecoreSSO.config) to enable required settings and add default services.
 
