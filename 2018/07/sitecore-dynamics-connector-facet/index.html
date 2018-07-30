@@ -3,24 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Install and configure Sitecore Dynamics Connect | Jose Dominguez</title>
+    <title>Add custom facet to sync with Dynamics CRM | Jose Dominguez</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
         <meta name="keywords" content="xdb,dynamics" />
     
-    <meta name="description" content="How to install and configure Sitecore Dynamics Connect module…">
+    <meta name="description" content="How to define and implement a custom facet in sitecore so it can be imported when syncing CRM contacts.">
 <meta name="keywords" content="xdb,dynamics">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Install and configure Sitecore Dynamics Connect">
-<meta property="og:url" content="http://josedbaez.com/2018/02/sitecore-dynamics-connector/index.html">
+<meta property="og:title" content="Add custom facet to sync with Dynamics CRM">
+<meta property="og:url" content="http://josedbaez.com/2018/07/sitecore-dynamics-connector-facet/index.html">
 <meta property="og:site_name" content="Jose Dominguez">
-<meta property="og:description" content="How to install and configure Sitecore Dynamics Connect module…">
+<meta property="og:description" content="How to define and implement a custom facet in sitecore so it can be imported when syncing CRM contacts.">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://josedbaez.com/images/sitecore-dynamics.jpg">
-<meta property="og:updated_time" content="2018-02-06T23:08:23.708Z">
+<meta property="og:updated_time" content="2018-07-29T17:59:22.868Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Install and configure Sitecore Dynamics Connect">
-<meta name="twitter:description" content="How to install and configure Sitecore Dynamics Connect module…">
+<meta name="twitter:title" content="Add custom facet to sync with Dynamics CRM">
+<meta name="twitter:description" content="How to define and implement a custom facet in sitecore so it can be imported when syncing CRM contacts.">
 <meta name="twitter:image" content="http://josedbaez.com/images/sitecore-dynamics.jpg">
     
 
@@ -111,14 +111,14 @@ ga('send', 'pageview');
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-sitecore-dynamics-connector" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-sitecore-dynamics-connector-facet" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Install and configure Sitecore Dynamics Connect
+        Add custom facet to sync with Dynamics CRM
         </h1>
     
 
@@ -126,8 +126,8 @@ ga('send', 'pageview');
         
         
             <div class="article-subtitle">
-                <a href="/2018/02/sitecore-dynamics-connector/" class="article-date">
-    <time datetime="2018-02-06T23:08:23.708Z" itemprop="datePublished">2018-02-06</time>
+                <a href="/2018/07/sitecore-dynamics-connector-facet/" class="article-date">
+    <time datetime="2018-07-30T00:00:00.000Z" itemprop="datePublished">2018-07-30</time>
 </a>
                 
     <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dynamics/">dynamics</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/xdb/">xdb</a></li></ul>
@@ -136,40 +136,27 @@ ga('send', 'pageview');
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/sitecore-dynamics.jpg" alt="Sitecore Microsoft Dynamics CRM"></h2><p>How to install and configure Sitecore Dynamics Connect module…<br><a id="more"></a></p>
+            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/sitecore-dynamics.jpg" alt="Sitecore Microsoft Dynamics CRM"></h2><p>How to define and implement a custom facet in sitecore so it can be imported when syncing CRM contacts.<br><a id="more"></a></p>
 <p><em>Versions used: Sitecore 8.2 rev. 161221 (8.2 Update-2). Dynamics CRM Connect 1.3</em></p>
-<p>Sitecore Dynamics Connect module allows you to exchange data between Sitecore and Dynamics. In Sitecore’s <a href="https://dev.sitecore.net/Downloads/Dynamics_CRM_Connect/Dynamics_CRM_Connect_1/Dynamics_CRM_Connect_1_3.aspx" target="_blank" rel="noopener">words</a>: “Integrate data from Dynamics CRM with Sitecore, and data from Sitecore with Dynamics CRM.”</p>
-<p>On a previous project, we were using the module to keep xDb contacts in sync as they were being managed in CRM.</p>
-<p>This post outlines how to install and configure the module so you can start using out of the box pipelines.</p>
-<p><strong>Steps:</strong></p>
-<ol>
-<li><p><a href="https://dev.sitecore.net/Downloads/Dynamics_CRM_Connect/Dynamics_CRM_Connect_1/Dynamics_CRM_Connect_1_3.aspx" target="_blank" rel="noopener">Download</a> and install packages in the following order: </p>
-<ol>
-<li>Data Exchange Framework 1.3</li>
-<li>Exchange Framework 1.3</li>
-<li>Dynamics CRM Provider for Data Exchange Framework 1.3</li>
-</ol>
-</li>
-<li><p>Modify your <code>ConnectionStrings.config</code> file and add a connection string to CRM instance. <em>(e.g. <code>&lt;add name=&quot;CRM&quot; connectionString=&quot;Url=https://mycrm.dynamics.com; Username=hola;Password=ppp;&quot; /&gt;</code>)</em> <a href="https://msdn.microsoft.com/en-us/library/gg695810" target="_blank" rel="noopener">MSDN</a> for more info on Dynamics Connection Strings.</p>
-</li>
-<li><p>Go to item <code>/sitecore/system/Data Exchange</code> and create a new <code>Data Exchange Tenant for Dynamics CRM</code> item under it.</p>
-</li>
-<li><p>Go to item <code>/sitecore/system/Data Exchange/[Your Item]/Tenant Settings/Dynamics CRM/Repository Sets</code> and create a new <code>XRM Client Entity Repository Set</code> item under it.</p>
-<ol>
-<li>Set <code>Connection String Name</code> field to your connection string name from step 2</li>
-<li>Click on Test Connection <sup><a href="#assembly-error">optional error</a></sup></li>
-</ol>
-</li>
-<li><p>Go to item <code>/sitecore/system/Data Exchange/[Your Item]]/Endpoints/Providers/Dynamics CRM/Dynamics CRM Entity Endpoint</code> and set field <code>Entity Repository Set</code> to your repository set (step 4). Save item.</p>
-</li>
-<li><p>Go to item <code>/sitecore/system/Data Exchange/[Your Item]</code> and check field <code>Enabled</code>.</p>
-</li>
-</ol>
-<p>That’s it. You have configured the connection to Dynamics and can now run any pipeline under <code>/sitecore/system/Data Exchange/[Name Of Item]/Pipeline Batches</code> by clicking on the item and <code>Run Pipeline Batch</code> from the <code>Data Exchange</code> menu.</p>
-<p>====================</p>
-<p><a name="assembly-error">If you get an error like:</a> <code>Could not load file or assembly &#39;Microsoft.Xrm.Sdk, Version=7.0.0.0...</code></p>
-<p>You need to add the following dependency assembly to your web.config (This has been reported to sitecore support and the official documentation will get amended).</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependentAssembly</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">assemblyIdentity</span> <span class="attr">name</span>=<span class="string">"Microsoft.Xrm.Sdk"</span> <span class="attr">publicKeyToken</span>=<span class="string">"31bf3856ad364e35"</span> <span class="attr">culture</span>=<span class="string">"neutral"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">bindingRedirect</span> <span class="attr">oldVersion</span>=<span class="string">"0.0.0.0-8.0.0.0"</span> <span class="attr">newVersion</span>=<span class="string">"8.0.0.0"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependentAssembly</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">dependentAssembly</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">assemblyIdentity</span> <span class="attr">name</span>=<span class="string">"Microsoft.Crm.Sdk.Proxy"</span> <span class="attr">publicKeyToken</span>=<span class="string">"31bf3856ad364e35"</span> <span class="attr">culture</span>=<span class="string">"neutral"</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">bindingRedirect</span> <span class="attr">oldVersion</span>=<span class="string">"0.0.0.0-8.0.0.0"</span> <span class="attr">newVersion</span>=<span class="string">"8.0.0.0"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependentAssembly</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>When you configure the dynamics connector it creates predefined facets and its mappings. You need to define custom ones if you want them to be synced. I was meant to blog about this a while ago but for some reason didn’t. Someone asked me about it on a <a href="http://josedbaez.com/2018/02/sitecore-dynamics-connector/">previous post</a> where I explain how to configure the connector.</p>
+<p>There are 3 things you have to do to add a custom facet:</p>
+<ul>
+<li>Create facet interface and implementation.</li>
+<li>Add custom facet to sitecore entities and model.</li>
+<li>Create facet accessor items and map them.</li>
+</ul>
+<p>The example below is from an implementation where user interests (e.g. sports, computers, music) needed to be synced. These were being saved individually on the CRM as boolean -e.g. a contact would have Sports = true, Computers = false, Music = true, etc, and stored on xDB as one facet with multiple properties.</p>
+<h2 id="Facet-interface-and-implementation"><a href="#Facet-interface-and-implementation" class="headerlink" title="Facet interface and implementation"></a>Facet interface and implementation</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Sitecore.Analytics.Model.Framework;</span><br><span class="line"><span class="keyword">using</span> Sitecore.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Entities</span></span><br><span class="line">&#123;</span><br><span class="line">    public interface IMyCrmFacet : IFacet, IElement, IValidatable</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">bool</span> Computers &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">bool</span> Sports &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Sitecore.Analytics.Model.Framework;</span><br><span class="line"><span class="keyword">using</span> Sitecore.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Entities</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">Serializable</span>]</span><br><span class="line">    public class MyCrmFacet : Facet, IMyCrmFacet, IFacet, IElement, IValidatable</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> COMPUTERS = <span class="string">"Computers"</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> SPORTS = <span class="string">"Sports"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">bool</span> Computers</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">base</span>.GetAttribute&lt;<span class="keyword">bool</span>&gt;(COMPUTERS);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">set</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">base</span>.SetAttribute&lt;<span class="keyword">bool</span>&gt;(COMPUTERS, <span class="keyword">value</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">bool</span> Sports</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">base</span>.GetAttribute&lt;<span class="keyword">bool</span>&gt;(SPORTS);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">set</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">base</span>.SetAttribute&lt;<span class="keyword">bool</span>&gt;(SPORTS, <span class="keyword">value</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">CrmInterests</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">base</span>.EnsureAttribute&lt;<span class="keyword">bool</span>&gt;(COMPUTERS);</span><br><span class="line">            <span class="keyword">base</span>.EnsureAttribute&lt;<span class="keyword">bool</span>&gt;(SPORTS);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The code above is quite simple. All we are doing is creating getters and setters for each facet properties. The name of the property will be used in sitecore to find the code, and the constant value is name it will store in mongo.</p>
+<h2 id="Add-custom-facet-to-sitecore-entities-and-model"><a href="#Add-custom-facet-to-sitecore-entities-and-model" class="headerlink" title="Add custom facet to sitecore entities and model"></a>Add custom facet to sitecore entities and model</h2><p>Now we need to let sitecore know about this new facet and its implementation. We do this via a config patch as follows.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">xmlns:patch</span>=<span class="string">"http://www.sitecore.net/xmlconfig/"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">sitecore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">model</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">elements</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">element</span> <span class="attr">interface</span>=<span class="string">"Entities.IMyCrmFacet, MyLibrary"</span> <span class="attr">implementation</span>=<span class="string">"Entities.MyCrmFacet, MyLibrary"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">elements</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">entities</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">contact</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">facets</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">facet</span> <span class="attr">name</span>=<span class="string">"MyCrmFacet"</span> <span class="attr">contract</span>=<span class="string">"Entities.IMyCrmFacet, MyLibrary"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">facets</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">contact</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">entities</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">model</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">sitecore</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Create-facet-accessor-items-and-map-them"><a href="#Create-facet-accessor-items-and-map-them" class="headerlink" title="Create facet accessor items and map them"></a>Create facet accessor items and map them</h2><p>Now that we have created our facet and have registered it in sitecore, all that is left is create accessor items to tell sitecore which CRM properties should map to our facet.</p>
+<p>To do this, you have to create an accessor for the CRM attribute, an accessor for the xDB contact and a mapping set item to link the 2.</p>
+<p>a) Create an item of type <code>Entity Attribute Value Accessor</code> under:<br><code>/sitecore/system/Data Exchange/xxxx/Data Access/Value Accessor Sets/Providers/Dynamics CRM/CRM Contact Attributes/</code> and set <code>AttributeName</code> to the field name of the property in CRM. This might not be the same as the label users see on the CRM form, so make sure you set the right one (e.g. in our case the form would should Computers but the name was ms_computers. Was able to get that by inspecting form html).</p>
+<p>b) Create an item of type <code>xDB Contact Facet Property Value Accessor</code> under: <code>/sitecore/system/Data Exchange/xxxx/Data Access/Value Accessor Sets/Providers/Sitecore/xDB Contact Properties/</code> and set <code>ContactFacetName</code> to one property in your facet class (e.g. Computers)</p>
+<p>c) Create an item of type <code>Value Mapping</code> under <code>/sitecore/system/Data Exchange/xxxx/Value Mapping Sets/CRM Contact to xDB Contact/</code><br>and set <code>SourceAccessor</code> to the CRM accessor created on a), and <code>TargetAccessor</code> to the xDB accessor created on b).</p>
+<p>Done. Your custom properties should now sync when you run the task. </p>
+<p>PS: You need to the steps above for each property that you want to map.</p>
 <hr>
 <p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
 
@@ -179,7 +166,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="http://josedbaez.com/2018/02/sitecore-dynamics-connector/" data-id="cjk73jw8n0009tt99ncki8srg" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://josedbaez.com/2018/07/sitecore-dynamics-connector-facet/" data-id="cjk73ke680000tu99wsoi5mag" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -299,20 +286,10 @@ ga('send', 'pageview');
         
 <nav id="article-nav">
     
-        <a href="/2018/03/sitecore9-sso/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            Allows users to log in to a Sitecore 9 site using federated authentication
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
     
-    
-        <a href="/2018/02/application-insights-logger/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2018/04/sitecore9-okta-login/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Application insights logger</p>
+        <p class="article-nav-title">Log in to sitecore 9 editor using Okta provider</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -435,7 +412,7 @@ ga('send', 'pageview');
     var disqus_shortname = 'josedbaez';
     
     
-    var disqus_url = 'http://josedbaez.com/2018/02/sitecore-dynamics-connector/';
+    var disqus_url = 'http://josedbaez.com/2018/07/sitecore-dynamics-connector-facet/';
     
     (function() {
     var dsq = document.createElement('script');

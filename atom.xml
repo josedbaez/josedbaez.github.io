@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://josedbaez.com/"/>
-  <updated>2018-07-11T09:51:18.014Z</updated>
+  <updated>2018-07-29T17:59:22.868Z</updated>
   <id>http://josedbaez.com/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Add custom facet to sync with Dynamics CRM</title>
+    <link href="http://josedbaez.com/2018/07/sitecore-dynamics-connector-facet/"/>
+    <id>http://josedbaez.com/2018/07/sitecore-dynamics-connector-facet/</id>
+    <published>2018-07-30T00:00:00.000Z</published>
+    <updated>2018-07-29T17:59:22.868Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/sitecore-dynamics.jpg" alt="Sitecore Microsoft Dynamics CRM"></h2><p>How to define and implement a custom facet in sitecore so it can be imported when syncing CRM contacts.<br><a id="more"></a></p><p><em>Versions used: Sitecore 8.2 rev. 161221 (8.2 Update-2). Dynamics CRM Connect 1.3</em></p><p>When you configure the dynamics connector it creates predefined facets and its mappings. You need to define custom ones if you want them to be synced. I was meant to blog about this a while ago but for some reason didn’t. Someone asked me about it on a <a href="http://josedbaez.com/2018/02/sitecore-dynamics-connector/">previous post</a> where I explain how to configure the connector.</p><p>There are 3 things you have to do to add a custom facet:</p><ul><li>Create facet interface and implementation.</li><li>Add custom facet to sitecore entities and model.</li><li>Create facet accessor items and map them.</li></ul><p>The example below is from an implementation where user interests (e.g. sports, computers, music) needed to be synced. These were being saved individually on the CRM as boolean -e.g. a contact would have Sports = true, Computers = false, Music = true, etc, and stored on xDB as one facet with multiple properties.</p><h2 id="Facet-interface-and-implementation"><a href="#Facet-interface-and-implementation" class="headerlink" title="Facet interface and implementation"></a>Facet interface and implementation</h2><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Sitecore.Analytics.Model.Framework;</span><br><span class="line"><span class="keyword">using</span> Sitecore.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Entities</span></span><br><span class="line">&#123;</span><br><span class="line">    public interface IMyCrmFacet : IFacet, IElement, IValidatable</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">bool</span> Computers &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">        <span class="keyword">bool</span> Sports &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> Sitecore.Analytics.Model.Framework;</span><br><span class="line"><span class="keyword">using</span> Sitecore.Data;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Entities</span></span><br><span class="line">&#123;</span><br><span class="line">    [<span class="meta">Serializable</span>]</span><br><span class="line">    public class MyCrmFacet : Facet, IMyCrmFacet, IFacet, IElement, IValidatable</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> COMPUTERS = <span class="string">"Computers"</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">const</span> <span class="keyword">string</span> SPORTS = <span class="string">"Sports"</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">bool</span> Computers</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">base</span>.GetAttribute&lt;<span class="keyword">bool</span>&gt;(COMPUTERS);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">set</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">base</span>.SetAttribute&lt;<span class="keyword">bool</span>&gt;(COMPUTERS, <span class="keyword">value</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">bool</span> Sports</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">get</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">base</span>.GetAttribute&lt;<span class="keyword">bool</span>&gt;(SPORTS);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">set</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">base</span>.SetAttribute&lt;<span class="keyword">bool</span>&gt;(SPORTS, <span class="keyword">value</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">CrmInterests</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">base</span>.EnsureAttribute&lt;<span class="keyword">bool</span>&gt;(COMPUTERS);</span><br><span class="line">            <span class="keyword">base</span>.EnsureAttribute&lt;<span class="keyword">bool</span>&gt;(SPORTS);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>The code above is quite simple. All we are doing is creating getters and setters for each facet properties. The name of the property will be used in sitecore to find the code, and the constant value is name it will store in mongo.</p><h2 id="Add-custom-facet-to-sitecore-entities-and-model"><a href="#Add-custom-facet-to-sitecore-entities-and-model" class="headerlink" title="Add custom facet to sitecore entities and model"></a>Add custom facet to sitecore entities and model</h2><p>Now we need to let sitecore know about this new facet and its implementation. We do this via a config patch as follows.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">xmlns:patch</span>=<span class="string">"http://www.sitecore.net/xmlconfig/"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">sitecore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">model</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">elements</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">element</span> <span class="attr">interface</span>=<span class="string">"Entities.IMyCrmFacet, MyLibrary"</span> <span class="attr">implementation</span>=<span class="string">"Entities.MyCrmFacet, MyLibrary"</span>/&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">elements</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">entities</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">contact</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">facets</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">facet</span> <span class="attr">name</span>=<span class="string">"MyCrmFacet"</span> <span class="attr">contract</span>=<span class="string">"Entities.IMyCrmFacet, MyLibrary"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">facets</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">contact</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">entities</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">model</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">sitecore</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure></p><h2 id="Create-facet-accessor-items-and-map-them"><a href="#Create-facet-accessor-items-and-map-them" class="headerlink" title="Create facet accessor items and map them"></a>Create facet accessor items and map them</h2><p>Now that we have created our facet and have registered it in sitecore, all that is left is create accessor items to tell sitecore which CRM properties should map to our facet.</p><p>To do this, you have to create an accessor for the CRM attribute, an accessor for the xDB contact and a mapping set item to link the 2.</p><p>a) Create an item of type <code>Entity Attribute Value Accessor</code> under:<br><code>/sitecore/system/Data Exchange/xxxx/Data Access/Value Accessor Sets/Providers/Dynamics CRM/CRM Contact Attributes/</code> and set <code>AttributeName</code> to the field name of the property in CRM. This might not be the same as the label users see on the CRM form, so make sure you set the right one (e.g. in our case the form would should Computers but the name was ms_computers. Was able to get that by inspecting form html).</p><p>b) Create an item of type <code>xDB Contact Facet Property Value Accessor</code> under: <code>/sitecore/system/Data Exchange/xxxx/Data Access/Value Accessor Sets/Providers/Sitecore/xDB Contact Properties/</code> and set <code>ContactFacetName</code> to one property in your facet class (e.g. Computers)</p><p>c) Create an item of type <code>Value Mapping</code> under <code>/sitecore/system/Data Exchange/xxxx/Value Mapping Sets/CRM Contact to xDB Contact/</code><br>and set <code>SourceAccessor</code> to the CRM accessor created on a), and <code>TargetAccessor</code> to the xDB accessor created on b).</p><p>Done. Your custom properties should now sync when you run the task. </p><p>PS: You need to the steps above for each property that you want to map.</p><hr><p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;img class=&quot;hero-img&quot; src=&quot;/images/sitecore-dynamics.jpg&quot; alt=&quot;Sitecore Microsoft Dynamics CRM&quot;&gt;&lt;/h2&gt;&lt;p&gt;How to define and implement a custom facet in sitecore so it can be imported when syncing CRM contacts.&lt;br&gt;
+    
+    </summary>
+    
+      <category term="Sitecore" scheme="http://josedbaez.com/categories/Sitecore/"/>
+    
+      <category term="CRM" scheme="http://josedbaez.com/categories/Sitecore/CRM/"/>
+    
+    
+      <category term="xdb" scheme="http://josedbaez.com/tags/xdb/"/>
+    
+      <category term="dynamics" scheme="http://josedbaez.com/tags/dynamics/"/>
+    
+  </entry>
   
   <entry>
     <title>Log in to sitecore 9 editor using Okta provider</title>
@@ -38,11 +64,11 @@
     
       <category term="openid" scheme="http://josedbaez.com/tags/openid/"/>
     
-      <category term="okta" scheme="http://josedbaez.com/tags/okta/"/>
-    
       <category term="sso" scheme="http://josedbaez.com/tags/sso/"/>
     
       <category term="authentication" scheme="http://josedbaez.com/tags/authentication/"/>
+    
+      <category term="okta" scheme="http://josedbaez.com/tags/okta/"/>
     
   </entry>
   
@@ -68,13 +94,13 @@
     
       <category term="openid" scheme="http://josedbaez.com/tags/openid/"/>
     
-      <category term="sso" scheme="http://josedbaez.com/tags/sso/"/>
-    
-      <category term="authentication" scheme="http://josedbaez.com/tags/authentication/"/>
-    
       <category term="facebook" scheme="http://josedbaez.com/tags/facebook/"/>
     
       <category term="google" scheme="http://josedbaez.com/tags/google/"/>
+    
+      <category term="sso" scheme="http://josedbaez.com/tags/sso/"/>
+    
+      <category term="authentication" scheme="http://josedbaez.com/tags/authentication/"/>
     
   </entry>
   
@@ -154,11 +180,11 @@
     
       <category term="openid" scheme="http://josedbaez.com/tags/openid/"/>
     
-      <category term="okta" scheme="http://josedbaez.com/tags/okta/"/>
-    
       <category term="sso" scheme="http://josedbaez.com/tags/sso/"/>
     
       <category term="authentication" scheme="http://josedbaez.com/tags/authentication/"/>
+    
+      <category term="okta" scheme="http://josedbaez.com/tags/okta/"/>
     
   </entry>
   
@@ -210,11 +236,11 @@
       <category term="Field Types" scheme="http://josedbaez.com/categories/Sitecore/Field-Types/"/>
     
     
+      <category term="bug" scheme="http://josedbaez.com/tags/bug/"/>
+    
       <category term="commerce" scheme="http://josedbaez.com/tags/commerce/"/>
     
       <category term="generallink" scheme="http://josedbaez.com/tags/generallink/"/>
-    
-      <category term="bug" scheme="http://josedbaez.com/tags/bug/"/>
     
   </entry>
   
@@ -271,34 +297,6 @@
       <category term="linklist" scheme="http://josedbaez.com/tags/linklist/"/>
     
       <category term="fieldtypes" scheme="http://josedbaez.com/tags/fieldtypes/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>CRM connector not removing contacts from marketing lists</title>
-    <link href="http://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/"/>
-    <id>http://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</id>
-    <published>2017-03-02T00:00:00.000Z</published>
-    <updated>2018-02-06T23:08:23.708Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/sitecore-dynamics-bug.jpg" alt="Sitecore Microsoft Dynamics CRM"></h2><p>Fix issue with CRM connector not removing contacts from marketing lists after syncing…<br><a id="more"></a></p><p><em>Versions used: Sitecore 8.1 rev. 151207 (Update-1). Dynamics CRM Connect 1.1</em></p><p>When <a href="http://integrationsdn.sitecore.net/DynamicsCrmConnect/v1.1/pipeline-batches/crm-marketinglist-sync/overview.html" target="_blank" rel="noopener">syncing marketing lists from CRM</a>, you need the connector to add users to marketing lists but also to <a href="http://integrationsdn.sitecore.net/DynamicsCrmConnect/v1.1/pipeline-batches/crm-marketinglist-sync/about-reset-marketing-lists.html" target="_blank" rel="noopener">remove them from lists</a> they do not belong to anymore.</p><p>The removal of contacts from marketing lists happens in pipeline <code>Reset Existing xDB Contacts Pipeline</code>, but it does NOT WORK :(, hence contacts stay in a marketing list forever.</p><p>We contacted sitecore support about this and it was flagged as a bug (ref no. 139990) which is luckily easy to fix.</p><p><strong>Solution</strong></p><p>Go to item <code>/sitecore/system/Data Exchange/{Your CRM Tenant}/Value Mapping Sets/Clear CRM List Membership on xDB Contact/Marketing Lists</code> and untick field <code>Ignore null values</code>.</p><hr><p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;img class=&quot;hero-img&quot; src=&quot;/images/sitecore-dynamics-bug.jpg&quot; alt=&quot;Sitecore Microsoft Dynamics CRM&quot;&gt;&lt;/h2&gt;&lt;p&gt;Fix issue with CRM connector not removing contacts from marketing lists after syncing…&lt;br&gt;
-    
-    </summary>
-    
-      <category term="Sitecore" scheme="http://josedbaez.com/categories/Sitecore/"/>
-    
-      <category term="CRM" scheme="http://josedbaez.com/categories/Sitecore/CRM/"/>
-    
-    
-      <category term="xdb" scheme="http://josedbaez.com/tags/xdb/"/>
-    
-      <category term="bug" scheme="http://josedbaez.com/tags/bug/"/>
-    
-      <category term="dynamics" scheme="http://josedbaez.com/tags/dynamics/"/>
     
   </entry>
   
