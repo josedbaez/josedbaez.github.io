@@ -2,10 +2,11 @@ title: Media.AlwaysAppendRevision - Unrecognized Guid
 date: 2018/11/19
 categories:
 - Sitecore
-- CDN
+- Azure
 tags:
 - bug
 - cdn
+- azure
 
 ---
 <img class="hero-img" src="/images/alwaysappendrevision-bug.jpg" alt="Always Append Revision.jpg">
