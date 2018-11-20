@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://josedbaez.com/"/>
-  <updated>2018-11-20T00:32:44.395Z</updated>
+  <updated>2018-11-20T01:31:26.947Z</updated>
   <id>http://josedbaez.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://josedbaez.com/2018/11/media-always-append-revision-bug/"/>
     <id>http://josedbaez.com/2018/11/media-always-append-revision-bug/</id>
     <published>2018-11-19T00:00:00.000Z</published>
-    <updated>2018-11-20T00:32:44.395Z</updated>
+    <updated>2018-11-20T01:31:26.947Z</updated>
     
     <content type="html"><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/alwaysappendrevision-bug.jpg" alt="Always Append Revision.jpg"></h2><p>Unrecognized Guid format error when Media.AlwaysAppendRevision is set to true.<br><a id="more"></a></p><p><em>Versions used: Sitecore Experience Platform 9.0 rev. 171219 (9.0 Update-1).</em></p><p>After reading <a href="https://jammykam.wordpress.com/2017/02/13/sitecore-azure-cdn/" target="_blank" rel="noopener">Kam’s post</a> about changes needed to serve media library items via Azure’s CDN, I implemented a custom Media Provider to append the last modified date to the media URL -so we don’t need to purge URLs on azure when a media item is modified. Then a colleague pointed out Sitecore provides a setting <code>Media.AlwaysAppendRevision</code> that does exactly this (but with revision number instead).</p><p>Unfortunately, this setting breaks the default Media Provider. An <code>[FormatException: Unrecognized Guid format.]</code> error if shown if you try to add a language version to a media item. </p><p>Sitecore has released an official patch to fix the see. Grab it from <a href="https://github.com/sitecoresupport/Sitecore.Support.219261/releases" target="_blank" rel="noopener">here</a></p><hr><p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>]]></content>
     
@@ -33,8 +33,10 @@
     
       <category term="Sitecore" scheme="http://josedbaez.com/categories/Sitecore/"/>
     
-      <category term="CDN" scheme="http://josedbaez.com/categories/Sitecore/CDN/"/>
+      <category term="Azure" scheme="http://josedbaez.com/categories/Sitecore/Azure/"/>
     
+    
+      <category term="azure" scheme="http://josedbaez.com/tags/azure/"/>
     
       <category term="bug" scheme="http://josedbaez.com/tags/bug/"/>
     
@@ -290,11 +292,11 @@
       <category term="Field Types" scheme="http://josedbaez.com/categories/Sitecore/Field-Types/"/>
     
     
-      <category term="bug" scheme="http://josedbaez.com/tags/bug/"/>
-    
       <category term="commerce" scheme="http://josedbaez.com/tags/commerce/"/>
     
       <category term="generallink" scheme="http://josedbaez.com/tags/generallink/"/>
+    
+      <category term="bug" scheme="http://josedbaez.com/tags/bug/"/>
     
   </entry>
   
