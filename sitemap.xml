@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://josedbaez.com/2018/10/azure-application-gateway-client-ip/</loc>
+    
+    <lastmod>2018-11-20T01:24:51.527Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
+    
+    <lastmod>2018-11-20T00:32:44.395Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://josedbaez.com/2018/07/sitecore-dynamics-connector-facet/</loc>
     
     <lastmod>2018-07-29T17:59:22.868Z</lastmod>
@@ -65,14 +79,14 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/03/synthesis-link-list/</loc>
+    <loc>http://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
     
     <lastmod>2018-02-06T23:08:23.708Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
+    <loc>http://josedbaez.com/2017/03/synthesis-link-list/</loc>
     
     <lastmod>2018-02-06T23:08:23.708Z</lastmod>
     
@@ -86,7 +100,7 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/04/linkfield-jsonmaxlength-error/</loc>
+    <loc>http://josedbaez.com/2017/01/exm-get-contact/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
     
@@ -100,14 +114,14 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2016/09/hello-world/</loc>
+    <loc>http://josedbaez.com/2017/04/linkfield-jsonmaxlength-error/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/01/exm-get-contact/</loc>
+    <loc>http://josedbaez.com/2016/09/hello-world/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
     
