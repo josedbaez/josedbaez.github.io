@@ -3,25 +3,19 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Log4net rolling appender | Jose Dominguez</title>
+    <title>Tag: cache | Jose Dominguez</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="logs,log4net" />
-    
-    <meta name="description" content="A way to reduce log file size by telling log4net to create multiple files per day instead of one…">
-<meta name="keywords" content="logs,log4net">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Log4net rolling appender">
-<meta property="og:url" content="http://josedbaez.com/2017/01/log4net-rolling-appender/index.html">
+    <meta name="description" content="C#, .net, sitecore &amp; some other stuff">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jose Dominguez">
+<meta property="og:url" content="http://josedbaez.com/tags/cache/index.html">
 <meta property="og:site_name" content="Jose Dominguez">
-<meta property="og:description" content="A way to reduce log file size by telling log4net to create multiple files per day instead of one…">
+<meta property="og:description" content="C#, .net, sitecore &amp; some other stuff">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://josedbaez.com/images/logs.jpg">
-<meta property="og:updated_time" content="2018-02-06T23:08:23.707Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Log4net rolling appender">
-<meta name="twitter:description" content="A way to reduce log file size by telling log4net to create multiple files per day instead of one…">
-<meta name="twitter:image" content="http://josedbaez.com/images/logs.jpg">
+<meta name="twitter:title" content="Jose Dominguez">
+<meta name="twitter:description" content="C#, .net, sitecore &amp; some other stuff">
     
 
     
@@ -107,126 +101,55 @@ ga('send', 'pageview');
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Sitecore/Log4net/">Log4net</a>
+    <i class="icon fa fa-tag"></i>Tag: <em>cache</em>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-log4net-rolling-appender" class="article article-single article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
+                            
+
+    
+    
         
-            <header class="article-header">
-                
+        
+        <section class="archives-wrap">
+            <div class="archive-year-wrap">
+                <a href="/archives/2018" class="archive-year"><i class="icon fa fa-calendar-o"></i>2018</a>
+            </div>
+            <div class="archives">
+    
+    
+    
+        <div class="article-row">
+    
+        <article class="article article-summary">
+    <div class="article-summary-inner">
+        
+        <div class="article-meta">
+            <p class="category">
+            <a class="article-category-link" href="/categories/Sitecore/">Sitecore</a>
+            </p>
+            <p class="date"><time datetime="2018-12-09T00:00:00.000Z" itemprop="datePublished">2018-12-09</time></p>
+        </div>
+        
     
         <h1 class="article-title" itemprop="name">
-        Log4net rolling appender
+        <a href="/2018/12/querystring-cache-size/">Increase querystring cache size</a>
         </h1>
     
 
-            </header>
-        
-        
-            <div class="article-subtitle">
-                <a href="/2017/01/log4net-rolling-appender/" class="article-date">
-    <time datetime="2017-01-23T00:00:00.000Z" itemprop="datePublished">2017-01-23</time>
-</a>
-                
-    <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/log4net/">log4net</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/logs/">logs</a></li></ul>
-
-            </div>
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/logs.jpg" alt="Logs"></h2><p>A way to reduce log file size by telling log4net to create multiple files per day instead of one…<br><a id="more"></a></p>
-<p><em>Versions used: Sitecore 8.1 rev. 151207 (Update-1).</em></p>
-<p><strong>Update/Warning:</strong> Using rolling appender, I occasionally experienced an issue where sitecore wouldn’t create log files after application pool recycle. Was not able to pinpoint if this was the issue but keep it in mind.</p>
-<p>Have you ever had issues opening log files that are too big for text editors to process? I surely have.</p>
-<p>Log4net can be configured to use a <a href="https://logging.apache.org/log4net/release/config-examples.html#rollingfileappender" target="_blank" rel="noopener">rolling file appender</a> that creates multiple files once it reaches the maximum size per file set.</p>
-<p>The following patch will delete default sitecore log4net appender and add a new one that tells log4net to create a log file every 50KB, per day. <em>Note: pick a much bigger number but not too big that editors struggle to open the files.</em></p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"LogFileAppender"</span> <span class="attr">type</span>=<span class="string">"log4net.Appender.SitecoreLogFileAppender, Sitecore.Logging"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">patch:delete</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">appender</span> <span class="attr">name</span>=<span class="string">"LogFileAppender"</span> <span class="attr">type</span>=<span class="string">"log4net.Appender.RollingFileAppender"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">file</span> <span class="attr">value</span>=<span class="string">"$(dataFolder)/logs/log"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">appendToFile</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">datePattern</span> <span class="attr">value</span>=<span class="string">"'.'yyyyMMdd'.txt'"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">rollingStyle</span> <span class="attr">value</span>=<span class="string">"Composite"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maxSizeRollBackups</span> <span class="attr">value</span>=<span class="string">"-1"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">maximumFileSize</span> <span class="attr">value</span>=<span class="string">"50KB"</span> /&gt;</span> <span class="comment">&lt;!-- KB, MB, GB --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">preserveLogFileNameExtension</span> <span class="attr">value</span>=<span class="string">"true"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">staticLogFileName</span> <span class="attr">value</span>=<span class="string">"false"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">layout</span> <span class="attr">type</span>=<span class="string">"log4net.Layout.PatternLayout"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">conversionPattern</span> <span class="attr">value</span>=<span class="string">"%4t %d&#123;ABSOLUTE&#125; %-5p %m%n"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">layout</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">encoding</span> <span class="attr">value</span>=<span class="string">"utf-8"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">appender</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>And this is the result:</p>
-<p><img class="hero-img" src="/images/rolling-logs.png" alt="Rolling logs"></p>
-<hr>
-<p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
-
-        </div>
-        <footer class="article-footer">
-            
-
-
-
-    <a data-url="http://josedbaez.com/2017/01/log4net-rolling-appender/" data-id="cjph5vyed000i2y99nj8e2ivi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
-<script>
-    (function ($) {
-        $('body').on('click', function() {
-            $('.article-share-box.on').removeClass('on');
-        }).on('click', '.article-share-link', function(e) {
-            e.stopPropagation();
-
-            var $this = $(this),
-                url = $this.attr('data-url'),
-                encodedUrl = encodeURIComponent(url),
-                id = 'article-share-box-' + $this.attr('data-id'),
-                offset = $this.offset(),
-                box;
-
-            if ($('#' + id).length) {
-                box = $('#' + id);
-
-                if (box.hasClass('on')){
-                    box.removeClass('on');
-                    return;
-                }
-            } else {
-                var html = [
-                    '<div id="' + id + '" class="article-share-box">',
-                        '<input class="article-share-input" value="' + url + '">',
-                        '<div class="article-share-links">',
-                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
-                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
-                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
-                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
-                        '</div>',
-                    '</div>'
-                ].join('');
-
-              box = $(html);
-
-              $('body').append(box);
-            }
-
-            $('.article-share-box.on').hide();
-
-            box.css({
-                top: offset.top + 25,
-                left: offset.left
-            }).addClass('on');
-
-        }).on('click', '.article-share-box', function (e) {
-            e.stopPropagation();
-        }).on('click', '.article-share-box-input', function () {
-            $(this).select();
-        }).on('click', '.article-share-box-link', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
-        });
-    })(jQuery);
-</script>
-
-        </footer>
+        <p class="article-excerpt">
+            How to increase WebUtil.QueryStringCache via configuration patch.
+        </p>
     </div>
 </article>
-
-    <section id="comments">
     
-        
-    <div id="disqus_thread">
-        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-    </div>
-
+        </div>
     
-    </section>
+
+
+    </div></section>
+
+
 
                         </div>
                     </section>
@@ -270,29 +193,6 @@ ga('send', 'pageview');
             
         </ul>
     </div>
-    
-        
-<nav id="article-nav">
-    
-        <a href="/2017/03/sitecore-dynamics-connector-reset-error/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">newer</strong>
-        <p class="article-nav-title">
-        
-            CRM connector not removing contacts from marketing lists
-        
-        </p>
-        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
-    </a>
-    
-    
-        <a href="/2017/01/exm-get-contact/" id="article-nav-older" class="article-nav-link-wrap">
-        <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">EXM - Get xDb contact</p>
-        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
-        </a>
-    
-</nav>
-
     
     <div class="widgets-container">
         
@@ -410,13 +310,11 @@ ga('send', 'pageview');
     var disqus_shortname = 'josedbaez';
     
     
-    var disqus_url = 'http://josedbaez.com/2017/01/log4net-rolling-appender/';
-    
     (function() {
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     })();
     </script>
