@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://josedbaez.com/"/>
-  <updated>2018-12-09T18:14:29.968Z</updated>
+  <updated>2018-12-09T18:20:16.080Z</updated>
   <id>http://josedbaez.com/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="http://josedbaez.com/2018/12/querystring-cache-size/"/>
     <id>http://josedbaez.com/2018/12/querystring-cache-size/</id>
     <published>2018-12-09T00:00:00.000Z</published>
-    <updated>2018-12-09T18:14:29.968Z</updated>
+    <updated>2018-12-09T18:20:16.080Z</updated>
     
     <content type="html"><![CDATA[<h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/querystring-cache.jpg" alt="Querystring cache"></h2><p>How to increase WebUtil.QueryStringCache via configuration patch.<br><a id="more"></a></p><p><em>Versions used: Sitecore Experience Platform 9.0 rev. 171219 (9.0 Update-1).</em></p><p>I was going through sitecore logs and stumbled across a warning message that was coming up very often. Usually, many Warning messages are ignored or caused by something else that should be looked into. In this case the recurrent warning message was related to <code>WebUtil.QueryStringCache</code> being cleared:</p><p><strong><em>WARN  WebUtil.QueryStringCache cache is cleared by Sitecore.Caching.Generics.Cache`1+DefaultScavengeStrategy[[System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089]] strategy. Cache running size was 17.7 KB</em></strong></p><p>My first thought was I could easily look for the sitecore setting and patch the number to something larger as the implementation I was working on was big. But… I couldn’t find such setting. When the site is started you can find a message of the size that reads:<br><em>INFO  Cache created: ‘WebUtil.QueryStringCache’ (max size: 19KB, running total: 5596MB)</em></p><p>As I couldn’t find any setting where this 19KB was being set, I fired up ILSpy and started digging around. I found <code>Sitecore.Caching.CacheManager.GetNamedInstance(&quot;WebUtil.QueryStringCache&quot;, 20000L, true)</code> in <code>WebUtil.cs</code>, but couldn’t figure out how to override this value. I started discussing with my colleague <a href="https://community.sitecore.net/members/viacheslavsedletskiy_5f00_1037964896" target="_blank" rel="noopener">Viacheslav</a> and he also starting digging through Sitecore’s dlls and found out this can be changed through a named <code>cacheContainer</code>.</p><p>Without further ado, the patch to increase <code>WebUtil.QueryStringCache</code>:<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sitecore</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">cacheContainerConfiguration</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">cacheContainer</span> <span class="attr">name</span>=<span class="string">"WebUtil.QueryStringCache"</span> <span class="attr">type</span>=<span class="string">"Sitecore.Caching.Cache, Sitecore.Kernel"</span> <span class="attr">singleInstance</span>=<span class="string">"true"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">param</span> <span class="attr">desc</span>=<span class="string">"name"</span>&gt;</span>WebUtil.QueryStringCache<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">param</span> <span class="attr">desc</span>=<span class="string">"cacheSize"</span>&gt;</span>3500KB<span class="tag">&lt;/<span class="name">param</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">cacheContainer</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">cacheContainerConfiguration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">sitecore</span>&gt;</span></span><br></pre></td></tr></table></figure></p><p>To confirm your new value is being set, you can read the startup message which should now look like:</p><p><strong>INFO  Cache created: ‘WebUtil.QueryStringCache’ (max size: 3MB, running total: 5280MB)</strong></p><p>PS: As I couldn’t find any official documentation about this, I contacted sitecore support to confirm this patch was Ok. This is an excerpt from the conversation: </p><blockquote><p>This cache cannot be changed from the configuration. In most cases, this cache should not be tuned. (The notification should be ignored)… The best practice of tuning Sitecore caches is via cache max size settings. However, as there is currently no such setting which would control the QueryStringCache size, this approach is indeed acceptable… The issue with the QueryStringCache tuning is now addressed in the wish #220607.</p></blockquote><hr><p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>]]></content>
     
@@ -146,11 +146,11 @@
     
       <category term="openid" scheme="http://josedbaez.com/tags/openid/"/>
     
-      <category term="sso" scheme="http://josedbaez.com/tags/sso/"/>
+      <category term="okta" scheme="http://josedbaez.com/tags/okta/"/>
     
       <category term="authentication" scheme="http://josedbaez.com/tags/authentication/"/>
     
-      <category term="okta" scheme="http://josedbaez.com/tags/okta/"/>
+      <category term="sso" scheme="http://josedbaez.com/tags/sso/"/>
     
   </entry>
   
@@ -176,13 +176,13 @@
     
       <category term="openid" scheme="http://josedbaez.com/tags/openid/"/>
     
-      <category term="facebook" scheme="http://josedbaez.com/tags/facebook/"/>
-    
-      <category term="google" scheme="http://josedbaez.com/tags/google/"/>
+      <category term="authentication" scheme="http://josedbaez.com/tags/authentication/"/>
     
       <category term="sso" scheme="http://josedbaez.com/tags/sso/"/>
     
-      <category term="authentication" scheme="http://josedbaez.com/tags/authentication/"/>
+      <category term="facebook" scheme="http://josedbaez.com/tags/facebook/"/>
+    
+      <category term="google" scheme="http://josedbaez.com/tags/google/"/>
     
   </entry>
   
@@ -262,11 +262,11 @@
     
       <category term="openid" scheme="http://josedbaez.com/tags/openid/"/>
     
-      <category term="sso" scheme="http://josedbaez.com/tags/sso/"/>
+      <category term="okta" scheme="http://josedbaez.com/tags/okta/"/>
     
       <category term="authentication" scheme="http://josedbaez.com/tags/authentication/"/>
     
-      <category term="okta" scheme="http://josedbaez.com/tags/okta/"/>
+      <category term="sso" scheme="http://josedbaez.com/tags/sso/"/>
     
   </entry>
   

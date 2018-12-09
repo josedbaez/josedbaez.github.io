@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
+    <loc>http://josedbaez.com/2018/12/querystring-cache-size/</loc>
     
-    <lastmod>2018-12-09T18:14:40.802Z</lastmod>
+    <lastmod>2018-12-09T18:20:16.080Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2018/12/querystring-cache-size/</loc>
+    <loc>http://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
     
-    <lastmod>2018-12-09T18:14:29.968Z</lastmod>
+    <lastmod>2018-12-09T18:14:40.802Z</lastmod>
     
   </url>
   
@@ -100,6 +100,13 @@
   </url>
   
   <url>
+    <loc>http://josedbaez.com/2017/08/binding-redirect-patch/</loc>
+    
+    <lastmod>2018-02-06T23:08:23.707Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://josedbaez.com/2017/01/log4net-rolling-appender/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
@@ -114,13 +121,6 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/01/exm-get-contact/</loc>
-    
-    <lastmod>2018-02-06T23:08:23.707Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://josedbaez.com/2016/09/hello-world/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/08/binding-redirect-patch/</loc>
+    <loc>http://josedbaez.com/2017/01/exm-get-contact/</loc>
     
     <lastmod>2018-02-06T23:08:23.707Z</lastmod>
     
