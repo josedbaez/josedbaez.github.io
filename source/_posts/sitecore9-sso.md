@@ -282,8 +282,8 @@ That's it. If you remove `extranet\anonymous` access to an item and allow access
 
 ====================
 References:
-<a name="default-external-user-builder">https://doc.sitecore.net/sitecore_experience_platform/developing/developing_with_sitecore/federated_authentication/configure_federated_authentication</a>
-<a name="authentication-types">https://doc.sitecore.net/sitecore_experience_platform/developing/developing_with_sitecore/federated_authentication/using_federated_authentication_with_sitecore</a>
+<a name="default-external-user-builder" href="https://doc.sitecore.net/sitecore_experience_platform/developing/developing_with_sitecore/federated_authentication/configure_federated_authentication">https://doc.sitecore.net/sitecore_experience_platform/developing/developing_with_sitecore/federated_authentication/configure_federated_authentication</a>
+<a name="authentication-types" href="https://doc.sitecore.net/sitecore_experience_platform/developing/developing_with_sitecore/federated_authentication/using_federated_authentication_with_sitecore">https://doc.sitecore.net/sitecore_experience_platform/developing/developing_with_sitecore/federated_authentication/using_federated_authentication_with_sitecore</a>
 https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/facebook-logins?tabs=aspnetcore2x
 https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/google-logins?tabs=aspnetcore2x
 

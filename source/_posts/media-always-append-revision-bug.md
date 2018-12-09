@@ -9,7 +9,7 @@ tags:
 - azure
 
 ---
-<img class="hero-img" src="/images/alwaysappendrevision-bug.jpg" alt="Always Append Revision.jpg">
+<img class="hero-img" src="/images/alwaysappendrevision-bug.jpg" alt="Always Append Revision">
 ---
 Unrecognized Guid format error when Media.AlwaysAppendRevision is set to true.
 <!-- more -->
