@@ -8,7 +8,7 @@ tags:
 - patch
 
 ---
-<img class="hero-img" src="/images/questring-cache.jpg" alt="Querystring cache">
+<img class="hero-img" src="/images/querystring-cache.jpg" alt="Querystring cache">
 ---
 How to increase WebUtil.QueryStringCache via configuration patch.
 <!-- more -->
