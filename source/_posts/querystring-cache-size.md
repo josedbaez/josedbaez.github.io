@@ -40,7 +40,9 @@ To confirm your new value is being set, you can read the startup message which s
 __INFO  Cache created: 'WebUtil.QueryStringCache' (max size: 3MB, running total: 5280MB)__
 
 PS: As I couldn't find any official documentation about this, I contacted sitecore support to confirm this patch was Ok. This is an excerpt from the conversation: 
+
 > This cache cannot be changed from the configuration. In most cases, this cache should not be tuned. (The notification should be ignored)... The best practice of tuning Sitecore caches is via cache max size settings. However, as there is currently no such setting which would control the QueryStringCache size, this approach is indeed acceptable... The issue with the QueryStringCache tuning is now addressed in the wish #220607.
+
 ---
 
 Please let me know what you think and/or if you can spot any errors.

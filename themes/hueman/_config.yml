@@ -12,7 +12,7 @@ customize:
     theme_color: '#006bde'
     highlight: androidstudio
     sidebar: left # sidebar position, options: left, right
-    thumbnail: false # enable posts thumbnail, options: true, false
+    thumbnail: true # enable posts thumbnail, options: true, false
     favicon: # path to favicon
     social_links: # for more icons, please see http://fontawesome.io/icons/#brand
         github: https://github.com/josedbaez
