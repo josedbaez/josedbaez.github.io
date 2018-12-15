@@ -1,7 +1,7 @@
-title: Sobre mi
-date: 2016-09-03
+title: Acerca de mi
+date: 2018-12-15
 
 ---
 ---
 José Domínguez...
-En construcción
+Sitio en construcción

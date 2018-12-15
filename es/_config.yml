@@ -70,7 +70,7 @@ theme: hueman
 deploy:
   type: git
   repo: git@github.com:josedbaez/josedbaez.github.io.git
-  branch: master
+  branch: master-espanol
 
 # Feed
 feed:
