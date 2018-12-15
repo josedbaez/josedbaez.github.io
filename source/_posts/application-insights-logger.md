@@ -1,5 +1,5 @@
 title: Application insights logger
-date: 2017/23/11
+date: 2017/11/23
 categories:
 - Sitecore
 - Azure
@@ -86,6 +86,7 @@ public class NoSqlDependenciesProcessor : ITelemetryProcessor
 Open `ApplicationInsights.config` and add a new type (inside `<TelemetryProcessors>`) pointing to the processor above.
 
 ``` xml
+...
 ...
     <Add Type="MyApp.NoSqlDependenciesProcessor, MyApp" />
 </TelemetryProcessors>

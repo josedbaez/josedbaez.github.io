@@ -1,5 +1,6 @@
 title: Media.AlwaysAppendRevision - Unrecognized Guid
 date: 2018/11/19
+thumbnail: /images/alwaysappendrevision-bug_th.jpg
 categories:
 - Sitecore
 - Azure

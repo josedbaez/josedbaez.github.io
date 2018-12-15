@@ -1,5 +1,6 @@
 title: Increase querystring cache size
 date: 2018/12/09
+thumbnail: /images/querystring-cache_th.jpg
 categories:
 - Sitecore
 tags:

@@ -1,5 +1,6 @@
 title: Reading user's ip address behind Azure Application Gateway
 date: 2018/10/19
+thumbnail: /images/application-gateway-xforwardedfor_th.jpg
 categories:
 - Sitecore
 - Azure

@@ -1,5 +1,5 @@
 title: Install and configure Sitecore Dynamics Connect
-date: 2017/23/02
+date: 2017/02/23
 categories:
 - Sitecore
 - CRM
@@ -51,7 +51,7 @@ That's it. You have configured the connection to Dynamics and can now run any pi
 
 You need to add the following dependency assembly to your web.config (This has been reported to sitecore support and the official documentation will get amended).
 
-~~~~ xml
+``` xml
 <dependentAssembly>
    <assemblyIdentity name="Microsoft.Xrm.Sdk" publicKeyToken="31bf3856ad364e35" culture="neutral" />
    <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
@@ -61,8 +61,7 @@ You need to add the following dependency assembly to your web.config (This has b
    <assemblyIdentity name="Microsoft.Crm.Sdk.Proxy" publicKeyToken="31bf3856ad364e35" culture="neutral" />
    <bindingRedirect oldVersion="0.0.0.0-8.0.0.0" newVersion="8.0.0.0" />
 </dependentAssembly>
-~~~~
-
+```
 
 ---
 

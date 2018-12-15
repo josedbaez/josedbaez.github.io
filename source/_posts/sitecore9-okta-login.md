@@ -1,5 +1,6 @@
 title: Log in to sitecore 9 editor using Okta provider
 date: 2018/04/02
+thumbnail: /images/sitecore9-okta_th.jpg
 categories:
 - Sitecore
 - Authentication
