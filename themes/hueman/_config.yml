@@ -14,6 +14,7 @@ customize:
     sidebar: left # sidebar position, options: left, right
     thumbnail: true # enable posts thumbnail, options: true, false
     favicon: # path to favicon
+    summary_thumbnail: false
     social_links: # for more icons, please see http://fontawesome.io/icons/#brand
         github: https://github.com/josedbaez
         stack-overflow: https://stackoverflow.com/users/991459/josedbaez
