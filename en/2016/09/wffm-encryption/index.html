@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+
+    
+
+    
+    <title>WFFM data encryption - Sitecore 8 | Jose Dominguez</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="wffm,encryption,security">
+    
+    <meta name="description" content="How to encrypt any data stored by WFFM in both mongo and SQL databases. The code provided here will encrypt values in FormData and FormFieldValues tables. Also…">
+<meta name="keywords" content="wffm,encryption,security">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WFFM data encryption - Sitecore 8">
+<meta property="og:url" content="http://josedbaez.com/en/2016/09/wffm-encryption/index.html">
+<meta property="og:site_name" content="Jose Dominguez">
+<meta property="og:description" content="How to encrypt any data stored by WFFM in both mongo and SQL databases. The code provided here will encrypt values in FormData and FormFieldValues tables. Also…">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://josedbaez.com/images/encryption-lock.jpg">
+<meta property="og:updated_time" content="2018-12-09T18:25:54.625Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WFFM data encryption - Sitecore 8">
+<meta name="twitter:description" content="How to encrypt any data stored by WFFM in both mongo and SQL databases. The code provided here will encrypt values in FormData and FormFieldValues tables. Also…">
+<meta name="twitter:image" content="http://josedbaez.com/images/encryption-lock.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="Jose Dominguez" type="application/atom+xml">
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83689815-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">C#, .net, sitecore &amp; some other stuff</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item">
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://josedbaez.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Sitecore/WFFM/">WFFM</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-wffm-encryption" class="article article-single article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        WFFM data encryption - Sitecore 8
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/en/2016/09/wffm-encryption/" class="article-date">
+            <time datetime="2016-09-05T00:00:00.000Z" itemprop="datePublished">2016-09-05</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/encryption/">encryption</a>, <a class="tag-link" href="/tags/security/">security</a>, <a class="tag-link" href="/tags/wffm/">wffm</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/encryption-lock.jpg" alt="Encryption"></h2><p>How to encrypt any data stored by WFFM in both mongo and SQL databases. The code provided here will encrypt values in <code>FormData</code> and <code>FormFieldValues</code> tables. Also…<br><a id="more"></a></p>
+<p><em>Versions used: Sitecore 8.1 rev. 160519 (Update-3). Web Forms For Marketers 8.1 rev. 160523 (Update-3)</em></p>
+<p><strong>Update/Warning:</strong><br>See Wilfred’s comment regarding the encryption of ‘data’ column.</p>
+<p>A client asked us to encrypt any data stored by WFFM in both mongo and SQL databases. Sitecorejunkie had posted a <a href="https://sitecorejunkie.com/2013/06/21/encrypt-web-forms-for-marketers-fields-in-sitecore/" target="_blank" rel="noopener">solution</a> that works in sitecore 7 but some things changed in Sitecore 8 and the solution does not work anymore.</p>
+<p>The code provided here will encrypt values in <code>FormData</code> and <code>FormFieldValues</code> tables. Also, will decrypt values when form report is exported to csv or xml as we need the real values.</p>
+<p><strong>The following solution is divided in 3 parts:</strong></p>
+<ul>
+<li>An encryption/decryption helper using <a href="https://msdn.microsoft.com/en-us/library/system.web.security.machinekey.aspx" target="_blank" rel="noopener">.NET MachineKey Class (v4.0+)</a>. NB: I’m not an encryption/security expert so you should research and decide which algorithm/method suits you best.</li>
+<li>Encryption of data being stored in Analytics Mongo DB.</li>
+<li>Encryption of data being stored in Reporting SQL DB.</li>
+<li>Decryption of data when generating reports.</li>
+</ul>
+<h2 id="Encryption-helper"><a href="#Encryption-helper" class="headerlink" title="Encryption helper"></a>Encryption helper</h2><p><a href="https://msdn.microsoft.com/en-us/library/system.web.security.machinekey.aspx" target="_blank" rel="noopener">.NET MachineKey Class (v4.0+)</a> uses <a href="https://msdn.microsoft.com/en-us/library/ff649308.aspx" target="_blank" rel="noopener">machine key</a> to encrypt/decrypt data. I’d recommend <a href="http://stackoverflow.com/questions/3855666/adding-machinekey-to-web-config-on-web-farm-sites" target="_blank" rel="noopener">setting the machine key in web.config</a> as you need this to be the same in all servers on multi-server solutions. Make sure you <a href="http://www.developerfusion.com/tools/generatemachinekey" target="_blank" rel="noopener">generate</a> a random machine key instead of copying one from online.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Text;</span><br><span class="line"><span class="keyword">using</span> System.Web;</span><br><span class="line"><span class="keyword">using</span> System.Web.Security;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Project.Helpers</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EncryptionHelper</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">readonly</span> UTF8Encoding Encoder = <span class="keyword">new</span> UTF8Encoding();</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Encrypt</span>(<span class="params"><span class="keyword">string</span> unencrypted</span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(unencrypted))</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">string</span>.Empty;</span><br><span class="line">            <span class="keyword">try</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">var</span> encryptedBytes = MachineKey.Protect(Encoder.GetBytes(unencrypted));</span><br><span class="line">                <span class="keyword">if</span> (encryptedBytes != <span class="literal">null</span> &amp;&amp; encryptedBytes.Length &gt; <span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">return</span> HttpServerUtility.UrlTokenEncode(encryptedBytes);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span> (Exception)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">string</span>.Empty;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">string</span>.Empty;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">string</span> <span class="title">Decrypt</span>(<span class="params"><span class="keyword">string</span> encrypted</span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(encrypted))</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">string</span>.Empty;</span><br><span class="line">            <span class="keyword">try</span></span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">var</span> bytes = HttpServerUtility.UrlTokenDecode(encrypted);</span><br><span class="line">                <span class="keyword">if</span> (bytes != <span class="literal">null</span> &amp;&amp; bytes.Length &gt; <span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">var</span> decryptedBytes = MachineKey.Unprotect(bytes);</span><br><span class="line">                    <span class="keyword">if</span>(decryptedBytes != <span class="literal">null</span> &amp;&amp; decryptedBytes.Length &gt; <span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">return</span> Encoder.GetString(decryptedBytes);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">catch</span> (Exception)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">string</span>.Empty;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">string</span>.Empty;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Mongo-DB"><a href="#Mongo-DB" class="headerlink" title="Mongo DB"></a>Mongo DB</h2><p>WFFM stores data in <code>FormData</code> table when the user submits a form and the session is <a href="https://briancaos.wordpress.com/2016/03/02/sitecore-xdb-flush-data-to-mongodb/" target="_blank" rel="noopener">abandoned</a>. We need to override methods <code>InsertFormData</code> and <code>GetFormData</code> in class <code>AnalyticsFormsDataProvider</code>.</p>
+<p>NB: I also did exactly the same to classes <code>CombinedFormsDataProvider</code> and <code>SqlFormsDataProvider</code> in case we decide in the future to use SQL for storing data.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line">﻿<span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> Sitecore.Diagnostics;</span><br><span class="line"><span class="keyword">using</span> Sitecore.WFFM.Abstractions.Analytics;</span><br><span class="line"><span class="keyword">using</span> Sitecore.WFFM.Abstractions.Shared;</span><br><span class="line"><span class="keyword">using</span> Sitecore.WFFM.Analytics.Dependencies;</span><br><span class="line"><span class="keyword">using</span> Sitecore.WFFM.Analytics.Providers;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Project.WFFM</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EncryptedAnalyticsFormsDataProvider</span> : <span class="title">AnalyticsFormsDataProvider</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">EncryptedAnalyticsFormsDataProvider</span>(<span class="params">ReportDataProviderWrapper reportDataProviderWrapper, ILogger logger, IAnalyticsTracker analyticsTracker, ISettings settings</span>)</span></span><br><span class="line"><span class="function">            : <span class="title">base</span>(<span class="params">reportDataProviderWrapper, logger, analyticsTracker, settings</span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">InsertFormData</span>(<span class="params">FormData form</span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            Assert.ArgumentNotNull(form, <span class="string">"form"</span>);</span><br><span class="line">            Assert.ArgumentNotNull(form.Fields, <span class="string">"form.Fields"</span>);</span><br><span class="line">            form.Fields = EncryptFields(form.Fields);</span><br><span class="line">            <span class="keyword">base</span>.InsertFormData(form);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> IEnumerable&lt;FormData&gt; <span class="title">GetFormData</span>(<span class="params">Guid formId</span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            Assert.ArgumentNotNull(formId, <span class="string">"formId"</span>);</span><br><span class="line">            <span class="keyword">var</span> entries = <span class="keyword">base</span>.GetFormData(formId);</span><br><span class="line">            entries = DecryptFields(entries);</span><br><span class="line">            <span class="keyword">return</span> entries;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> IEnumerable&lt;FieldData&gt; <span class="title">EncryptFields</span>(<span class="params">IEnumerable&lt;FieldData&gt; fields</span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> encryptFields = fields <span class="keyword">as</span> FieldData[] ?? fields.ToArray();</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="keyword">var</span> field <span class="keyword">in</span> encryptFields.Where(field =&gt; !<span class="keyword">string</span>.IsNullOrEmpty(field.Value)))</span><br><span class="line">                field.Value = EncryptionUtil.Encrypt(field.Value);</span><br><span class="line">            <span class="keyword">return</span> encryptFields;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">private</span> IEnumerable&lt;FormData&gt; <span class="title">DecryptFields</span>(<span class="params">IEnumerable&lt;FormData&gt; entries</span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> entriesArray = entries <span class="keyword">as</span> FormData[] ?? entries.ToArray();</span><br><span class="line">            <span class="keyword">if</span> (entries == <span class="literal">null</span> || !entriesArray.Any())</span><br><span class="line">                <span class="keyword">return</span> entriesArray;</span><br><span class="line">            <span class="keyword">foreach</span> (<span class="keyword">var</span> entry <span class="keyword">in</span> entriesArray)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (entry == <span class="literal">null</span> || entry.Fields == <span class="literal">null</span> || !entry.Fields.Any())</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">foreach</span> (<span class="keyword">var</span> field <span class="keyword">in</span> entry.Fields.Where(field =&gt; !<span class="keyword">string</span>.IsNullOrEmpty(field.Value)))</span><br><span class="line">                    field.Value = EncryptionUtil.Decrypt(field.Value);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> entriesArray;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>InsertFormData</code> will be triggered when data is to be stored in mongo, whereas <code>GetFormData</code> is triggered when sitecore needs to retrieve the data (e.g. when generating excel report). <code>EncryptFields</code> and <code>DecryptFields</code> are looping through all fields in the form and encrypting/decrypting their values using our helper.</p>
+<p>Then, we need to patch the configuration file so it uses our code instead of default one.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">xmlns:patch</span>=<span class="string">"http://www.sitecore.net/xmlconfig/"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">sitecore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">wffm</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">analytics</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">analyticsFormsDataProvider</span> <span class="attr">patch:instead</span>=<span class="string">"*[@type='Sitecore.WFFM.Analytics.Providers.AnalyticsFormsDataProvider, Sitecore.WFFM.Analytics']"</span> <span class="attr">type</span>=<span class="string">"Project.WFFM.EncryptedAnalyticsFormsDataProvider, Project"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"reportDataProviderWrapper"</span> <span class="attr">ref</span>=<span class="string">"/sitecore/wffm/analytics/reportDataProviderWrapper"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"logger"</span> <span class="attr">ref</span>=<span class="string">"/sitecore/wffm/logger"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"analyticsTracker"</span> <span class="attr">ref</span>=<span class="string">"/sitecore/wffm/analytics/analyticsTracker"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">param</span> <span class="attr">name</span>=<span class="string">"settings"</span> <span class="attr">ref</span>=<span class="string">"/sitecore/wffm/settings"</span> /&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">analyticsFormsDataProvider</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">analytics</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">wffm</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">sitecore</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>If you end up overriding <code>CombinedFormsDataProvider</code> and <code>SqlFormsDataProvider</code> then you will need to similarly patch <code>Sitecore.WFFM.Analytics.Providers.SqlFormsDataProvider, Sitecore.WFFM.Analytics</code> and <code>Sitecore.WFFM.Analytics.Providers.CombinedFormsDataProvider, Sitecore.WFFM.Analytics</code></p>
+<p>After this, WFFM data in analytics database (mongo) will be encrypted and decrypted when exporting to excel/xml. However, if you take a look at <code>FormFieldValues</code> table in SQL reporting database, you will notice the values here aren’t. So the next step is to encrypt SQL server data.</p>
+<h2 id="SQL-server"><a href="#SQL-server" class="headerlink" title="SQL server"></a>SQL server</h2><p>WFFM stores data in couple SQL tables once user’s session is <a href="https://briancaos.wordpress.com/2016/03/02/sitecore-xdb-flush-data-to-mongodb/" target="_blank" rel="noopener">abandoned</a>. The one we need to encrypt is <code>FormFieldValues</code>. In order to achieve this, we need to create new pipeline and replace default <code>FormSummaryProcessor</code> to encrypt the data before it gets saved. I reflectored the class <code>Sitecore.WFFM.Analytics.Aggregation.Processors.FormSummary.FormSummaryProcessor</code>, copied the code and modified the value (line 52) we need to encrypt. If you are using a different version than the one specified at the beggining of this post, I’d suggest you reflector your version’s dll and amend the code where needed.</p>
+<p>NB: Sitecore support suggested we also modify the pipelines below but I couldn’t see a reason to as there’s no data we needed to encrypt on these tables.<br><code>Sitecore.WFFM.Analytics.Aggregation.Processors.FormEvents.FormEventsProcessor, Sitecore.WFFM.Analytics</code><br><code>Sitecore.WFFM.Analytics.Aggregation.Processors.FormStatisticsByContact.FormStatisticsByContactProcessor, Sitecore.WFFM.Analytics</code></p>
+<p>Here’s the full implementation:</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System.Collections.Generic;</span><br><span class="line"><span class="keyword">using</span> System.Linq;</span><br><span class="line"><span class="keyword">using</span> Global.Helpers;</span><br><span class="line"><span class="keyword">using</span> Sitecore.Analytics.Aggregation.Pipeline;</span><br><span class="line"><span class="keyword">using</span> Sitecore.Analytics.Model;</span><br><span class="line"><span class="keyword">using</span> Sitecore.Diagnostics;</span><br><span class="line"><span class="keyword">using</span> Sitecore.WFFM.Abstractions.Analytics;</span><br><span class="line"><span class="keyword">using</span> Sitecore.WFFM.Analytics.Aggregation.Processors.FormFieldValues;</span><br><span class="line"><span class="keyword">using</span> Sitecore.WFFM.Analytics.Aggregation.Processors.FormSummary;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">Project.WFFM</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EncryptedFormSummaryProcessor</span> : <span class="title">AggregationProcessor</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">void</span> <span class="title">OnProcess</span>(<span class="params">AggregationPipelineArgs args</span>)</span></span><br><span class="line"><span class="function">        </span>&#123;</span><br><span class="line">            Assert.ArgumentNotNull(args, <span class="string">"args"</span>);</span><br><span class="line">            VisitData visit = args.Context.Visit;</span><br><span class="line">            <span class="keyword">if</span> (visit.Pages == <span class="literal">null</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">foreach</span> (PageData current <span class="keyword">in</span> visit.Pages)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (current.PageEvents != <span class="literal">null</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    FormSummary formSummary = <span class="literal">null</span>;</span><br><span class="line">                    <span class="keyword">foreach</span> (PageEventData current2 <span class="keyword">in</span> current.PageEvents)</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="keyword">if</span> (!(current2.PageEventDefinitionId != IDs.FormSubmitSuccessEventId) &amp;&amp; current2.CustomValues.ContainsKey(Sitecore.WFFM.Abstractions.Analytics.Constants.WffmKey))</span><br><span class="line">                        &#123;</span><br><span class="line">                            List&lt;Sitecore.WFFM.Abstractions.Analytics.FieldData&gt; list = current2.CustomValues[Sitecore.WFFM.Abstractions.Analytics.Constants.WffmKey] <span class="keyword">as</span> List&lt;Sitecore.WFFM.Abstractions.Analytics.FieldData&gt;;</span><br><span class="line">                            <span class="keyword">if</span> (list == <span class="literal">null</span>)</span><br><span class="line">                            &#123;</span><br><span class="line">                                IEnumerable&lt;Sitecore.WFFM.Analytics.Model.FieldData&gt; enumerable = current2.CustomValues[Sitecore.WFFM.Abstractions.Analytics.Constants.WffmKey] <span class="keyword">as</span> List&lt;Sitecore.WFFM.Analytics.Model.FieldData&gt;;</span><br><span class="line">                                <span class="keyword">if</span> (enumerable == <span class="literal">null</span>)</span><br><span class="line">                                &#123;</span><br><span class="line">                                    <span class="keyword">continue</span>;</span><br><span class="line">                                &#125;</span><br><span class="line">                                list = <span class="keyword">new</span> List&lt;Sitecore.WFFM.Abstractions.Analytics.FieldData&gt;(enumerable);</span><br><span class="line">                            &#125;</span><br><span class="line">                            <span class="keyword">foreach</span> (Sitecore.WFFM.Abstractions.Analytics.FieldData current3 <span class="keyword">in</span> list)</span><br><span class="line">                            &#123;</span><br><span class="line">                                IEnumerable&lt;<span class="keyword">string</span>&gt; enumerable2 = (current3.Values != <span class="literal">null</span> &amp;&amp; current3.Values.Count &gt; <span class="number">0</span>) ? current3.Values : ((!<span class="keyword">string</span>.IsNullOrEmpty(current3.Value)) ? Enumerable.Repeat&lt;<span class="keyword">string</span>&gt;(current3.Value, <span class="number">1</span>) : Enumerable.Repeat&lt;<span class="keyword">string</span>&gt;(<span class="keyword">string</span>.Empty, <span class="number">1</span>));</span><br><span class="line">                                <span class="keyword">foreach</span> (<span class="keyword">string</span> current4 <span class="keyword">in</span> enumerable2)</span><br><span class="line">                                &#123;</span><br><span class="line">                                    FormSummaryKey key = <span class="keyword">new</span> FormSummaryKey</span><br><span class="line">                                    &#123;</span><br><span class="line">                                        FormId = current2.ItemId,</span><br><span class="line">                                        FieldId = current3.FieldId,</span><br><span class="line">                                        FieldName = current3.FieldName,</span><br><span class="line">                                        FieldValueId = args.GetDimension&lt;FormFieldValues&gt;().Add(EncryptionUtil.Encrypt(current4))</span><br><span class="line">                                    &#125;;</span><br><span class="line">                                    FormSummaryValue <span class="keyword">value</span> = <span class="keyword">new</span> FormSummaryValue</span><br><span class="line">                                    &#123;</span><br><span class="line">                                        Count = <span class="number">1</span></span><br><span class="line">                                    &#125;;</span><br><span class="line">                                    <span class="keyword">if</span> (formSummary == <span class="literal">null</span>)</span><br><span class="line">                                    &#123;</span><br><span class="line">                                        formSummary = args.GetFact&lt;FormSummary&gt;();</span><br><span class="line">                                    &#125;</span><br><span class="line">                                    formSummary.Emit(key, <span class="keyword">value</span>);</span><br><span class="line">                                &#125;</span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>FieldValueId = args.GetDimension<formfieldvalues>().Add(EncryptionUtil.Encrypt(current4))</formfieldvalues></strong> is what was modified using our encryption helper.</p>
+<p>Then, we need to patch the pipeline so it uses our new pipeline instead of default one.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">﻿&lt;?xml version="1.0" encoding="utf-8" ?&gt;</span><br><span class="line"><span class="tag">&lt;<span class="name">configuration</span> <span class="attr">xmlns:patch</span>=<span class="string">"http://www.sitecore.net/xmlconfig/"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">sitecore</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">pipelines</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">group</span> <span class="attr">groupName</span>=<span class="string">"analytics.aggregation"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pipelines</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">interactions</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">processor</span> <span class="attr">patch:instead</span>=<span class="string">"*[@type='Sitecore.WFFM.Analytics.Aggregation.Processors.FormSummary.FormSummaryProcessor, Sitecore.WFFM.Analytics']"</span> <span class="attr">type</span>=<span class="string">"Project.WFFM.EncryptedFormSummaryProcessor, Project"</span> /&gt;</span></span><br><span class="line">          <span class="tag">&lt;/<span class="name">interactions</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pipelines</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">group</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">pipelines</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">sitecore</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://josedbaez.com/en/2016/09/wffm-encryption/" data-id="cjpoquply001bx6998rcca8mn" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/josedbaez" target="_blank" rel="noopener">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="stack-overflow" href="https://stackoverflow.com/users/991459/josedbaez" target="_blank" rel="noopener">
+                        <i class="icon fa fa-stack-overflow"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="stack-exchange" href="http://sitecore.stackexchange.com/users/88/josedbaez" target="_blank" rel="noopener">
+                        <i class="icon fa fa-stack-exchange"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/atom.xml" target="_blank" rel="noopener">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/en/2016/09/synthesis-rendering-parameters-helper/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Synthesis Rendering Parameters Helper
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/en/2016/09/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Hello World</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/es/2018/12/Crear-eventos-en-Application-Insights/" class="thumbnail">
+    
+    
+        <span class="thumbnail-image thumbnail-none"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/es/2018/12/Crear-eventos-en-Application-Insights/" class="title">Crear eventos en Application Insights</a></p>
+                            <p class="item-date"><time datetime="2018-12-15T00:49:21.000Z" itemprop="datePublished">2018-12-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/en/2018/12/querystring-cache-size/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/querystring-cache_th.jpg)" alt="Increase querystring cache size" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Sitecore/">Sitecore</a></p>
+                            <p class="item-title"><a href="/en/2018/12/querystring-cache-size/" class="title">Increase querystring cache size</a></p>
+                            <p class="item-date"><time datetime="2018-12-09T00:00:00.000Z" itemprop="datePublished">2018-12-09</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/en/2018/11/media-always-append-revision-bug/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/alwaysappendrevision-bug_th.jpg)" alt="Media.AlwaysAppendRevision - Unrecognized Guid" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Sitecore/Azure/">Azure</a></p>
+                            <p class="item-title"><a href="/en/2018/11/media-always-append-revision-bug/" class="title">Media.AlwaysAppendRevision - Unrecognized Guid</a></p>
+                            <p class="item-date"><time datetime="2018-11-19T00:00:00.000Z" itemprop="datePublished">2018-11-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/en/2018/10/azure-application-gateway-client-ip/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/application-gateway-xforwardedfor_th.jpg)" alt="Reading user&#39;s ip address behind Azure Application Gateway" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Sitecore/Azure/">Azure</a></p>
+                            <p class="item-title"><a href="/en/2018/10/azure-application-gateway-client-ip/" class="title">Reading user&#39;s ip address behind Azure Application Gateway</a></p>
+                            <p class="item-date"><time datetime="2018-10-19T00:00:00.000Z" itemprop="datePublished">2018-10-19</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/en/2018/07/sitecore-dynamics-connector-facet/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/sitecore-dynamics.jpg)" alt="Add custom facet to sync with Dynamics CRM" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Sitecore/CRM/">CRM</a></p>
+                            <p class="item-title"><a href="/en/2018/07/sitecore-dynamics-connector-facet/" class="title">Add custom facet to sync with Dynamics CRM</a></p>
+                            <p class="item-date"><time datetime="2018-07-30T00:00:00.000Z" itemprop="datePublished">2018-07-30</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Configuration/">Configuration</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sitecore/">Sitecore</a><span class="category-list-count">17</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sitecore/Authentication/">Authentication</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sitecore/Azure/">Azure</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sitecore/CRM/">CRM</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sitecore/EXM/">EXM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sitecore/Field-Types/">Field Types</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Sitecore/Field-Types/Synthesis/">Synthesis</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sitecore/Log4net/">Log4net</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sitecore/Synthesis/">Synthesis</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Sitecore/WFFM/">WFFM</a><span class="category-list-count">1</span></li></ul></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">September 2016</a><span class="archive-list-count">3</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/assembly/">assembly</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/authentication/">authentication</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/azure/">azure</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bindingredirect/">bindingredirect</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bug/">bug</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cache/">cache</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cdn/">cdn</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/commerce/">commerce</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dynamics/">dynamics</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/encryption/">encryption</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/exm/">exm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/facebook/">facebook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/fieldtypes/">fieldtypes</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gateway/">gateway</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/generallink/">generallink</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/helper/">helper</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/insights/">insights</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linklist/">linklist</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/log4net/">log4net</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/logs/">logs</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/okta/">okta</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openid/">openid</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/patch/">patch</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/security/">security</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sso/">sso</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/synthesis/">synthesis</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/webconfig/">webconfig</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wffm/">wffm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xdb/">xdb</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/xff/">xff</a><span class="tag-list-count">1</span></li></ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 José Domínguez</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'josedbaez';
+    
+    
+    var disqus_url = 'http://josedbaez.com/en/2016/09/wffm-encryption/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
