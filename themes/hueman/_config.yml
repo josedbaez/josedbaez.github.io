@@ -8,7 +8,7 @@ customize:
     logo:
         width: 165
         height: 60
-        url: ../images/logo4.png
+        url: /images/logo4.png
     theme_color: '#006bde'
     highlight: androidstudio
     sidebar: left # sidebar position, options: left, right
