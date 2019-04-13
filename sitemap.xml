@@ -72,13 +72,6 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/02/sitecore-dynamics-connector/</loc>
-    
-    <lastmod>2018-12-15T02:06:43.610Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://josedbaez.com/2017/03/sitecore8-link-list/</loc>
     
     <lastmod>2018-12-15T02:06:43.610Z</lastmod>
@@ -87,6 +80,13 @@
   
   <url>
     <loc>http://josedbaez.com/2017/09/sitecore-okta-login/</loc>
+    
+    <lastmod>2018-12-15T02:06:43.610Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://josedbaez.com/2017/02/sitecore-dynamics-connector/</loc>
     
     <lastmod>2018-12-15T02:06:43.610Z</lastmod>
     
@@ -107,7 +107,7 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/04/linkfield-jsonmaxlength-error/</loc>
+    <loc>http://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
@@ -121,7 +121,7 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
+    <loc>http://josedbaez.com/2017/04/linkfield-jsonmaxlength-error/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
@@ -135,13 +135,6 @@
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/08/binding-redirect-patch/</loc>
-    
-    <lastmod>2018-12-15T02:06:43.608Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://josedbaez.com/2018/10/azure-application-gateway-client-ip/</loc>
     
     <lastmod>2018-12-15T02:06:43.608Z</lastmod>
@@ -150,6 +143,13 @@
   
   <url>
     <loc>http://josedbaez.com/2017/01/exm-get-contact/</loc>
+    
+    <lastmod>2018-12-15T02:06:43.608Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://josedbaez.com/2017/08/binding-redirect-patch/</loc>
     
     <lastmod>2018-12-15T02:06:43.608Z</lastmod>
     
