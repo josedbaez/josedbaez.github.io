@@ -18,6 +18,13 @@
         <%- partial('post/nav', {post: page}) %>
     <% } %>
     <div class="widgets-container">
+        <div class="widget-wrap highlights">                
+            <div class="widget">
+                <a href="https://www.sitecore.com/mvp" target="_blank">
+                    <img class="award" src="/images/mvp.gif" alt="Example of supported cultures table" />
+                </a>
+            </div>
+        </div>
         <% if (theme.widgets) { %>
             <% theme.widgets.forEach(function(widget) { %>
                 <%- partial('widget/' + widget, {post: page}) %>
