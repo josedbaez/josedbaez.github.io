@@ -16,16 +16,16 @@
 <meta name="keywords" content="openid,sso,authentication,facebook,google">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Allows users to log in to a Sitecore 9 site using federated authentication">
-<meta property="og:url" content="http://josedbaez.com/2018/03/sitecore9-sso/index.html">
+<meta property="og:url" content="https://josedbaez.com/2018/03/sitecore9-sso/index.html">
 <meta property="og:site_name" content="Jose Dominguez">
 <meta property="og:description" content="How to implement federated authentication on sitecore 9 to allow visitors to log in to your site using their google or facebook accounts.">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://josedbaez.com/images/sitecore9-sso.jpg">
-<meta property="og:updated_time" content="2018-12-15T02:06:43.611Z">
+<meta property="og:image" content="https://josedbaez.com/images/sitecore9-sso.jpg">
+<meta property="og:updated_time" content="2019-04-13T23:49:10.035Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Allows users to log in to a Sitecore 9 site using federated authentication">
 <meta name="twitter:description" content="How to implement federated authentication on sitecore 9 to allow visitors to log in to your site using their google or facebook accounts.">
-<meta name="twitter:image" content="http://josedbaez.com/images/sitecore9-sso.jpg">
+<meta name="twitter:image" content="https://josedbaez.com/images/sitecore9-sso.jpg">
     
 
     
@@ -96,7 +96,7 @@ ga('send', 'pageview');
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://josedbaez.com"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="https://josedbaez.com"></form>
 
 </div>
                         </nav>
@@ -155,7 +155,7 @@ ga('send', 'pageview');
             <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/sitecore9-sso.jpg" alt="Sitecore 9 SSO"></h2><p>How to implement federated authentication on sitecore 9 to allow visitors to log in to your site using their google or facebook accounts.<br><a id="more"></a></p>
 <p><em>Versions used: Sitecore Experience Platform 9.0 rev. 171219 (9.0 Update-1).</em></p>
 <p><strong>Update/Warning:</strong><br>Updated code so it passes the IdentityProvider name to the middleware so you can use whatever name you want instead of default one. <code>AuthenticationType = IdentityProvider.Name</code>.</p>
-<p>On a <a href="http://josedbaez.com/2017/09/sitecore-okta-login/">previous post</a> I explained how to implement federated authentication on Sitecore 8 (using Okta). Things have changed on sitecore 9 and the implementation is easier than back then.</p>
+<p>On a <a href="/2017/09/sitecore-okta-login/">previous post</a> I explained how to implement federated authentication on Sitecore 8 (using Okta). Things have changed on sitecore 9 and the implementation is easier than back then.</p>
 <p>Sitecore 9 comes with an OWIN implementation to delegate authentication to other providers. Most of the job required to achieve federated authentication is through configuration files. In this post I will outline how to implement federated authentication with Facebook and Google so visitors can log in to your sitecore 9 site. <a href="https://github.com/josedbaez/sitecore9sso" target="_blank" rel="noopener">Source code here.</a></p>
 <p>Sitecore will automatically render redirect buttons on the login page if you add your provider to <code>admin</code> and <code>shell</code> sites. As we want our providers to handle the <code>website</code> site instead, we will create a rendering to render the redirect links on the <code>NoAccessUrl</code> page.</p>
 <p>The steps to implement federated authentication are:</p>
@@ -205,7 +205,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="http://josedbaez.com/2018/03/sitecore9-sso/" data-id="cjug3agw60015uz994cfs90j1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://josedbaez.com/2018/03/sitecore9-sso/" data-id="cjug5h90z00156999xropq2tn" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -307,7 +307,7 @@ ga('send', 'pageview');
             
                 
                 <li>
-                    <a class="social-tooltip" title="stack-exchange" href="http://sitecore.stackexchange.com/users/88/josedbaez" target="_blank" rel="noopener">
+                    <a class="social-tooltip" title="stack-exchange" href="https://sitecore.stackexchange.com/users/88/josedbaez" target="_blank" rel="noopener">
                         <i class="icon fa fa-stack-exchange"></i>
                     </a>
                 </li>
@@ -532,7 +532,7 @@ ga('send', 'pageview');
     var disqus_shortname = 'josedbaez';
     
     
-    var disqus_url = 'http://josedbaez.com/2018/03/sitecore9-sso/';
+    var disqus_url = 'https://josedbaez.com/2018/03/sitecore9-sso/';
     
     (function() {
     var dsq = document.createElement('script');

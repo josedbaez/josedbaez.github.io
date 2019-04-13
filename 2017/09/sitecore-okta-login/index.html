@@ -16,16 +16,16 @@
 <meta name="keywords" content="openid,okta,sso,authentication">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Log in to Sitecore using OpenID Connect with Okta">
-<meta property="og:url" content="http://josedbaez.com/2017/09/sitecore-okta-login/index.html">
+<meta property="og:url" content="https://josedbaez.com/2017/09/sitecore-okta-login/index.html">
 <meta property="og:site_name" content="Jose Dominguez">
 <meta property="og:description" content="How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (backend NOT client facing site) by intercepting Authorize attribute.">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://josedbaez.com/images/okta-sso.png">
-<meta property="og:updated_time" content="2018-12-15T02:06:43.610Z">
+<meta property="og:image" content="https://josedbaez.com/images/okta-sso.png">
+<meta property="og:updated_time" content="2019-04-13T23:49:02.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Log in to Sitecore using OpenID Connect with Okta">
 <meta name="twitter:description" content="How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (backend NOT client facing site) by intercepting Authorize attribute.">
-<meta name="twitter:image" content="http://josedbaez.com/images/okta-sso.png">
+<meta name="twitter:image" content="https://josedbaez.com/images/okta-sso.png">
     
 
     
@@ -96,7 +96,7 @@ ga('send', 'pageview');
                         <nav id="sub-nav">
                             <div id="search-form-wrap">
 
-    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="http://josedbaez.com"></form>
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="https://josedbaez.com"></form>
 
 </div>
                         </nav>
@@ -154,7 +154,7 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
             <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/okta-sso.png" alt="Sitecore Okta SSO"></h2><p>How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (backend NOT client facing site) by intercepting Authorize attribute.<br><a id="more"></a></p>
 <p><em>Versions used: Sitecore 8.2 rev. 170614 (8.2 Update-4).</em></p>
-<p><em>Go <a href="http://josedbaez.com/2018/03/sitecore9-sso/">here</a> for solution on sitecore 9</em></p>
+<p><em>Go <a href="/2018/03/sitecore9-sso/">here</a> for solution on sitecore 9</em></p>
 <p><strong>Update/Warning:</strong> Preview mode fails for virtual users with the code below. To fix: 1- Call <a href="#ticket-function">this function</a> after authenticating the user to create an authentication ticket in sitecore. 2- Contact sitecore support and quote public reference 192715 so they can provide a known bug related to <code>item:preview</code> command.</p>
 <p>In this post I will outline how to implement OpenID SSO with <a href="https://www.okta.com/" target="_blank" rel="noopener">Okta</a> to allow users to <strong>log in to sitecore (backend NOT client facing site)</strong> from Okta’s dashboard or by being redirected to Okta’s login screen when trying to directly access sitecore through custom url <sup><a href="#custom-url">custom url</a></sup>. <em>Authentication logic has been copied/modified from <a href="https://github.com/oktadeveloper/okta-oauth-aspnet-codeflow" target="_blank" rel="noopener">Okta’s github example code.</a></em></p>
 <p>The solution provided by OKTA uses <a href="http://owin.org/" target="_blank" rel="noopener">OWIN</a> libraries. I integrated the OWIN middleware through a sitecore pipeline following <a href="https://github.com/VyacheslavPritykin/Sitecore-Owin" target="_blank" rel="noopener">VyacheslavPritykin Sitecore-Owin</a> solution.</p>
@@ -206,7 +206,7 @@ ga('send', 'pageview');
 <p>====================<br><a name="all-authorize">All authorize decorated methods?</a>We didn’t need membership for end users so we could afford to intercept any <code>Authorize</code> attribute. You can configure a separate middleware for end users. See <a href="https://github.com/BasLijten/SitecoreFederatedLogin" target="_blank" rel="noopener">Bas Lijten’s federated solution</a></p>
 <p><a name="custom-url">Why a custom url?</a> We opted to use a custom URL because we wanted to be able to log-in to sitecore using the conventional method as well.</p>
 <p><a name="versions">Versions used:</a> I had lot of issues figuring out dll versions, so here’s the list of the versions used on this implementation.<br>Newtonsoft.Json 10.0.0.0<br>Microsoft.IdentityModel.Protocol.Extensions 1.0.40306.1554<br>System.IdentityModel.Tokens.Jwt 4.0.40306.1554<br>Microsoft.Owin.Security 3.1.0.0<br>Microsoft.Owin.Security.Cookies 3.1.0.0<br>Microsoft.Owin 3.1.0.0</p>
-<p>See <a href="http://josedbaez.com/2017/08/binding-redirect-patch/">this</a> if you are having binding redirects issues.</p>
+<p>See <a href="/2017/08/binding-redirect-patch/">this</a> if you are having binding redirects issues.</p>
 <p><a name="ticket-function">Create ticket</a> Extracted from: <a href="https://singh-prabhat.blogspot.com/2016/12/sitecore-enable-preview-mode-for.html" target="_blank" rel="noopener">https://singh-prabhat.blogspot.com/2016/12/sitecore-enable-preview-mode-for.html</a><br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">PerformAutoLogin</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">string</span> userName = <span class="string">"extranet\\Preview Anonymous User"</span>;</span><br><span class="line">    AuthenticationManager.Login(userName);</span><br><span class="line">    <span class="keyword">string</span> ticket = Sitecore.Web.Authentication.TicketManager.CreateTicket(userName, <span class="string">@"/sitecore/shell"</span>);</span><br><span class="line">    HttpContext current = HttpContext.Current;</span><br><span class="line">    <span class="keyword">if</span> (current != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        HttpCookie cookie = <span class="keyword">new</span> HttpCookie(Sitecore.Web.Authentication.TicketManager.CookieName, ticket)</span><br><span class="line">        &#123;</span><br><span class="line">            HttpOnly = <span class="literal">true</span></span><br><span class="line">        &#125;;</span><br><span class="line">        current.Response.AppendCookie(cookie);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <hr>
 <p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
@@ -217,7 +217,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="http://josedbaez.com/2017/09/sitecore-okta-login/" data-id="cjug3agw3000wuz99z8mq4vqa" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://josedbaez.com/2017/09/sitecore-okta-login/" data-id="cjug5h90w000w6999obves2hi" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -319,7 +319,7 @@ ga('send', 'pageview');
             
                 
                 <li>
-                    <a class="social-tooltip" title="stack-exchange" href="http://sitecore.stackexchange.com/users/88/josedbaez" target="_blank" rel="noopener">
+                    <a class="social-tooltip" title="stack-exchange" href="https://sitecore.stackexchange.com/users/88/josedbaez" target="_blank" rel="noopener">
                         <i class="icon fa fa-stack-exchange"></i>
                     </a>
                 </li>
@@ -544,7 +544,7 @@ ga('send', 'pageview');
     var disqus_shortname = 'josedbaez';
     
     
-    var disqus_url = 'http://josedbaez.com/2017/09/sitecore-okta-login/';
+    var disqus_url = 'https://josedbaez.com/2017/09/sitecore-okta-login/';
     
     (function() {
     var dsq = document.createElement('script');

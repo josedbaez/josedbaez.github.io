@@ -2,161 +2,161 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://josedbaez.com/2019/04/sitecore-add-non-listed-language/</loc>
+    <loc>https://josedbaez.com/2017/03/synthesis-link-list/</loc>
+    
+    <lastmod>2019-04-13T23:49:13.441Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2018/03/sitecore9-sso/</loc>
+    
+    <lastmod>2019-04-13T23:49:10.035Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2018/04/sitecore9-okta-login/</loc>
+    
+    <lastmod>2019-04-13T23:49:07.019Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2017/09/sitecore-okta-login/</loc>
+    
+    <lastmod>2019-04-13T23:49:02.228Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2018/07/sitecore-dynamics-connector-facet/</loc>
+    
+    <lastmod>2019-04-13T23:48:34.487Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2019/04/sitecore-add-non-listed-language/</loc>
     
     <lastmod>2019-04-13T22:36:37.691Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2019/04/supported-cultures/</loc>
+    <loc>https://josedbaez.com/2019/04/supported-cultures/</loc>
     
     <lastmod>2019-04-13T22:36:37.081Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/about/index.html</loc>
+    <loc>https://josedbaez.com/about/index.html</loc>
     
     <lastmod>2019-04-13T21:28:23.733Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/files/supported-cultures.html</loc>
+    <loc>https://josedbaez.com/files/supported-cultures.html</loc>
     
     <lastmod>2019-04-13T21:12:29.324Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2016/09/wffm-encryption/</loc>
+    <loc>https://josedbaez.com/2016/09/synthesis-rendering-parameters-helper/</loc>
     
     <lastmod>2018-12-15T02:06:43.611Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2016/09/synthesis-rendering-parameters-helper/</loc>
+    <loc>https://josedbaez.com/2016/09/wffm-encryption/</loc>
     
     <lastmod>2018-12-15T02:06:43.611Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/03/synthesis-link-list/</loc>
-    
-    <lastmod>2018-12-15T02:06:43.611Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://josedbaez.com/2018/03/sitecore9-sso/</loc>
-    
-    <lastmod>2018-12-15T02:06:43.611Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://josedbaez.com/2018/04/sitecore9-okta-login/</loc>
-    
-    <lastmod>2018-12-15T02:06:43.611Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://josedbaez.com/2017/03/sitecore8-link-list/</loc>
+    <loc>https://josedbaez.com/2017/03/sitecore8-link-list/</loc>
     
     <lastmod>2018-12-15T02:06:43.610Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/09/sitecore-okta-login/</loc>
+    <loc>https://josedbaez.com/2017/02/sitecore-dynamics-connector/</loc>
     
     <lastmod>2018-12-15T02:06:43.610Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
+    <loc>https://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
     
     <lastmod>2018-12-15T02:06:43.610Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/02/sitecore-dynamics-connector/</loc>
-    
-    <lastmod>2018-12-15T02:06:43.610Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
+    <loc>https://josedbaez.com/2018/12/querystring-cache-size/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2018/12/querystring-cache-size/</loc>
+    <loc>https://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2018/07/sitecore-dynamics-connector-facet/</loc>
+    <loc>https://josedbaez.com/2017/01/log4net-rolling-appender/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2016/09/hello-world/</loc>
+    <loc>https://josedbaez.com/2017/04/linkfield-jsonmaxlength-error/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/04/linkfield-jsonmaxlength-error/</loc>
+    <loc>https://josedbaez.com/2016/09/hello-world/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/01/log4net-rolling-appender/</loc>
-    
-    <lastmod>2018-12-15T02:06:43.609Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://josedbaez.com/2018/10/azure-application-gateway-client-ip/</loc>
+    <loc>https://josedbaez.com/2018/10/azure-application-gateway-client-ip/</loc>
     
     <lastmod>2018-12-15T02:06:43.608Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/01/exm-get-contact/</loc>
+    <loc>https://josedbaez.com/2017/01/exm-get-contact/</loc>
     
     <lastmod>2018-12-15T02:06:43.608Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/08/binding-redirect-patch/</loc>
+    <loc>https://josedbaez.com/2017/08/binding-redirect-patch/</loc>
     
     <lastmod>2018-12-15T02:06:43.608Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://josedbaez.com/2017/11/application-insights-logger/</loc>
+    <loc>https://josedbaez.com/2017/11/application-insights-logger/</loc>
     
     <lastmod>2018-12-15T02:06:43.608Z</lastmod>
     
