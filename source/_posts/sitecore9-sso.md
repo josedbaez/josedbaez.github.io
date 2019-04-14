@@ -21,7 +21,7 @@ How to implement federated authentication on sitecore 9 to allow visitors to log
 **Update/Warning:**
 Updated code so it passes the IdentityProvider name to the middleware so you can use whatever name you want instead of default one. `AuthenticationType = IdentityProvider.Name`.
 
-On a [previous post](http://josedbaez.com/2017/09/sitecore-okta-login/) I explained how to implement federated authentication on Sitecore 8 (using Okta). Things have changed on sitecore 9 and the implementation is easier than back then.
+On a [previous post](/2017/09/sitecore-okta-login/) I explained how to implement federated authentication on Sitecore 8 (using Okta). Things have changed on sitecore 9 and the implementation is easier than back then.
 
 Sitecore 9 comes with an OWIN implementation to delegate authentication to other providers. Most of the job required to achieve federated authentication is through configuration files. In this post I will outline how to implement federated authentication with Facebook and Google so visitors can log in to your sitecore 9 site. [Source code here.](https://github.com/josedbaez/sitecore9sso)
 

@@ -17,7 +17,7 @@ How to implement OpenID Connect Single Sign-On with Okta to log in to sitecore (
 
 *Versions used: Sitecore 8.2 rev. 170614 (8.2 Update-4).*
 
-*Go [here](http://josedbaez.com/2018/03/sitecore9-sso/) for solution on sitecore 9*
+*Go [here](/2018/03/sitecore9-sso/) for solution on sitecore 9*
 
 **Update/Warning:** Preview mode fails for virtual users with the code below. To fix: 1- Call [this function](#ticket-function) after authenticating the user to create an authentication ticket in sitecore. 2- Contact sitecore support and quote public reference 192715 so they can provide a known bug related to `item:preview` command.
 
@@ -298,7 +298,7 @@ Microsoft.Owin.Security 3.1.0.0
 Microsoft.Owin.Security.Cookies 3.1.0.0
 Microsoft.Owin 3.1.0.0
 
-See [this](http://josedbaez.com/2017/08/binding-redirect-patch/) if you are having binding redirects issues.
+See [this](/2017/08/binding-redirect-patch/) if you are having binding redirects issues.
 
 <a name="ticket-function">Create ticket</a> Extracted from: https://singh-prabhat.blogspot.com/2016/12/sitecore-enable-preview-mode-for.html
 ``` csharp

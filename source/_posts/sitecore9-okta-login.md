@@ -21,14 +21,14 @@ How to implement federated authentication on sitecore 9 to allow content editors
 **Update/Warning:**
 Okta has now introduced "OIDC Compliant" which does a GET redirect when user clicks on the Okta app (okta dashboard) instead of POST as it happens when user clicks on the login with okta button from sitecore.`.
 
-This post is a continuation of my [previous post](http://josedbaez.com/2018/03/sitecore9-sso/). Instead of logging visitors in using federated authentication, in this post I'll show how to implement Okta authentication to log in to sitecore editor. It's an udpated version of my [sitecore 8 okta post](http://josedbaez.com/2017/09/sitecore-okta-login/). [Source code here.](https://github.com/josedbaez/sitecore9sso)
+This post is a continuation of my [previous post](/2018/03/sitecore9-sso/). Instead of logging visitors in using federated authentication, in this post I'll show how to implement Okta authentication to log in to sitecore editor. It's an udpated version of my [sitecore 8 okta post](/2017/09/sitecore-okta-login/). [Source code here.](https://github.com/josedbaez/sitecore9sso)
 
-The good news is things have changed and the implementation is easier and shorter than before. I won't be going into details on how to configure the application in Okta because it hasn't changed much since last time. [Click here](http://josedbaez.com/2017/09/sitecore-okta-login/#OKTA-application-configuration) for previous configuration.
+The good news is things have changed and the implementation is easier and shorter than before. I won't be going into details on how to configure the application in Okta because it hasn't changed much since last time. [Click here](/2017/09/sitecore-okta-login/#OKTA-application-configuration) for previous configuration.
 2 key settings: 
 - `Login redirect URIs`: http://YOUR_SITE_URL/identity/externallogincallback
 - `Initiate login URI`: http://YOUR_SITE_URL/identity/externallogin
 
-Please see my [previous post](http://josedbaez.com/2018/03/sitecore9-sso/) or [download here](https://github.com/josedbaez/sitecore9sso/blob/master/App_Config/Include/SSO/SitecoreSSO.config) to enable required settings and add default services.
+Please see my [previous post](/2018/03/sitecore9-sso/) or [download here](https://github.com/josedbaez/sitecore9sso/blob/master/App_Config/Include/SSO/SitecoreSSO.config) to enable required settings and add default services.
 
 ## Okta middleware/provider implementation ##
 The following code is based on the [sample provided](https://github.com/oktadeveloper/okta-aspnet-mvc-example/blob/master/OktaAspNetExample/Startup.cs) by Okta.
@@ -123,7 +123,7 @@ Our `AuthorizationCodeReceived` task `ProcessAuthorizationCodeReceived` is makin
 
 
 ## Okta provider configuration ##
-The configuration is pretty much the same as the [previous post](http://josedbaez.com/2018/03/sitecore9-sso/#Enable-and-configure-providers) so I won't go into any details. You can get it [here](https://github.com/josedbaez/sitecore9sso/blob/master/App_Config/Include/SSO/SitecoreSSO.Providers.Editors.config). Do not forget to include [main configuration file](https://github.com/josedbaez/sitecore9sso/blob/master/App_Config/Include/SSO/SitecoreSSO.config).
+The configuration is pretty much the same as the [previous post](/2018/03/sitecore9-sso/#Enable-and-configure-providers) so I won't go into any details. You can get it [here](https://github.com/josedbaez/sitecore9sso/blob/master/App_Config/Include/SSO/SitecoreSSO.Providers.Editors.config). Do not forget to include [main configuration file](https://github.com/josedbaez/sitecore9sso/blob/master/App_Config/Include/SSO/SitecoreSSO.config).
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>

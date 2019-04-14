@@ -15,7 +15,7 @@ How to define and implement a custom facet in sitecore so it can be imported whe
 
 *Versions used: Sitecore 8.2 rev. 161221 (8.2 Update-2). Dynamics CRM Connect 1.3*
 
-When you configure the dynamics connector it creates predefined facets and its mappings. You need to define custom ones if you want them to be synced. I was meant to blog about this a while ago but for some reason didn't. Someone asked me about it on a [previous post](http://josedbaez.com/2018/02/sitecore-dynamics-connector/) where I explain how to configure the connector.
+When you configure the dynamics connector it creates predefined facets and its mappings. You need to define custom ones if you want them to be synced. I was meant to blog about this a while ago but for some reason didn't. Someone asked me about it on a [previous post](/2018/02/sitecore-dynamics-connector/) where I explain how to configure the connector.
 
 There are 3 things you have to do to add a custom facet:
 * Create facet interface and implementation.

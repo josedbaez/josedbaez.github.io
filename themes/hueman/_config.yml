@@ -18,7 +18,7 @@ customize:
     social_links: # for more icons, please see http://fontawesome.io/icons/#brand
         github: https://github.com/josedbaez
         stack-overflow: https://stackoverflow.com/users/991459/josedbaez
-        stack-exchange: http://sitecore.stackexchange.com/users/88/josedbaez
+        stack-exchange: https://sitecore.stackexchange.com/users/88/josedbaez
         rss: /atom.xml
 
 # Widgets
@@ -55,6 +55,6 @@ miscellaneous:
         twitter_id:
         google_plus:
     links:
-        Hexo: http://hexo.io
+        Hexo: https://hexo.io
 
 subtitle: "C#, .net, sitecore & some other stuff"
