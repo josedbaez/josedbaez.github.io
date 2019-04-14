@@ -3,7 +3,7 @@
 .article-meta,
 .archive-year {
   text-transform: uppercase;
-  color: #666;
+  color: #555;
   line-height: 1em;
   text-shadow: 0 1px #fff;
 }
@@ -318,7 +318,7 @@ code {
   position: relative;
   padding: 18px 30px 17px;
   border-bottom: 1px solid #eee;
-  color: #666;
+  color: #555;
   font-size: 16px;
   font-weight: 600;
   text-transform: uppercase;
@@ -758,7 +758,6 @@ code {
 .widget img.award {
   width: 100%;
   height: 100%;
-  border: 1px solid #191919;
 }
 .widget-list ul,
 .widget-list ol {
@@ -1031,7 +1030,7 @@ code {
   -moz-transition: color 0.3s ease-in;
   -ms-transition: color 0.3s ease-in;
   transition: color 0.3s ease-in;
-  color: #191919;
+  color: #4c4c4c;
 }
 .article-summary .article-summary-inner .article-excerpt {
   position: relative;
@@ -1060,7 +1059,7 @@ code {
   text-decoration: none;
   font-size: 38px;
   letter-spacing: -1px;
-  color: #555;
+  color: #444;
   line-height: 1.3em;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
@@ -1096,7 +1095,7 @@ a.article-title:hover {
   float: right;
 }
 .article-meta a {
-  color: #555;
+  color: #444;
   text-transform: lowercase;
 }
 .article-meta a:hover {
@@ -1124,7 +1123,7 @@ a.article-title:hover {
   content: "#";
 }
 .article-entry {
-  color: #555;
+  color: #444;
   font-size: 18px;
   font-weight: 300;
   line-height: 1.6em;
@@ -1311,7 +1310,7 @@ a.article-title:hover {
   text-decoration: none;
 }
 .article-footer a:hover {
-  color: #555;
+  color: #444;
 }
 .article-comment-link i,
 .article-share-link i {
@@ -1347,7 +1346,7 @@ a.article-title:hover {
   box-sizing: border-box;
   font: 14px "Titillium Web", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif;
   padding: 0 15px;
-  color: #555;
+  color: #444;
   outline: none;
   border: 1px solid #ddd;
   border-radius: 3px 3px 0 0;
@@ -1536,7 +1535,7 @@ a.article-title:hover {
 .archive-year-wrap {
   padding: 18px 30px 17px;
   font-size: 16px;
-  color: #666;
+  color: #555;
   border-bottom: 1px solid #eee;
 }
 .archive-year i {
@@ -1568,7 +1567,7 @@ a.article-title:hover {
 .archive-article-title {
   text-decoration: none;
   font-weight: bold;
-  color: #555;
+  color: #444;
   -webkit-transition: color 0.2s;
   -moz-transition: color 0.2s;
   -ms-transition: color 0.2s;
