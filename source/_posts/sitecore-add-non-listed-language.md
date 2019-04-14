@@ -21,7 +21,7 @@ When you click next, sitecore will verify 2 things:
 1- If the language already exists -gets language items from cache or by querying Database by language template ID. 
 2- The provided Language code combination (Language  + "-" + Region + "-" CustomCode) is a valid culture (using `System.Globalization.CultureInfo.GetCultureInfo`).
 
-As you can see, it is not required (I'm not debating best practice here) to define new languages inside `LanguageDefinitions.config`. As long as you enter a valid culture (existing in the operating system), sitecore will create the language item. If the culture is invalid, you will get an error like `The name "xxxxxx" is not a valid or supported culture identifier`.
+The selected option on the dropdownn is not used for the validation, hence it is not required (I'm not debating best practice here) to define new languages inside `LanguageDefinitions.config`. You can select the blank option; as long as you enter a valid culture (existing in the operating system), sitecore will create the language item. If the culture is invalid, you will get an error like `The name "xxxxxx" is not a valid or supported culture identifier`.
 
 Sometimes it's confusing to figure out the language code combination that needs to be entered on this modal or in `LanguageDefinitions.config`. From the table on my [previous post](/2019/04/supported-cultures), the last 2 columns (`Language` and `Country/region code`) go in the inputs with the same names. 
 e.g. for `Bosnian (Latin, Bosnia and Herzegovina)`, you'd enter `bs-Latn` in Language and `BA` in Country/region code.
