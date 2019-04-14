@@ -21,7 +21,7 @@
 <meta property="og:description" content="How to add Sitecore languages without patching LanguageDefinitions.config.">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://josedbaez.com/images/greetings-sitecore_th.jpg">
-<meta property="og:updated_time" content="2019-04-13T22:36:37.691Z">
+<meta property="og:updated_time" content="2019-04-14T19:44:57.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Add a non-listed language to Sitecore">
 <meta name="twitter:description" content="How to add Sitecore languages without patching LanguageDefinitions.config.">
@@ -155,7 +155,7 @@ ga('send', 'pageview');
             <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/greetings-sitecore.jpg" alt="Greetings"></h2><p>How to add Sitecore languages without patching LanguageDefinitions.config.<br><a id="more"></a></p>
 <p>Sitecore supports any language that is registered in the operating system where it runs. See my <a href="/2019/04/supported-cultures">previous post</a> to see how to render a list of available languages on a server. When adding a new language in sitecore, the modal dialog loads defined languages (<code>\App_Config\LanguageDefinitions.config</code>) into the dropdown. When you select a language from the dropdown, the properties of that language definition are set to the appropriate inputs.</p>
 <p>When you click next, sitecore will verify 2 things:<br>1- If the language already exists -gets language items from cache or by querying Database by language template ID.<br>2- The provided Language code combination (Language  + “-“ + Region + “-“ CustomCode) is a valid culture (using <code>System.Globalization.CultureInfo.GetCultureInfo</code>).</p>
-<p>As you can see, it is not required (I’m not debating best practice here) to define new languages inside <code>LanguageDefinitions.config</code>. As long as you enter a valid culture (existing in the operating system), sitecore will create the language item. If the culture is invalid, you will get an error like <code>The name &quot;xxxxxx&quot; is not a valid or supported culture identifier</code>.</p>
+<p>The selected option on the dropdownn is not used for the validation, hence it is not required (I’m not debating best practice here) to define new languages inside <code>LanguageDefinitions.config</code>. You can select the blank option; as long as you enter a valid culture (existing in the operating system), sitecore will create the language item. If the culture is invalid, you will get an error like <code>The name &quot;xxxxxx&quot; is not a valid or supported culture identifier</code>.</p>
 <p>Sometimes it’s confusing to figure out the language code combination that needs to be entered on this modal or in <code>LanguageDefinitions.config</code>. From the table on my <a href="/2019/04/supported-cultures">previous post</a>, the last 2 columns (<code>Language</code> and <code>Country/region code</code>) go in the inputs with the same names.<br>e.g. for <code>Bosnian (Latin, Bosnia and Herzegovina)</code>, you’d enter <code>bs-Latn</code> in Language and <code>BA</code> in Country/region code.</p>
 <p>As for the next step on the creation modal, I have not found a reliable source listing <code>Codepage</code> and <code>Charset</code> for all languages out there, so do your own research. If you do have one, please let me!. </p>
 <hr>
@@ -167,7 +167,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://josedbaez.com/2019/04/sitecore-add-non-listed-language/" data-id="cjug9suxi000i6b99bc6qw3f7" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://josedbaez.com/2019/04/sitecore-add-non-listed-language/" data-id="cjuhcasj2000f719916h1stbf" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
