@@ -12,6 +12,8 @@ tags:
 How to generate a table listing all supported .NET cultures on the server.
 <!-- more -->
 
+*Versions used: Sitecore Experience Platform 9.0 rev. 180604 (Update-2).*
+
 Windows comes with predefined cultures and also supports adding custom cultures. I struggled to find a definite list whilst I was researching if languages needed by the client were available in our environments -so we could use them without issues. 
 
 Moreover, our solution was hosted on Azure App Services and [Azure PaaS does not support adding custom cultures](https://blogs.msdn.microsoft.com/benjaminperkins/2018/06/11/implementing-custom-cultures-cultureinfo-localize-azure-app-service/). Benjamin Perkins does post a [link](http://customcultures.azurewebsites.net/) that lists all cultures on an Azure App Service but I wanted to double check all our environments could support the cultures we needed.

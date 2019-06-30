@@ -15,6 +15,8 @@ tags:
 How to add Sitecore languages without patching LanguageDefinitions.config.
 <!-- more -->
 
+*Versions used: Sitecore Experience Platform 9.0 rev. 180604 (Update-2).*
+
 Sitecore supports any language that is registered in the operating system where it runs. See my [previous post](/2019/04/supported-cultures) to see how to render a list of available languages on a server. When adding a new language in sitecore, the modal dialog loads defined languages (`\App_Config\LanguageDefinitions.config`) into the dropdown. When you select a language from the dropdown, the properties of that language definition are set to the appropriate inputs.
 
 When you click next, sitecore will verify 2 things: 
