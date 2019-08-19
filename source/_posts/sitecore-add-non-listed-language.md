@@ -5,7 +5,6 @@ categories:
 - Sitecore
 - Globalization
 tags:
-- sitecore
 - globalization
 - multilingual
 

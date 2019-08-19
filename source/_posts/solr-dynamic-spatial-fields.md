@@ -4,7 +4,6 @@ date: 2019/06/30
 categories:
 - Solr
 tags:
-- sitecore
 - spatial
 
 ---
