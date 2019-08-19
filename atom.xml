@@ -36,11 +36,11 @@
       <category term="Content Hub" scheme="https://josedbaez.com/categories/Sitecore/Content-Hub/"/>
     
     
-      <category term="dam" scheme="https://josedbaez.com/tags/dam/"/>
-    
       <category term="stylelabs" scheme="https://josedbaez.com/tags/stylelabs/"/>
     
       <category term="connector" scheme="https://josedbaez.com/tags/connector/"/>
+    
+      <category term="dam" scheme="https://josedbaez.com/tags/dam/"/>
     
   </entry>
   
@@ -94,9 +94,9 @@
       <category term="Solr" scheme="https://josedbaez.com/categories/Sitecore/Solr/"/>
     
     
-      <category term="spatial" scheme="https://josedbaez.com/tags/spatial/"/>
-    
       <category term="Sitecore" scheme="https://josedbaez.com/tags/Sitecore/"/>
+    
+      <category term="spatial" scheme="https://josedbaez.com/tags/spatial/"/>
     
       <category term="Solr" scheme="https://josedbaez.com/tags/Solr/"/>
     
