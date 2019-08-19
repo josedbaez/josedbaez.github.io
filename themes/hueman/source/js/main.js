@@ -11,13 +11,14 @@
 
     // Caption
     $('.article-entry').each(function(i) {
-        $(this).find('img').each(function() {
+        $(this).find('img').each(function(imgIndex) {
             if (this.alt && !(!!$.prototype.justifiedGallery && $(this).parent('.justified-gallery').length)) {
                 $(this).after('<span class="caption">' + this.alt + '</span>');
             }
-
+            
+            console.log('im here. imgIndex: ' + imgIndex);
             // 对于已经包含在链接内的图片不适用lightGallery
-            if ($(this).parent().prop("tagName") !== 'A') {
+            if (imgIndex != 0 && $(this).parent().prop("tagName") !== 'A') {
                 $(this).wrap('<a href="' + this.src + '" title="' + this.alt + '" class="gallery-item"></a>');
             }
         });

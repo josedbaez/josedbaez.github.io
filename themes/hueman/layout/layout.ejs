@@ -4,14 +4,16 @@
         <%- partial('common/header', null, {cache: !config.relative_link}) %>
         <div class="container">
             <div class="main-body container-inner">
-                <div class="main-body-inner">
+                <div class="main-body-inner <%= is_home() ? 'home' : 'article' %>">
                     <section id="main">
                         <%- partial('common/content-title') %>
                         <div class="main-body-content">
                             <%- body %>
                         </div>
                     </section>
-                    <%- partial('common/sidebar') %>
+                    <% if (is_home()) { %>
+                        <%- partial('common/sidebar') %>
+                    <% } %>
                 </div>
             </div>
         </div>
