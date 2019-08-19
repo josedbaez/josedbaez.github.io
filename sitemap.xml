@@ -2,9 +2,44 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://josedbaez.com/2019/08/sitecore-content-hub-dam-connector/</loc>
+    
+    <lastmod>2019-08-19T20:16:16.807Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2019/08/trigger-action-script/</loc>
+    
+    <lastmod>2019-08-19T20:15:48.198Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2019/06/solr-dynamic-spatial-fields/</loc>
+    
+    <lastmod>2019-08-18T17:53:26.903Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://josedbaez.com/2019/04/sitecore-add-non-listed-language/</loc>
     
-    <lastmod>2019-04-14T19:44:57.239Z</lastmod>
+    <lastmod>2019-08-18T17:53:09.698Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2019/04/supported-cultures/</loc>
+    
+    <lastmod>2019-08-11T16:42:04.139Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2019/07/sitecore-polygon-search/</loc>
+    
+    <lastmod>2019-08-11T16:42:04.138Z</lastmod>
     
   </url>
   
@@ -44,13 +79,6 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2019/04/supported-cultures/</loc>
-    
-    <lastmod>2019-04-13T22:36:37.081Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://josedbaez.com/about/index.html</loc>
     
     <lastmod>2019-04-13T21:28:23.733Z</lastmod>
@@ -65,13 +93,6 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2016/09/wffm-encryption/</loc>
-    
-    <lastmod>2018-12-15T02:06:43.611Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://josedbaez.com/2016/09/synthesis-rendering-parameters-helper/</loc>
     
     <lastmod>2018-12-15T02:06:43.611Z</lastmod>
@@ -79,14 +100,21 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/03/sitecore8-link-list/</loc>
+    <loc>https://josedbaez.com/2016/09/wffm-encryption/</loc>
+    
+    <lastmod>2018-12-15T02:06:43.611Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
     
     <lastmod>2018-12-15T02:06:43.610Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
+    <loc>https://josedbaez.com/2017/03/sitecore8-link-list/</loc>
     
     <lastmod>2018-12-15T02:06:43.610Z</lastmod>
     
@@ -100,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/01/log4net-rolling-appender/</loc>
+    <loc>https://josedbaez.com/2018/12/querystring-cache-size/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
@@ -114,7 +142,14 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2018/12/querystring-cache-size/</loc>
+    <loc>https://josedbaez.com/2017/04/linkfield-jsonmaxlength-error/</loc>
+    
+    <lastmod>2018-12-15T02:06:43.609Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2017/01/log4net-rolling-appender/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
@@ -128,21 +163,14 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/04/linkfield-jsonmaxlength-error/</loc>
-    
-    <lastmod>2018-12-15T02:06:43.609Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://josedbaez.com/2017/01/exm-get-contact/</loc>
+    <loc>https://josedbaez.com/2018/10/azure-application-gateway-client-ip/</loc>
     
     <lastmod>2018-12-15T02:06:43.608Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2018/10/azure-application-gateway-client-ip/</loc>
+    <loc>https://josedbaez.com/2017/01/exm-get-contact/</loc>
     
     <lastmod>2018-12-15T02:06:43.608Z</lastmod>
     

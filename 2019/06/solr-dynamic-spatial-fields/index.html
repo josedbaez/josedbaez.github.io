@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Add dynamic geojson fields to Solr | José Domínguez</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="spatial" />
+    
+    <meta name="description" content="How to add dynamic geojson fields to Solr 6 to index and search geospatial data.">
+<meta name="keywords" content="spatial">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Add dynamic geojson fields to Solr">
+<meta property="og:url" content="https://josedbaez.com/2019/06/solr-dynamic-spatial-fields/index.html">
+<meta property="og:site_name" content="José Domínguez">
+<meta property="og:description" content="How to add dynamic geojson fields to Solr 6 to index and search geospatial data.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://josedbaez.com/images/solr-spatial.jpg">
+<meta property="og:updated_time" content="2019-08-18T17:53:26.903Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Add dynamic geojson fields to Solr">
+<meta name="twitter:description" content="How to add dynamic geojson fields to Solr 6 to index and search geospatial data.">
+<meta name="twitter:image" content="https://josedbaez.com/images/solr-spatial.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="José Domínguez" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83689815-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">C#, .net, sitecore &amp; some other stuff</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="https://josedbaez.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner article">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Solr/">Solr</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-solr-dynamic-spatial-fields" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Add dynamic geojson fields to Solr
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/06/solr-dynamic-spatial-fields/" class="article-date">
+            <time datetime="2019-06-30T00:00:00.000Z" itemprop="datePublished">2019-06-30</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/spatial/">spatial</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/solr-spatial.jpg" alt="Solr Spatial"></h2><p>How to add dynamic geojson fields to Solr 6 to index and search geospatial data.<br><a id="more"></a></p>
+<p><em>Versions used: Solr 6.6.3.</em></p>
+<p>Solr supports indexing spatial fields on industry standards: <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry" target="_blank" rel="noopener">WKT</a> and <a href="https://geojson.org/" target="_blank" rel="noopener">GeoJSON</a>. In this post, I’ll be going through indexing spatial fields on GeoJSON format, especially to index polygons.</p>
+<p>First, you need to choose between <a href="https://lucene.apache.org/solr/guide/6_6/spatial-search.html#SpatialSearch-RPT" target="_blank" rel="noopener">SpatialRecursivePrefixTreeFieldType (RPT)</a> or <a href="https://lucene.apache.org/solr/guide/6_6/spatial-search.html#SpatialSearch-RptWithGeometrySpatialField" target="_blank" rel="noopener">RptWithGeometrySpatialField (RPT with Geometry)</a>. Both support indexing polygons but there are a couple of technical differences that can suit your needs better. I chose RPT with Geometry.</p>
+<p>For polygon support, you will need <a href="https://sourceforge.net/projects/jts-topo-suite/" target="_blank" rel="noopener">JTS Topology Suite</a>. Navigate to this <a href="https://repo1.maven.org/maven2/com/vividsolutions/jts-core/" target="_blank" rel="noopener">URL</a>, click on required version and download file <strong>jts-core-VERSION#.jar</strong>. This file should be copied to: <strong>Solr Installation Folder\server\solr-webapp\webapp\WEB-INF\lib\</strong></p>
+<p>Add the new field type to your Solr index schema.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- RPT --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldType</span> <span class="attr">name</span>=<span class="string">"geojson_rpt"</span> <span class="attr">class</span>=<span class="string">"solr.SpatialRecursivePrefixTreeFieldType"</span> <span class="attr">spatialContextFactory</span>=<span class="string">"JTS"</span> <span class="attr">geo</span>=<span class="string">"true"</span> <span class="attr">format</span>=<span class="string">"GeoJSON"</span> <span class="attr">autoIndex</span>=<span class="string">"true"</span> <span class="attr">validationRule</span>=<span class="string">"repairBuffer0"</span> <span class="attr">distErrPct</span>=<span class="string">"0.025"</span> <span class="attr">maxDistErr</span>=<span class="string">"0.001"</span> <span class="attr">distanceUnits</span>=<span class="string">"kilometers"</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- RPT with geometry --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">fieldType</span> <span class="attr">name</span>=<span class="string">"geojson_rptgeom"</span> <span class="attr">class</span>=<span class="string">"solr.RptWithGeometrySpatialField"</span> <span class="attr">spatialContextFactory</span>=<span class="string">"JTS"</span> <span class="attr">geo</span>=<span class="string">"true"</span> <span class="attr">format</span>=<span class="string">"GeoJSON"</span> <span class="attr">autoIndex</span>=<span class="string">"true"</span> <span class="attr">validationRule</span>=<span class="string">"repairBuffer0"</span> <span class="attr">distErrPct</span>=<span class="string">"0.15"</span> <span class="attr">maxDistErr</span>=<span class="string">"0.001"</span> <span class="attr">distanceUnits</span>=<span class="string">"kilometers"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Then, add a dynamic field that maps to the newly defined field type.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dynamicField</span> <span class="attr">name</span>=<span class="string">"*_grpt"</span> <span class="attr">type</span>=<span class="string">"geojson_rpt"</span> <span class="attr">indexed</span>=<span class="string">"true"</span> <span class="attr">stored</span>=<span class="string">"true"</span> <span class="attr">allowMultiOverlap</span>=<span class="string">"true"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dynamicField</span> <span class="attr">name</span>=<span class="string">"*_grptgeom"</span> <span class="attr">type</span>=<span class="string">"geojson_rptgeom"</span> <span class="attr">indexed</span>=<span class="string">"true"</span> <span class="attr">stored</span>=<span class="string">"true"</span> <span class="attr">allowMultiOverlap</span>=<span class="string">"true"</span>/&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Once you have done this, you can store GeoJson data on these fields and run Spatial searches against them. The best way to test if it works is by storing a value. If it’s invalid, Solr will throw and error than can be seen in the lgos.</p>
+<p>e.g. The following filter query will return documents that intersect the given coordinate.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">polygon_grpt:&quot;Intersects(19.0497665 47.4916717)&quot;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Notes:</strong></p>
+<ul>
+<li>distErrPct and maxDistErr can be tweaked for less accuracy and faster performance.</li>
+<li>Solr recommends to not store these field types as it would be redundant and will increase index size.<blockquote>
+<p>When using this field type, you will likely not want to mark the field as stored because it’s redundant with the DocValues data and surely larger because of the formatting (be it WKT or GeoJSON). <a href="https://lucene.apache.org/solr/guide/6_6/spatial-search.html#SpatialSearch-RptWithGeometrySpatialField" target="_blank" rel="noopener">Source</a></p>
+</blockquote>
+</li>
+<li>On the same link, Solr mentions an in-memory cache that can be enabled to improve performance.<blockquote>
+<p>An optional in-memory cache can be defined in solrconfig.xml, which should be done when the data tends to have shapes with many vertices. </p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://josedbaez.com/2019/06/solr-dynamic-spatial-fields/" data-id="cjwfa4m8s0000l9993fravun3" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <!--
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                -->
+                <p>&copy; 2019 José Domínguez</p>
+                <p>Opinions expressed on this blog are my own, and not necessarily those of my employer.</p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'josedbaez';
+    
+    
+    var disqus_url = 'https://josedbaez.com/2019/06/solr-dynamic-spatial-fields/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
