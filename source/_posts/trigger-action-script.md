@@ -29,7 +29,7 @@ They can be executed `In process` or `In background`. __In process__ triggers ar
 
 When creating a `Trigger Condition`, you first select on which `Definition` the condition will be assessed on (e.g. `M.Asset`). Then you set the Condition by selecting the property/relation of the selected Definition and the value you are targeting. For example, a condition could be: When the `Current Value` of `Title` property of `M.Asset` definition `equals` to `Hola`.
 
-<img class="boxed" src="/images/trigger-condition.png" alt="Trigger Condition Configuration">
+<img class="boxed" src="/images/trigger-condition.png" style="max-width:400px" alt="Trigger Condition Configuration">
 
 
 ## Actions: ##
@@ -43,7 +43,7 @@ Actions usually send a payload in the request body (as json) or headers. This us
 
 __Note:__ Some action types require a response (e.g. API call). Not returning a response before the request times out might cause the action to send multiple requests. A queue type should be considered for heavy processes.
 
-<img class="boxed" src="/images/action-api-call.png" alt="Action API Call Configuration">
+<img class="boxed" src="/images/action-api-call.png" style="max-width:400px" alt="Action API Call Configuration">
 
 
 ## Scripts: ##
@@ -57,7 +57,7 @@ The type of script dictates the context where it's run and the properties availa
 
 When invoked by triggers, action scripts can be executed synchronously (`restricted`) and asynchronously (`unrestricted`). Restricted scripts have a limited range of libraries than can be referenced/used <sup>[4](#libraries-restriction)</sup>. 
  
-<img class="boxed" src="/images/script-action.png" alt="Action Script">
+<img class="boxed" src="/images/script-action.png" style="max-width:600px" alt="Action Script">
 
 
 ====================

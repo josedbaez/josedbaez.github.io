@@ -16,7 +16,7 @@ How to install Sitecore's Connect Hub DAM connector "Sitecore Connect™ for Sit
 
 *Versions used: Sitecore Experience Platform 9.2 Initial Release. Content Hub 3.2*
 
-[Sitecore Connect™ for Sitecore DAM](https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx) gives users the ability to insert Content Hub assets from Sitecore Content Management. It works on any Sitecore image and RTE field types; in both Content and Experience editors. To achieve this, the connector adds new buttons that invoke and display content hub on an iframe.
+[Sitecore Connect™ for Sitecore DAM](https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx) gives users the ability to insert Content Hub assets from Sitecore Content Management, and to upload assets from CM to Content Hub. It works on any Sitecore image and RTE field types; in both Content and Experience editors. To achieve this, the connector adds new buttons that invoke and display content hub on an iframe.
 
 The connector will display the page set in Sitecore (explained below). Content Hub 3.2 comes with 2 pre-configured pages that can be found under: __Admin__ -> __Pages__ -> __Sitecore Plugin__. Here you can amend the pages as you find suitable or modify the search component configuration. I haven't tried yet but you might be able to create a custom page to use instead of the default ones.
 
@@ -56,7 +56,7 @@ The connector requires configuration in both systems (Content Hub and Sitecore C
   }
   ```
 
-## Sitecore Configuration
+## Sitecore Configuration ##
 Now that Content Hub has been configured to allow connections from the Sitecore instance, you are ready to install and configure the connector:
 - Download Sitecore Connect™ for Sitecore DAM 2.0.0 from [sitecore website](https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx).
 - Install the package on your CM server via Sitecore package installer.
