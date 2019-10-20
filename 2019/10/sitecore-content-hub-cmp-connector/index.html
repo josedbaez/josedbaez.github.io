@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Sitecore connector for Content Hub CMP | José Domínguez</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="azure,stylelabs,connector,cmp,servicebus" />
+    
+    <meta name="description" content="How to install Sitecore’s Connect Hub CMP connector “Sitecore Connect™ for Sitecore CMP 1.0.0”">
+<meta name="keywords" content="azure,stylelabs,connector,cmp,servicebus">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Sitecore connector for Content Hub CMP">
+<meta property="og:url" content="https://josedbaez.com/2019/10/sitecore-content-hub-cmp-connector/index.html">
+<meta property="og:site_name" content="José Domínguez">
+<meta property="og:description" content="How to install Sitecore’s Connect Hub CMP connector “Sitecore Connect™ for Sitecore CMP 1.0.0”">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://josedbaez.com/images/cmp-connector.jpg">
+<meta property="og:updated_time" content="2019-10-20T21:05:57.173Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Sitecore connector for Content Hub CMP">
+<meta name="twitter:description" content="How to install Sitecore’s Connect Hub CMP connector “Sitecore Connect™ for Sitecore CMP 1.0.0”">
+<meta name="twitter:image" content="https://josedbaez.com/images/cmp-connector.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="José Domínguez" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83689815-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">C#, .net, sitecore &amp; some other stuff</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="https://josedbaez.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner article">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Sitecore/Content-Hub/">Content Hub</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-sitecore-content-hub-cmp-connector" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Sitecore connector for Content Hub CMP
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/10/sitecore-content-hub-cmp-connector/" class="article-date">
+            <time datetime="2019-10-20T00:00:00.000Z" itemprop="datePublished">2019-10-20</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/azure/">azure</a>, <a class="tag-link" href="/tags/cmp/">cmp</a>, <a class="tag-link" href="/tags/connector/">connector</a>, <a class="tag-link" href="/tags/servicebus/">servicebus</a>, <a class="tag-link" href="/tags/stylelabs/">stylelabs</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/cmp-connector.jpg" alt="Sitecore Content Hub CMP Connector"></h2><p>How to install Sitecore’s Connect Hub CMP connector “Sitecore Connect™ for Sitecore CMP 1.0.0”<br><a id="more"></a></p>
+<p><em>Versions used: Sitecore Experience Platform 9.2 Initial Release. Content Hub 3.2</em></p>
+<p><a href="https://dev.sitecore.net/Downloads/Sitecore_Connect_for_Sitecore_CMP/10/Sitecore_Connect_for_Sitecore_CMP_100.aspx" target="_blank" rel="noopener">Sitecore Connect™ for Sitecore CMP</a> pulls content from Content Hub and stores them in Sitecore buckets. The connector requires an azure service bus that supports topics. See below.</p>
+<p>What gets synced and when is configured in Content Hub via triggers. Content Hub sends configured content to an Azure Topic. On Sitecore side, the connector is listening to this topic and creates/updates items when messages are added. It then creates a message on another topic with information about what was done.</p>
+<p><strong>For the connector to work, you need to configure the following 3 places::</strong></p>
+<ul>
+<li>Azure Services Bus</li>
+<li>Content Hub</li>
+<li>Sitecore Content Management</li>
+</ul>
+<h2 id="Azure-Services-Bus"><a href="#Azure-Services-Bus" class="headerlink" title="Azure Services Bus"></a>Azure Services Bus</h2><p>As mentioned before, you need a subscription that allows to select either Standard or Premium Pricing tier. This is because the connector uses Topics which are not avaiable on Basic tier.<br><img class="boxed" src="/images/azure-service-bus-tiers.png" style="max-width:480px" alt="Azure Service Bus Tiers"></p>
+<ul>
+<li>On azure portal, go to Resources and click on Add. Search for <code>Service Bus</code>, then click on create.</li>
+<li>Enter desired name for your Service Bus service. Select Subscription, Resource Group, Location and either <strong>Standard or Premium pricing tier</strong>.</li>
+<li>Once created, go to the service and click on <code>Shared access policies</code>.<br>– Click on Add. Create a new Policy named <code>ManageSendAccessKey</code> with <code>Send</code> and <code>Listen</code> access.<br>– Click on newly created <code>ManageSendAccessKey</code> policy and copy one of the <code>connection strings</code>. You will need this later. <sup><a name="service-bus-connection-string">[connection string]</a></sup></li>
+<li>Now click on <code>Topics</code>.<br>– Create a topic and call it <code>cmp_content</code>. Set desired configuration on the topic. <sup><a name="cmp-topic">cmp topic</a></sup><br>– Create another topic and call it <code>sitecore_notifications</code>. Set desired configuration on the topic. <sup><a name="sitecore-notifications-topic">sitecore notifications topic</a></sup><br>– Go inside the <code>cmp_content</code> topic and create a subscription called <code>sitecore</code>. <sup><a name="cmp-topic-subscription">cmp topic subscription</a></sup></li>
+</ul>
+<p>The service bus is now ready. CMP will send messages to <code>cmp_content</code> topic and the connector will subscribe to <code>sitecore</code> subscription and act when messages are added to the topic.</p>
+<h2 id="Content-Hub"><a href="#Content-Hub" class="headerlink" title="Content Hub"></a>Content Hub</h2><p>In Content Hub, you need an <code>Action</code> of type <code>Azure Service Bus</code> and a <code>Trigger</code> that invokes this action when the desired content should send a message to the service bus.</p>
+<h3 id="Action"><a href="#Action" class="headerlink" title="Action"></a>Action</h3><ul>
+<li>Log in to Content Hub and go to  <strong>Manage</strong> -&gt; <strong>Actions</strong>.</li>
+<li>Click on new Action. Enter desired name (e.g. <code>CMP - Content to Service Bus</code>) and label. Under type, select <code>Azure Service Bus</code>.<br>– Enter <a href="#service-bus-connection-string">copied</a> Service Bus connection string.<br>– Select <code>Topic</code> as <code>Destination type</code>.<br>– Enter <code>cmp_content</code> <sup><a href="#cmp-topic">cmp topic</a></sup> in <code>Destination</code> field.<br>– Test Connection and click Save when done.</li>
+</ul>
+<h3 id="Trigger"><a href="#Trigger" class="headerlink" title="Trigger"></a>Trigger</h3><ul>
+<li>Log in to Content Hub and go to  <strong>Manage</strong> -&gt; <strong>Triggers</strong>.</li>
+<li>Click on new Trigger. Enter desired name (e.g. <code>CMP - On Published Content</code>) and description. Under objective, select <code>Entity creation</code> and <code>Entity modification</code>.</li>
+<li>Set execution type to <code>In background</code>.</li>
+<li>Click on <code>Conditions</code> tab and add a <code>Definition</code> with <code>Content (M.Content)</code>. If left like this, the trigger will execute whenever an entity of type <code>M.Content</code>, CMP’s default, is created or modified. You can add as many conditions as you wish if you want to restrict which content is sent to the service bus. For example, if you want only Published content to be sent to the bus, add a condition like:  <code>Active state (MContentToActiveState)</code> <code>added item</code> <code>contains</code> <code>any</code> <code>Published</code>.</li>
+<li>Click on <code>Actions</code> tab and add created action <code>CMP - Content to Service Bus</code> to <code>Post Actions</code>.</li>
+<li>Save trigger and make sure it’s enabled.</li>
+</ul>
+<h2 id="Sitecore-Configuration"><a href="#Sitecore-Configuration" class="headerlink" title="Sitecore Configuration"></a>Sitecore Configuration</h2><p>Now that Azure and Content Hub have been configured, you are ready to install and configure the connector; and then, create Content Hub to Item mappings.</p>
+<h3 id="Connector-Configuration"><a href="#Connector-Configuration" class="headerlink" title="Connector Configuration"></a>Connector Configuration</h3><ul>
+<li>Download Sitecore Connect™ for Sitecore CMP 1.0.0 from <a href="https://dev.sitecore.net/Downloads/Sitecore_Connect_for_Sitecore_CMP/10/Sitecore_Connect_for_Sitecore_CMP_100.aspx" target="_blank" rel="noopener">sitecore website</a>.</li>
+<li>Install the package on your CM server via Sitecore package installer.</li>
+<li>Navigate to item <code>/sitecore/system/Modules/CMP/Config</code><br>– Populate the fields as follows:<br><code>Client Id</code> and <code>Client Secret</code> <strong>:</strong> from a Content Hub <code>OAuth client</code>. Find or create one under <strong>Manage</strong> -&gt; <strong>OAuth Clients</strong>.<br><code>User Name</code> and <code>Password</code> <strong>:</strong> from a Content Hub <code>User</code> with sufficient permissions to read content from entities being pushed.<br><code>Content Hub URI</code> <strong>:</strong> the full URL of your Content Hub instance without trailing slash.<br><code>Connection string</code> <strong>:</strong> <a href="#service-bus-connection-string">service bus</a> connection string.<br><code>Incoming topic name</code> <strong>:</strong> <em>cmp_content</em> <sup><a href="#cmp-topic">cmp topic</a></sup>.<br><code>Incoming subscription name</code> <strong>:</strong> <em>sitecore</em> <sup><a href="#cmp-topic-subscription">cmp topic subscription</a></sup>.<br><code>Outgoing topic name</code> <strong>:</strong> <em>cmp_content</em> <sup><a href="#sitecore-notifications-topic">sitecore notifications topic</a></sup>.<br><code>Default Language</code> <strong>:</strong> <em>en</em>. This item language will be used if no language is specified in Content Hub. Note: <code>en</code> is default in Sitecore whereas <code>en-US</code> is default in Content Hub.</li>
+</ul>
+<h3 id="Templates-and-Mappings"><a href="#Templates-and-Mappings" class="headerlink" title="Templates and Mappings"></a>Templates and Mappings</h3><ul><li> Create a new template that contains <code>/sitecore/templates/CMP/Content Hub Entity</code> as a Base template under desired templates folder. e.g. <code>Advertisement</code>. <sup><a name="sitecore-template">sitecore template</a></sup><ul><li>Add the fields you want to sync from Content Hub. Select appropriate field types (Only text fields are supported). </li> <li>Mark as <code>Bucketable</code>. </li></ul></li><li>Create a new Bucket under <code>/sitecore/content/CMP</code>. e.g. <code>Advertisements</code>.</li><li>Navigate to item <code>/sitecore/system/Modules/CMP/Config</code> and create a new <code>/sitecore/templates/CMP/Entity Mapping</code> item under it. e.g. <code>Advertisement</code>.<ul><li>Populate the fields as follows:<ul><li><code>Content Type Id</code> <strong>:</strong> <em>M.ContentType.Advertisement</em>. To find this id, go to your Content Hub instance and navigate to <strong>Manage</strong> -&gt; <strong>Taxonomy</strong> -&gt; <strong>M.ContentType</strong>, and click on the info icon next to the desired type. The <code>identifier</code> is what you need.</li><li><code>Bucket</code> <strong>:</strong> <em>/sitecore/content/CMP/Advertisements</em>. The parent location where you want the items to be created.</li><li><code>Template</code> the newly created sitecore template containing the fields to map to<sup><a href="#sitecore-template">sitecore template</a></sup>.</li></ul></li><li>Create an item of type <code>/sitecore/templates/CMP/Field Mapping</code> under it. e.g. <code>Title</code>.<ul><li>Populate the fields as follows:<ul><li><code>CMP Field Name</code> <strong>:</strong> <em>Advertisement_Title</em>. To find this id, you can either find the field on the <code>M.Content</code> entity definition under <strong>Manage</strong> -&gt; <strong>Schema</strong> -&gt; <strong>M.Content</strong>, or find a content entity with the desired type, grab the entity id from the URL and navigate to <code>https://content-hub-instance/api/entities/entity_id</code> to find the property id.</li><li><code>Sitecore Field Name</code> <strong>:</strong> <em>Title</em>. The field name where the data should map to. </li></ul></li><li>Create as many items as fields are required.</li></ul></li></ul></li></ul>
+
+<p>Voilà! Now your connector has been configured. Restart your sitecore instance and items should be created as soon as the Content Hub trigger executes.<br>Hint: Look at your sitecore logs to find errors and it logs a lot when something fails.</p>
+<p>====================</p>
+<p>References:<br><a href="https://dev.sitecore.net/Downloads/Sitecore_Connect_for_Sitecore_CMP/10/Sitecore_Connect_for_Sitecore_CMP_100.aspx" target="_blank" rel="noopener">https://dev.sitecore.net/Downloads/Sitecore_Connect_for_Sitecore_CMP/10/Sitecore_Connect_for_Sitecore_CMP_100.aspx</a></p>
+<hr>
+<p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://josedbaez.com/2019/10/sitecore-content-hub-cmp-connector/" data-id="ck1z9bcdc0006tl99u5edo46h" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <!--
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                -->
+                <p>&copy; 2019 José Domínguez</p>
+                <p>Opinions expressed on this blog are my own, and not necessarily those of my employer.</p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'josedbaez';
+    
+    
+    var disqus_url = 'https://josedbaez.com/2019/10/sitecore-content-hub-cmp-connector/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -21,7 +21,7 @@
 <meta property="og:description" content="What are Content Hub Triggers, Actions and Scripts, and what are they used for?">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://josedbaez.com/images/trigger-action-script_th.png">
-<meta property="og:updated_time" content="2019-08-19T20:15:48.198Z">
+<meta property="og:updated_time" content="2019-10-20T17:57:38.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Content Hub Triggers, Actions and Scripts">
 <meta name="twitter:description" content="What are Content Hub Triggers, Actions and Scripts, and what are they used for?">
@@ -161,7 +161,7 @@ ga('send', 'pageview');
 <p>Triggers can be configured using the UI and are found under <strong>Admin</strong> -&gt; <strong>Triggers</strong>.</p>
 <p>They can be executed <code>In process</code> or <code>In background</code>. <strong>In process</strong> triggers are executed synchronously and can target more execution phases (e.g. <code>Validation</code>), whereas <strong>In background</strong> triggers are executed asynchronously and only support <code>Post Execution</code> phase. As a rule of thumb, <code>In Process</code> should not be chosen for heavy operations that are time-consuming.</p>
 <p>When creating a <code>Trigger Condition</code>, you first select on which <code>Definition</code> the condition will be assessed on (e.g. <code>M.Asset</code>). Then you set the Condition by selecting the property/relation of the selected Definition and the value you are targeting. For example, a condition could be: When the <code>Current Value</code> of <code>Title</code> property of <code>M.Asset</code> definition <code>equals</code> to <code>Hola</code>.</p>
-<p><img class="boxed" src="/images/trigger-condition.png" alt="Trigger Condition Configuration"></p>
+<p><img class="boxed" src="/images/trigger-condition.png" style="max-width:400px" alt="Trigger Condition Configuration"></p>
 <h2 id="Actions"><a href="#Actions" class="headerlink" title="Actions:"></a>Actions:</h2><blockquote>
 <p>In Sitecore Content Hub, Actions are components that perform a specific task. <sup><a href="#actions">2</a></sup></p>
 </blockquote>
@@ -169,7 +169,7 @@ ga('send', 'pageview');
 <p>Most of these are configured by entering an endpoint URL (e.g. API Call) or a connection string (e.g. Azure event hub). Others execute tasks that are specific to Content Hub and has been pre-configured (e.g. Reporting Channel). <code>Action script</code> is an action that will execute a Content Hub script of type action -see scripts section below. </p>
 <p>Actions usually send a payload in the request body (as json) or headers. This usually includes a <code>TargetId</code> specifying the entity being processed.  </p>
 <p><strong>Note:</strong> Some action types require a response (e.g. API call). Not returning a response before the request times out might cause the action to send multiple requests. A queue type should be considered for heavy processes.</p>
-<p><img class="boxed" src="/images/action-api-call.png" alt="Action API Call Configuration"></p>
+<p><img class="boxed" src="/images/action-api-call.png" style="max-width:400px" alt="Action API Call Configuration"></p>
 <h2 id="Scripts"><a href="#Scripts" class="headerlink" title="Scripts:"></a>Scripts:</h2><blockquote>
 <p>Sitecore Content Hub allows users to integrate custom scripts in their business logic. Scripts can be manually triggered by end-users or automatically triggered by the application (e.g. using Triggers) depending on the script type and the use case. Sitecore Content Hub offers different script types, with each type having different context properties. <sup><a href="#scripts">3</a></sup></p>
 </blockquote>
@@ -177,7 +177,7 @@ ga('send', 'pageview');
 <p>As of Content Hub 3.2, a Script can be created as any of these types: <code>Action</code>, <code>Metadata processing</code>, <code>User pre-registration</code>, <code>User post-registration</code> and <code>User sign-in</code>.</p>
 <p>The type of script dictates the context where it’s run and the properties available. The most commonly used is Action.</p>
 <p>When invoked by triggers, action scripts can be executed synchronously (<code>restricted</code>) and asynchronously (<code>unrestricted</code>). Restricted scripts have a limited range of libraries than can be referenced/used <sup><a href="#libraries-restriction">4</a></sup>. </p>
-<p><img class="boxed" src="/images/script-action.png" alt="Action Script"></p>
+<p><img class="boxed" src="/images/script-action.png" style="max-width:600px" alt="Action Script"></p>
 <p>====================</p>
 <p>References:<br>[1] <a name="triggers" href="https://docs.stylelabs.com/content/integrations/intergration-components/triggers/overview.html" target="_blank" rel="noopener"> https://docs.stylelabs.com/content/integrations/intergration-components/triggers/overview.html </a><br>[2] <a name="scripts" href="https://docs.stylelabs.com/content/integrations/scripting-api/scripting-api-overview.html" target="_blank" rel="noopener"> https://docs.stylelabs.com/content/integrations/scripting-api/scripting-api-overview.html </a><br>[3] <a name="actions" href="https://docs.stylelabs.com/content/integrations/intergration-components/actions/overview.html" target="_blank" rel="noopener"> https://docs.stylelabs.com/content/integrations/intergration-components/actions/overview.html </a><br>[4] <a name="libraries-restriction" href="https://docs.stylelabs.com/content/integrations/scripting-api/restricted-scripts.html" target="_blank" rel="noopener"> https://docs.stylelabs.com/content/integrations/scripting-api/restricted-scripts.html </a></p>
 <hr>
@@ -189,7 +189,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://josedbaez.com/2019/08/trigger-action-script/" data-id="cjziuikj3001qv899t89lll65" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://josedbaez.com/2019/08/trigger-action-script/" data-id="cjziuvo6y001pyj99mud7cglu" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {

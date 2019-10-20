@@ -21,7 +21,7 @@
 <meta property="og:description" content="How to install Sitecore’s Connect Hub DAM connector “Sitecore Connect™ for Sitecore DAM 2.0.0”">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://josedbaez.com/images/dam-connector.png">
-<meta property="og:updated_time" content="2019-08-19T20:16:16.807Z">
+<meta property="og:updated_time" content="2019-10-20T18:57:00.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sitecore connector for Content Hub DAM">
 <meta name="twitter:description" content="How to install Sitecore’s Connect Hub DAM connector “Sitecore Connect™ for Sitecore DAM 2.0.0”">
@@ -154,12 +154,12 @@ ga('send', 'pageview');
         <div class="article-entry" itemprop="articleBody">
             <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/dam-connector.png" alt="Sitecore Content Hub DAM Connector"></h2><p>How to install Sitecore’s Connect Hub DAM connector “Sitecore Connect™ for Sitecore DAM 2.0.0”<br><a id="more"></a></p>
 <p><em>Versions used: Sitecore Experience Platform 9.2 Initial Release. Content Hub 3.2</em></p>
-<p><a href="https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx" target="_blank" rel="noopener">Sitecore Connect™ for Sitecore DAM</a> gives users the ability to insert Content Hub assets from Sitecore Content Management. It works on any Sitecore image and RTE field types; in both Content and Experience editors. To achieve this, the connector adds new buttons that invoke and display content hub on an iframe.</p>
-<p>The connector will display the page set in Sitecore (explained below). Content Hub 3.2 comes with 2 pre-configured pages that can be found under: <strong>Admin</strong> -&gt; <strong>Pages</strong> -&gt; <strong>Sitecore Plugin</strong>. Here you can amend the pages as you find suitable or modify the search component configuration. I haven’t tried yet but you might be able to create a custom page to use instead of the default ones. </p>
+<p><a href="https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx" target="_blank" rel="noopener">Sitecore Connect™ for Sitecore DAM</a> gives users the ability to insert Content Hub assets from Sitecore Content Management, and to upload assets from CM to Content Hub. It works on any Sitecore image and RTE field types; in both Content and Experience editors. To achieve this, the connector adds new buttons that invoke and display content hub on an iframe.</p>
+<p>The connector will display the page set in Sitecore (explained below). Content Hub 3.2 comes with 2 pre-configured pages that can be found under: <strong>Admin</strong> -&gt; <strong>Pages</strong> -&gt; <strong>Sitecore Plugin</strong>. Here you can amend the pages as you find suitable or modify the search component configuration. I haven’t tried yet but you might be able to create a custom page to use instead of the default ones.</p>
 <p>The connector requires configuration in both systems (Content Hub and Sitecore CM instance) to work properly:</p>
 <h2 id="Content-Hub-Configuration"><a href="#Content-Hub-Configuration" class="headerlink" title="Content Hub Configuration"></a>Content Hub Configuration</h2><ul>
 <li>To allow a Sitecore instance to access content hub, you must add a CORS configuration entry with your Sitecore CM instance URL.<ol>
-<li>Navigate to: <strong>Manage</strong> -&gt; <strong>Settings</strong> -&gt; <strong>PortalConfiguration</strong> -&gt; <strong>CORSConfiguration</strong> or go to URL <a href="http://CONTENT_HUB_URL/en-us/admin/settingmanagement?setting=CORSConfiguration&amp;settingId=8748" target="_blank" rel="noopener">http://CONTENT_HUB_URL/en-us/admin/settingmanagement?setting=CORSConfiguration&amp;settingId=8748</a> </li>
+<li>Navigate to: <strong>Manage</strong> -&gt; <strong>Settings</strong> -&gt; <strong>PortalConfiguration</strong> -&gt; <strong>CORSConfiguration</strong> or go to URL <a href="http://CONTENT_HUB_URL/en-us/admin/settingmanagement?setting=CORSConfiguration&amp;settingId=8748" target="_blank" rel="noopener">http://CONTENT_HUB_URL/en-us/admin/settingmanagement?setting=CORSConfiguration&amp;settingId=8748</a></li>
 <li>Enter your CM instance URL (e.g. <a href="http://sc92.dev.local" target="_blank" rel="noopener">http://sc92.dev.local</a>) and click Save.</li>
 </ol>
 </li>
@@ -179,7 +179,7 @@ ga('send', 'pageview');
 <ul>
 <li>Download Sitecore Connect™ for Sitecore DAM 2.0.0 from <a href="https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx" target="_blank" rel="noopener">sitecore website</a>.</li>
 <li>Install the package on your CM server via Sitecore package installer.<ol>
-<li>When prompted for an existing item, select overwrite -the package will create new buttons.   </li>
+<li>When prompted for an existing item, select overwrite -the package will create new buttons.</li>
 </ol>
 </li>
 <li>Configure connector to point to your Content Hub instance.<ol>
@@ -188,10 +188,9 @@ ga('send', 'pageview');
 </ol>
 </li>
 </ul>
-<p>Once you have done this, you will find a new button that reads <code>Browse Sitecore DAM</code> on any image field and a new icon on rich text editor fields: <img src="/images/rte-dam-icon.png"> </p>
+<p>Once you have done this, you will find a new button that reads <code>Browse Sitecore DAM</code> on any image field and a new icon on rich text editor fields: <img src="/images/rte-dam-icon.png"></p>
 <p>When selecting images via the connector, it sets the field value to the selected public link of the asset.</p>
-<p>====================</p>
-<p>References:<br><a href="https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx" target="_blank" rel="noopener">https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx</a></p>
+<h1 id="-1"><a href="#-1" class="headerlink" title=""></a><img src="/images/dam-connector-demo.gif"></h1><p>References:<br><a href="https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx" target="_blank" rel="noopener">https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx</a></p>
 <hr>
 <p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
 
@@ -201,7 +200,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://josedbaez.com/2019/08/sitecore-content-hub-dam-connector/" data-id="cjziuikip000kv899vh2b4rkh" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://josedbaez.com/2019/08/sitecore-content-hub-dam-connector/" data-id="cjziuvo6j000lyj99k6ih0n5m" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
