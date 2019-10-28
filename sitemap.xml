@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://josedbaez.com/2019/10/content-hub-test-connection-not-found/</loc>
+    
+    <lastmod>2019-10-28T21:41:05.196Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://josedbaez.com/2019/10/sitecore-content-hub-cmp-connector/</loc>
     
     <lastmod>2019-10-20T21:05:57.173Z</lastmod>
@@ -121,13 +128,6 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
-    
-    <lastmod>2018-12-15T02:06:43.610Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://josedbaez.com/2017/02/sitecore-dynamics-connector/</loc>
     
     <lastmod>2018-12-15T02:06:43.610Z</lastmod>
@@ -135,14 +135,21 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2018/12/querystring-cache-size/</loc>
+    <loc>https://josedbaez.com/2017/03/sitecore-dynamics-connector-reset-error/</loc>
+    
+    <lastmod>2018-12-15T02:06:43.610Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
+    <loc>https://josedbaez.com/2017/01/log4net-rolling-appender/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     
@@ -156,7 +163,7 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/01/log4net-rolling-appender/</loc>
+    <loc>https://josedbaez.com/2018/12/querystring-cache-size/</loc>
     
     <lastmod>2018-12-15T02:06:43.609Z</lastmod>
     

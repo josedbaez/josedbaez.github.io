@@ -6,26 +6,26 @@
     
 
     
-    <title>Reading user&#39;s ip address behind Azure Application Gateway | José Domínguez</title>
+    <title>404 error when clicking Test Connection on Actions | José Domínguez</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="azure,gateway,xff" />
+        <meta name="keywords" content="stylelabs,action,apicall" />
     
-    <meta name="description" content="How to patch sitecore pipeline to properly read client’s ip address behind Azure Application Gateway.">
-<meta name="keywords" content="azure,gateway,xff">
+    <meta name="description" content="Why is Test Connection button on an Action returning a not found error when clicked.">
+<meta name="keywords" content="stylelabs,action,apicall">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Reading user&#39;s ip address behind Azure Application Gateway">
-<meta property="og:url" content="https://josedbaez.com/2018/10/azure-application-gateway-client-ip/index.html">
+<meta property="og:title" content="404 error when clicking Test Connection on Actions">
+<meta property="og:url" content="https://josedbaez.com/2019/10/content-hub-test-connection-not-found/index.html">
 <meta property="og:site_name" content="José Domínguez">
-<meta property="og:description" content="How to patch sitecore pipeline to properly read client’s ip address behind Azure Application Gateway.">
+<meta property="og:description" content="Why is Test Connection button on an Action returning a not found error when clicked.">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://josedbaez.com/images/application-gateway-xforwardedfor_th.jpg">
-<meta property="og:updated_time" content="2018-12-15T02:06:43.608Z">
+<meta property="og:image" content="https://josedbaez.com/images/test-connection-404.png">
+<meta property="og:updated_time" content="2019-10-28T21:41:05.196Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Reading user&#39;s ip address behind Azure Application Gateway">
-<meta name="twitter:description" content="How to patch sitecore pipeline to properly read client’s ip address behind Azure Application Gateway.">
-<meta name="twitter:image" content="https://josedbaez.com/images/application-gateway-xforwardedfor_th.jpg">
+<meta name="twitter:title" content="404 error when clicking Test Connection on Actions">
+<meta name="twitter:description" content="Why is Test Connection button on an Action returning a not found error when clicked.">
+<meta name="twitter:image" content="https://josedbaez.com/images/test-connection-404.png">
     
 
     
@@ -113,19 +113,19 @@ ga('send', 'pageview');
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Sitecore/Azure/">Azure</a>
+    <a class="page-title-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Sitecore/Content-Hub/">Content Hub</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-azure-application-gateway-client-ip" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-content-hub-test-connection-not-found" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Reading user&#39;s ip address behind Azure Application Gateway
+        404 error when clicking Test Connection on Actions
         </h1>
     
 
@@ -135,8 +135,8 @@ ga('send', 'pageview');
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2018/10/azure-application-gateway-client-ip/" class="article-date">
-            <time datetime="2018-10-19T00:00:00.000Z" itemprop="datePublished">2018-10-19</time>
+        <a href="/2019/10/content-hub-test-connection-not-found/" class="article-date">
+            <time datetime="2019-10-28T00:00:00.000Z" itemprop="datePublished">2019-10-28</time>
         </a>
     </div>
 
@@ -145,21 +145,18 @@ ga('send', 'pageview');
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/azure/">azure</a>, <a class="tag-link" href="/tags/gateway/">gateway</a>, <a class="tag-link" href="/tags/xff/">xff</a>
+        <a class="tag-link" href="/tags/action/">action</a>, <a class="tag-link" href="/tags/apicall/">apicall</a>, <a class="tag-link" href="/tags/stylelabs/">stylelabs</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/application-gateway-xforwardedfor.jpg" alt="Azure application gateway xforwardedfor.jpg"></h2><p>How to patch sitecore pipeline to properly read client’s ip address behind Azure Application Gateway.<br><a id="more"></a></p>
-<p><em>Versions used: Sitecore Experience Platform 9.0 rev. 171219 (9.0 Update-1).</em></p>
-<p>A load balancer will typically send the client’s IP through a custom header, so the application server can read this -if needed- instead of the load balancer’s internal ip. A common header for this is <code>X-Forwarded-For</code> aka <code>XFF</code>. Sitecore provides an easy and customisable way to specify which header to use to read client’s ip: <code>Analytics.ForwardedRequestHttpHeader</code> setting.</p>
-<p><a href="https://docs.microsoft.com/en-us/azure/application-gateway/application-gateway-faq" target="_blank" rel="noopener">Azure Application Gateway</a> is commonly used on Sitecore PaaS implementations because it provides more features than just load balancing. Web Application Firewall for an instance.</p>
-<p>Azure’s application gateway inserts the client’s IP on the <code>XFF</code> header, but in a different format than sitecore expects. <code>The format for x-forwarded-for header is a comma-separated list of IP:Port.</code> Sitecore’s <code>Sitecore.Analytics.Pipelines.CreateVisits.XForwardedFor</code> class does not expect the port to be included, hence it fails when parsing it to an <code>IPAddress</code>.</p>
-<p>Luckily the fix for this is easy. You just need to patch pipeline <code>Sitecore.Analytics.Pipelines.CreateVisits.XForwardedFor, Sitecore.Analytics</code> with a method that excludes the port and parses the IP address properly.</p>
-<p>Create a class that inherits from Sitecore’s XForwardedFor class and override function <code>GetIpFromHeader</code>.<br><figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">public class MyCustomXFF : Sitecore.Analytics.Pipelines.CreateVisits.XForwardedFor</span><br><span class="line">&#123;</span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">override</span> <span class="keyword">string</span> <span class="title">GetIpFromHeader</span>(<span class="params"><span class="keyword">string</span> header</span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        Assert.ArgumentNotNull(header, <span class="string">"header"</span>);</span><br><span class="line">        <span class="keyword">string</span>[] array = header.Split(<span class="string">','</span>);</span><br><span class="line">        <span class="keyword">int</span> headerIpIndex = HeaderIpIndex;</span><br><span class="line">        <span class="keyword">string</span> text = (headerIpIndex &lt; array.Length) ? array[headerIpIndex] : array.LastOrDefault();</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">string</span>.IsNullOrEmpty(text))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> text.Split(<span class="string">':'</span>)[<span class="number">0</span>].Trim();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>Then apply config patch.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">sitecore</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">pipelines</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">createVisit</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">processor</span> <span class="attr">type</span>=<span class="string">"Namespace.MyCustomXFF, MyAssembly"</span> <span class="attr">patch:instead</span>=<span class="string">"*[@type='Sitecore.Analytics.Pipelines.CreateVisits.XForwardedFor, Sitecore.Analytics']"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">HeaderIpIndex</span>&gt;</span>0<span class="tag">&lt;/<span class="name">HeaderIpIndex</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">processor</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">createVisit</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">pipelines</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">sitecore</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/headless-police-woman.jpg" alt="Headless Police Woman"></h2><p>Why is Test Connection button on an Action returning a not found error when clicked.<br><a id="more"></a></p>
+<p><em>Versions used: Content Hub 3.2</em></p>
+<p>You want to invoke an API from Content Hub and have created an <code>Action</code> that points to it. <code>API URL</code> is fine, <code>Method</code> is correct, <code>Headers</code> aren’t expected so is left empty. You then click on <code>Test Connection</code> and get <code>Connection failed</code> error.</p>
+<p>Why?!</p>
+<p>Regardless of the selected method, and expected by the API when called, <strong><code>Test Connection</code> button sends a <code>HEAD</code> request to the API</strong>. Set your API endpoint to allow <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD" target="_blank" rel="noopener">HEAD</a> requests and you are all set.</p>
 <hr>
 <p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
 
@@ -169,7 +166,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://josedbaez.com/2018/10/azure-application-gateway-client-ip/" data-id="ck2ay2kl10006yk993x3xholk" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://josedbaez.com/2019/10/content-hub-test-connection-not-found/" data-id="ck2ay43hw0000zm99tux9i51d" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -280,7 +277,7 @@ ga('send', 'pageview');
     var disqus_shortname = 'josedbaez';
     
     
-    var disqus_url = 'https://josedbaez.com/2018/10/azure-application-gateway-client-ip/';
+    var disqus_url = 'https://josedbaez.com/2019/10/content-hub-test-connection-not-found/';
     
     (function() {
     var dsq = document.createElement('script');
