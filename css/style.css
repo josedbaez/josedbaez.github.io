@@ -2137,7 +2137,8 @@ i.icon:before {
     font-size: 14px;
     width: 90%;
   }
-  .main-body-inner {
+  .main-body-inner,
+  .main-body-inner.home {
     padding: 0px;
     background: none;
   }
