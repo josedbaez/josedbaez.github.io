@@ -34,7 +34,7 @@ As mentioned before, you need a subscription that allows to select either Standa
 - On azure portal, go to Resources and click on Add. Search for `Service Bus`, then click on create.
 - Enter desired name for your Service Bus service. Select Subscription, Resource Group, Location and either __Standard or Premium pricing tier__.
 - Once created, go to the service and click on `Shared access policies`.
--- Click on Add. Create a new Policy named `ManageSendAccessKey` with `Send` and `Listen` access.
+-- Click on Add. Create a new Policy named `ManageSendListenAccessKey` with `Manage`, `Send` and `Listen` access. Or use default `RootManageSharedAccessKey`.
 -- Click on newly created `ManageSendAccessKey` policy and copy one of the `connection strings`. You will need this later. <sup><a name="service-bus-connection-string">[connection string]</a></sup>
 - Now click on `Topics`.
 -- Create a topic and call it `cmp_content`. Set desired configuration on the topic. <sup><a name="cmp-topic">cmp topic</a></sup>
@@ -78,11 +78,11 @@ Now that Azure and Content Hub have been configured, you are ready to install an
   `Incoming subscription name` __:__ <em>sitecore</em> <sup>[cmp topic subscription](#cmp-topic-subscription)</sup>.
   `Outgoing topic name` __:__ <em>cmp_content</em> <sup>[sitecore notifications topic](#sitecore-notifications-topic)</sup>.
   `Default Language` __:__ <em>en</em>. This item language will be used if no language is specified in Content Hub. Note: `en` is default in Sitecore whereas `en-US` is default in Content Hub.
-  
+
 ### Templates and Mappings ###
 <ul><li> Create a new template that contains `/sitecore/templates/CMP/Content Hub Entity` as a Base template under desired templates folder. e.g. `Advertisement`. <sup><a name="sitecore-template">sitecore template</a></sup><ul><li>Add the fields you want to sync from Content Hub. Select appropriate field types (Only text fields are supported). </li> <li>Mark as `Bucketable`. </li></ul></li><li>Create a new Bucket under `/sitecore/content/CMP`. e.g. `Advertisements`.</li><li>Navigate to item `/sitecore/system/Modules/CMP/Config` and create a new `/sitecore/templates/CMP/Entity Mapping` item under it. e.g. `Advertisement`.<ul><li>Populate the fields as follows:<ul><li>`Content Type Id` __:__ <em>M.ContentType.Advertisement</em>. To find this id, go to your Content Hub instance and navigate to __Manage__ -> __Taxonomy__ -> __M.ContentType__, and click on the info icon next to the desired type. The `identifier` is what you need.</li><li>`Bucket` __:__ <em>/sitecore/content/CMP/Advertisements</em>. The parent location where you want the items to be created.</li><li>`Template` the newly created sitecore template containing the fields to map to<sup>[sitecore template](#sitecore-template)</sup>.</li></ul></li><li>Create an item of type `/sitecore/templates/CMP/Field Mapping` under it. e.g. `Title`.<ul><li>Populate the fields as follows:<ul><li>`CMP Field Name` __:__ <em>Advertisement_Title</em>. To find this id, you can either find the field on the `M.Content` entity definition under __Manage__ -> __Schema__ -> __M.Content__, or find a content entity with the desired type, grab the entity id from the URL and navigate to `https://content-hub-instance/api/entities/entity_id` to find the property id.</li><li>`Sitecore Field Name` __:__ <em>Title</em>. The field name where the data should map to. </li></ul></li><li>Create as many items as fields are required.</li></ul></li></ul></li></ul>
 
-Voilà! Now your connector has been configured. Restart your sitecore instance and items should be created as soon as the Content Hub trigger executes. 
+Voilà! Now your connector has been configured. Restart your sitecore instance and items should be created as soon as the Content Hub trigger executes.
 Hint: Look at your sitecore logs to find errors and it logs a lot when something fails.
 
 
