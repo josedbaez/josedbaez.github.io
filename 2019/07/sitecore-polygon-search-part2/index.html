@@ -6,26 +6,26 @@
     
 
     
-    <title>404 error when clicking Test Connection on Actions | José Domínguez</title>
+    <title>Tips when indexing Polygons with Sitecore and Solr | José Domínguez</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="stylelabs,action,apicall" />
+        <meta name="keywords" content="Sitecore,spatial,Solr" />
     
-    <meta name="description" content="Why is Test Connection button on an Action returning a not found error when clicked.">
-<meta name="keywords" content="stylelabs,action,apicall">
+    <meta name="description" content="How to store and search on geojson polygons in sitecore.">
+<meta name="keywords" content="Sitecore,spatial,Solr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="404 error when clicking Test Connection on Actions">
-<meta property="og:url" content="https://josedbaez.com/2019/10/content-hub-test-connection-not-found/index.html">
+<meta property="og:title" content="Tips when indexing Polygons with Sitecore and Solr">
+<meta property="og:url" content="https://josedbaez.com/2019/07/sitecore-polygon-search-part2/index.html">
 <meta property="og:site_name" content="José Domínguez">
-<meta property="og:description" content="Why is Test Connection button on an Action returning a not found error when clicked.">
+<meta property="og:description" content="How to store and search on geojson polygons in sitecore.">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="https://josedbaez.com/images/test-connection-404.jpg">
-<meta property="og:updated_time" content="2019-11-17T18:01:11.911Z">
+<meta property="og:image" content="https://josedbaez.com/images/sitecore-solr-spatial-tips.png">
+<meta property="og:updated_time" content="2019-11-17T18:02:07.417Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="404 error when clicking Test Connection on Actions">
-<meta name="twitter:description" content="Why is Test Connection button on an Action returning a not found error when clicked.">
-<meta name="twitter:image" content="https://josedbaez.com/images/test-connection-404.jpg">
+<meta name="twitter:title" content="Tips when indexing Polygons with Sitecore and Solr">
+<meta name="twitter:description" content="How to store and search on geojson polygons in sitecore.">
+<meta name="twitter:image" content="https://josedbaez.com/images/sitecore-solr-spatial-tips.png">
     
 
     
@@ -113,19 +113,19 @@ ga('send', 'pageview');
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Sitecore/Content-Hub/">Content Hub</a>
+    <a class="page-title-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Sitecore/Solr/">Solr</a>
     </h1>
 </div>
 
                         <div class="main-body-content">
-                            <article id="post-content-hub-test-connection-not-found" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-sitecore-polygon-search-part2" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        404 error when clicking Test Connection on Actions
+        Tips when indexing Polygons with Sitecore and Solr
         </h1>
     
 
@@ -135,8 +135,8 @@ ga('send', 'pageview');
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2019/10/content-hub-test-connection-not-found/" class="article-date">
-            <time datetime="2019-10-28T00:00:00.000Z" itemprop="datePublished">2019-10-28</time>
+        <a href="/2019/07/sitecore-polygon-search-part2/" class="article-date">
+            <time datetime="2019-07-15T00:00:00.000Z" itemprop="datePublished">2019-07-15</time>
         </a>
     </div>
 
@@ -145,18 +145,25 @@ ga('send', 'pageview');
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/action/">action</a>, <a class="tag-link" href="/tags/apicall/">apicall</a>, <a class="tag-link" href="/tags/stylelabs/">stylelabs</a>
+        <a class="tag-link" href="/tags/Sitecore/">Sitecore</a>, <a class="tag-link" href="/tags/Solr/">Solr</a>, <a class="tag-link" href="/tags/spatial/">spatial</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/headless-police-woman.jpg" alt="Headless Police Woman"></h2><p>Why is Test Connection button on an Action returning a not found error when clicked.<br><a id="more"></a></p>
-<p><em>Versions used: Content Hub 3.2</em></p>
-<p>You want to invoke an API from Content Hub and have created an <code>Action</code> that points to it. <code>API URL</code> is fine, <code>Method</code> is correct, <code>Headers</code> aren’t expected so is left empty. You then click on <code>Test Connection</code> and get <code>Connection failed</code> error.</p>
-<p>Why?!</p>
-<p>Regardless of the selected method, and expected by the API when called, <strong><code>Test Connection</code> button sends a <code>HEAD</code> request to the API</strong>. Set your API endpoint to allow <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/HEAD" target="_blank" rel="noopener">HEAD</a> requests and you are all set.</p>
+            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/sitecore-solr-spatial-tips.png" alt="Sitecore Solr GeoJson"></h2><p>How to store and search on geojson polygons in sitecore.<br><a id="more"></a></p>
+<p><em>Versions used: Sitecore Experience Platform 9.0 rev. 180604 (Update-2).</em></p>
+<p>This is a follow-up post on my <a href="/2019/07/sitecore-polygon-search/">previous one</a> regarding polygon search with Sitecore and solr. It’s a list of things I learned, whilst implementing on a project, that will hopefully save you some debugging time.</p>
+<ul>
+<li>If you get error <code>Unsupported expression node type: Quote</code> when running the extension function, it means you are still using one or 2 default classes. Make sure you are referring all classes from the <a href="https://github.com/josedbaez/sitecore-spatial-geojson-polygons" target="_blank" rel="noopener">repo</a>.</li>
+<li>If you get an error at indexing time, make sure the data being stored is a valid <a href="https://geojson.org/" target="_blank" rel="noopener">GeoJSON</a> object.<br>– e.g. this is a valid polygon <code>{ &quot;type&quot;: &quot;Feature&quot;, &quot;geometry&quot;: { &quot;type&quot;: &quot;MultiPolygon&quot;, &quot;coordinates&quot;: [ [ [ [ 20.18, 46.2 ], [ 20.2, 46.26 ], [ 20.32, 46.26 ], [ 20.34, 46.22 ], [ 20.38, 46.22 ], [ 20.38, 46.160000000000004 ], [ 20.22, 46.160000000000004 ], [ 20.18, 46.2 ] ] ] ] } }</code></li>
+<li>Ross Cartwright pointed out <code>queryable.ToList()</code> works fine, but <code>queryable.GetResults()</code> fails. We actually avoided using <code>GetResults()</code> throughout the project because it was slower than <code>ToList()</code>. You’ll need to debug to find out why it fails.</li>
+<li>Make sure you <a href="https://lucene.apache.org/solr/guide/6_6/spatial-search.html" target="_blank" rel="noopener">read</a> about the differences between <code>RPT</code> and <code>RptWithGeometrySpatialField</code><br>– If you end up using <code>RptWithGeometrySpatialField</code>, see <code>optional in-memory cache</code></li>
+<li>There’s a limit on the amount of data being sent -at once- to solr, and this can also decrease performance, so be mindful on the polygon size being used. On my project, we were indexing cities and a polygon could easily reach 5MB. We used <a href="https://nominatim.openstreetmap.org/search.php" target="_blank" rel="noopener">openstreemap</a> to generate <a href="http://polygons.openstreetmap.fr/" target="_blank" rel="noopener">non-perfect versions</a> of the polygons which are quite smaller.</li>
+<li><code>RPT</code> and <code>RptWithGeometrySpatialField</code> can index bounding boxes as long as you store them as polygons.<br>– e.g. <code>{ &quot;type&quot;: &quot;Feature&quot;, &quot;geometry&quot;: { &quot;type&quot;: &quot;Polygon&quot;, &quot;coordinates&quot;: [ [ [ 20.2024989, 46.2431191 ], [ 20.356019, 46.2431191 ], [ 20.356019, 46.1757964 ], [ 20.2024989, 46.1757964 ], [ 20.2024989, 46.2431191 ] ] ] } }</code> would work but <code>[ &quot;46.1757964&quot;, &quot;46.2431191&quot;, &quot;20.2024989&quot;, &quot;20.356019&quot; ]</code> won’t.</li>
+<li>If storing multi-polygons that overlap, set <code>allowMultiOverlap</code> to true when defining your <code>dynamicField</code>.</li>
+</ul>
 <hr>
 <p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
 
@@ -166,7 +173,7 @@ ga('send', 'pageview');
 
 
 
-    <a data-url="https://josedbaez.com/2019/10/content-hub-test-connection-not-found/" data-id="ck2bog8400006m5znveq7jhql" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="https://josedbaez.com/2019/07/sitecore-polygon-search-part2/" data-id="ck2uxu48500008rpb781uvket" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -277,7 +284,7 @@ ga('send', 'pageview');
     var disqus_shortname = 'josedbaez';
     
     
-    var disqus_url = 'https://josedbaez.com/2019/10/content-hub-test-connection-not-found/';
+    var disqus_url = 'https://josedbaez.com/2019/07/sitecore-polygon-search-part2/';
     
     (function() {
     var dsq = document.createElement('script');

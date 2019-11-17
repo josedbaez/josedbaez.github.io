@@ -21,7 +21,7 @@
 <meta property="og:description" content="How to install Sitecore’s Connect Hub CMP connector “Sitecore Connect™ for Sitecore CMP 1.0.0”">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://josedbaez.com/images/cmp-connector.jpg">
-<meta property="og:updated_time" content="2019-10-20T21:05:57.173Z">
+<meta property="og:updated_time" content="2019-11-11T21:19:50.459Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Sitecore connector for Content Hub CMP">
 <meta name="twitter:description" content="How to install Sitecore’s Connect Hub CMP connector “Sitecore Connect™ for Sitecore CMP 1.0.0”">
@@ -166,7 +166,7 @@ ga('send', 'pageview');
 <ul>
 <li>On azure portal, go to Resources and click on Add. Search for <code>Service Bus</code>, then click on create.</li>
 <li>Enter desired name for your Service Bus service. Select Subscription, Resource Group, Location and either <strong>Standard or Premium pricing tier</strong>.</li>
-<li>Once created, go to the service and click on <code>Shared access policies</code>.<br>– Click on Add. Create a new Policy named <code>ManageSendAccessKey</code> with <code>Send</code> and <code>Listen</code> access.<br>– Click on newly created <code>ManageSendAccessKey</code> policy and copy one of the <code>connection strings</code>. You will need this later. <sup><a name="service-bus-connection-string">[connection string]</a></sup></li>
+<li>Once created, go to the service and click on <code>Shared access policies</code>.<br>– Click on Add. Create a new Policy named <code>ManageSendListenAccessKey</code> with <code>Manage</code>, <code>Send</code> and <code>Listen</code> access. Or use default <code>RootManageSharedAccessKey</code>.<br>– Click on newly created <code>ManageSendAccessKey</code> policy and copy one of the <code>connection strings</code>. You will need this later. <sup><a name="service-bus-connection-string">[connection string]</a></sup></li>
 <li>Now click on <code>Topics</code>.<br>– Create a topic and call it <code>cmp_content</code>. Set desired configuration on the topic. <sup><a name="cmp-topic">cmp topic</a></sup><br>– Create another topic and call it <code>sitecore_notifications</code>. Set desired configuration on the topic. <sup><a name="sitecore-notifications-topic">sitecore notifications topic</a></sup><br>– Go inside the <code>cmp_content</code> topic and create a subscription called <code>sitecore</code>. <sup><a name="cmp-topic-subscription">cmp topic subscription</a></sup></li>
 </ul>
 <p>The service bus is now ready. CMP will send messages to <code>cmp_content</code> topic and the connector will subscribe to <code>sitecore</code> subscription and act when messages are added to the topic.</p>
