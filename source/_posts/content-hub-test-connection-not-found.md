@@ -1,6 +1,6 @@
 title: 404 error when clicking Test Connection on Actions
 date: 2019/10/28
-thumbnail: /images/test-connection-404.png
+thumbnail: /images/test-connection-404.jpg
 categories:
 - Sitecore
 - Content Hub

@@ -17,6 +17,9 @@ How to store and search on geojson polygons in sitecore.
 
 *Versions used: Sitecore Experience Platform 9.0 rev. 180604 (Update-2).*
 
+**Update:**
+Make sure you read my [follow-up post](/2019/07/sitecore-polygon-search-part2) with some tips about this implementation.
+
 On this post, I will be going through implementation on how to index fields that contain GeoJson polygons and a Linq extension that allows searching for points that intersect the polygons. Full source code [here](https://github.com/josedbaez/sitecore-spatial-geojson-polygons).
 
 In order to follow the same approach taken by Sitecore, we need to create a new index provider. The provider uses a Search Context that exposes a GetQueryable function with the ability to trigger our custom intersect method. 
