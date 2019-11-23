@@ -760,6 +760,7 @@ code {
 .widget img.award {
   width: 100%;
   height: 100%;
+  border: 1px solid #eee;
 }
 .widget-list ul,
 .widget-list ol {
@@ -1932,6 +1933,9 @@ i.icon:before {
   .nav-container-inner {
     display: block !important;
   }
+  .main-body-inner {
+    padding-left: 50px;
+  }
 }
 @media only screen and (min-width: 480px) and (max-width: 959px) {
   #header {
@@ -1951,8 +1955,10 @@ i.icon:before {
     margin-top: -50px;
   }
   .main-body-inner {
-    padding-left: 50px;
     background-position: -290px 0 !important;
+  }
+  .main-body-inner.home {
+    padding-left: 50px;
   }
   .main-body-inner #sidebar {
     left: 0;
