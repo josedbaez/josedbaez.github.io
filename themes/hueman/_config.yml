@@ -8,12 +8,12 @@ customize:
     logo:
         width: 165
         height: 60
-        url: /images/logo4.png
+        url: /images/logo.png
     theme_color: '#da1e25'
     highlight: androidstudio
     sidebar: left # sidebar position, options: left, right
     thumbnail: true # enable posts thumbnail, options: true, false
-    favicon: # path to favicon
+    favicon: /images/favicon.ico
     summary_thumbnail: false
     social_links: # for more icons, please see http://fontawesome.io/icons/#brand
         github: https://github.com/josedbaez
