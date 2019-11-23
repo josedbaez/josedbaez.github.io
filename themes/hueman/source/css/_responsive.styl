@@ -4,6 +4,13 @@
 @media only screen and (min-width: 960px)
     .nav-container-inner
         display: block !important
+    .main-body-inner
+        if sidebar is right
+            padding-right: sidebar-toggle-width
+            
+        else
+            padding-left: sidebar-toggle-width
+            
 
 /* ------------------------------------------------------------------------- *
  *    Toggle Sidebar s1 : 959px > 480px
@@ -28,8 +35,9 @@
             padding-right: sidebar-toggle-width
             background-position: -340px 0 !important
         else
-            padding-left: sidebar-toggle-width
             background-position: -290px 0 !important
+        &.home
+            padding-left: 50px
         #sidebar
             clearfix()
             if sidebar is right
