@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Tweet from Sitecore Content Hub CMP | José Domínguez</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="azure,stylelabs,cmp,servicebus,twitter" />
+    
+    <meta name="description" content="How to publish text and an image from Connect Hub CMP to twitter. Sample code using azure, c# and Content Hub’s Web Client SDK.">
+<meta name="keywords" content="azure,stylelabs,cmp,servicebus,twitter">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tweet from Sitecore Content Hub CMP">
+<meta property="og:url" content="https://josedbaez.com/2019/11/content-hub-cmp-to-twitter/index.html">
+<meta property="og:site_name" content="José Domínguez">
+<meta property="og:description" content="How to publish text and an image from Connect Hub CMP to twitter. Sample code using azure, c# and Content Hub’s Web Client SDK.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://josedbaez.com/images/sitecore-twitter-logos.png">
+<meta property="og:updated_time" content="2019-11-23T11:09:13.526Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tweet from Sitecore Content Hub CMP">
+<meta name="twitter:description" content="How to publish text and an image from Connect Hub CMP to twitter. Sample code using azure, c# and Content Hub’s Web Client SDK.">
+<meta name="twitter:image" content="https://josedbaez.com/images/sitecore-twitter-logos.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="José Domínguez" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83689815-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">C#, .net, sitecore &amp; some other stuff</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="https://josedbaez.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner article">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Sitecore/Content-Hub/">Content Hub</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-content-hub-cmp-to-twitter" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Tweet from Sitecore Content Hub CMP
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2019/11/content-hub-cmp-to-twitter/" class="article-date">
+            <time datetime="2019-11-22T00:00:00.000Z" itemprop="datePublished">2019-11-22</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/azure/">azure</a>, <a class="tag-link" href="/tags/cmp/">cmp</a>, <a class="tag-link" href="/tags/servicebus/">servicebus</a>, <a class="tag-link" href="/tags/stylelabs/">stylelabs</a>, <a class="tag-link" href="/tags/twitter/">twitter</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/sitecore-twitter-logos.png" alt="Combined Sitecore Twitter Logos"></h2><p>How to publish text and an image from Connect Hub CMP to twitter. Sample code using azure, c# and Content Hub’s Web Client SDK.<br><a id="more"></a></p>
+<p><em>Versions used: Content Hub 3.2</em></p>
+<p>You can publish content to twitter (or any other channels) by pushing CMP content to an intermediate layer (e.g. azure function), or straight to the channel -using a Content Hub Action Script or API. I prefer doing it outside Content Hub. Why? to free up resources and delegate responsibility: CMP is responsible for pushing content but does not care what happens to it afterwards. </p>
+<p>The solution in this post uses an <a href="https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-queues-topics-subscriptions" target="_blank" rel="noopener">Azure Service Bus topic</a> to receive messages from CMP and pass them on to subscribers. You don’t necessarily need a topic but it’s a good idea if you have multiple channels where the same data must be published to. <a href="https://github.com/josedbaez/Sitecore.ContentHub.Twitter" target="_blank" rel="noopener">Full source code here</a></p>
+<p><img class="boxed" src="/images/azure-queue-topics.png" style="max-width:480px" alt="Azure Queue and Topics"><br><!-- Source: https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview --></p>
+<p>It is also the mechanism used by  <a href="https://dev.sitecore.net/Downloads/Sitecore_Connect_for_Sitecore_CMP/10/Sitecore_Connect_for_Sitecore_CMP_100.aspx" target="_blank" rel="noopener">Sitecore Connect™ for Sitecore CMP</a> connector explained on my <a href="/2019/10/sitecore-content-hub-cmp-connector">previous post</a>, so I will be linking to that one to avoid duplicating content.</p>
+<p><em>Steps</em></p>
+<ul>
+<li>Create a <a href="https://developer.twitter.com/en/apps" target="_blank" rel="noopener">twitter app</a> and grab all keys and tokens under <code>Keys and tokens</code>.</li>
+<li>Create a Content Hub trigger and action to send specific content entities to azure. <a href="/2019/10/sitecore-content-hub-cmp-connector#Azure-Services-Bus#Content-Hub">Explanation here</a>.</li>
+<li>Create an Azure Service Bus service that allows the creation of topics. For this, you will need Standard or Premium service tier. You can follow the steps listed <a href="/2019/10/sitecore-content-hub-cmp-connector#Azure-Services-Bus">here</a>. On the last point, name your subscription <code>twitter</code> instead of <code>sitecore</code>.</li>
+<li>Create a new Azure Function App.</li>
+<li>Create a new <a href="https://docs.microsoft.com/en-us/azure/azure-functions/functions-bindings-service-bus#trigger" target="_blank" rel="noopener">Service Bus Trigger</a> function, inside the newly created Function App, that subscribes to the topic <code>cmp_content</code> and <code>twitter</code> subscription created on step 1. Choose whichever Development Environment you wish. I’d recommend outside the portal so you can source control it. You will need to use either <a href="https://docs.stylelabs.com/content/integrations/rest-api/about.html?v=3.2.1" target="_blank" rel="noopener">REST API</a> or <a href="https://docs.stylelabs.com/content/integrations/web-sdk/index.html?v=3.2.1" target="_blank" rel="noopener">Web Client SDK</a>. <strong>You can write the azure function on any language if you use the REST API</strong>. </li>
+</ul>
+<p>The following example uses the Web Client SDK -so it’s written in C#- and uses <a href="https://www.nuget.org/packages/TweetinviAPI/" target="_blank" rel="noopener">Tweetinvi</a> library. I’ve removed some validations to make it shorter but you can find full <a href="(https://github.com/josedbaez/Sitecore.ContentHub.Twitter">source code here</a>).</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">FunctionName(<span class="meta-string">"TweetContent"</span>)</span>]</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">async</span> Task <span class="title">Run</span>(<span class="params">[ServiceBusTrigger(<span class="string">"cmp_content"</span>, <span class="string">"twitter"</span>, Connection = <span class="string">"Manage_Send_Listen_ConnectionString"</span></span>)]</span></span><br><span class="line"><span class="function">    ServiceBusMessageRequest chMessage, ILogger logger)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> contentId = chMessage.Message.TargetId;</span><br><span class="line">    <span class="keyword">var</span> contentEntity = <span class="keyword">await</span> GetContentEntity(contentId, logger);</span><br><span class="line"></span><br><span class="line">    Tweetinvi.Auth.SetUserCredentials(<span class="string">"TwitterConsumerKey"</span>, <span class="string">"TwitterConsumerSecret"</span>, <span class="string">"TwitterUserAccessToken"</span>, <span class="string">"TwitterUserAccessSecret"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> tweetImage = <span class="keyword">await</span> GetTwitterImage(contentEntity);</span><br><span class="line">    <span class="keyword">var</span> tweet = contentEntity.GetPropertyValue&lt;<span class="keyword">string</span>&gt;(DescFieldId);</span><br><span class="line">    Tweetinvi.Tweet.PublishTweet(tweet, <span class="keyword">new</span> PublishTweetOptionalParameters&#123; Medias = &#123; tweetImage &#125; &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">async</span> Task&lt;IEntity&gt; <span class="title">GetContentEntity</span>(<span class="params"><span class="keyword">long</span> entityId, ILogger logger</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> propertyLoad = <span class="keyword">new</span> PropertyLoadOption(<span class="keyword">new</span> <span class="keyword">string</span>[] &#123; <span class="string">"Advertisement_Body"</span> &#125;);</span><br><span class="line">    <span class="keyword">var</span> relationLoad = <span class="keyword">new</span> RelationLoadOption(<span class="keyword">new</span> <span class="keyword">string</span>[] &#123; <span class="string">"CmpContentToLinkedAsset"</span> &#125;);</span><br><span class="line">    <span class="keyword">var</span> loadConfig = <span class="keyword">new</span> EntityLoadConfiguration(CultureLoadOption.Default, propertyLoad, relationLoad);</span><br><span class="line">    IEntity entity = <span class="keyword">await</span> MConnector.Client.Entities.GetAsync(entityId, loadConfig);</span><br><span class="line">    <span class="keyword">return</span> entity;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">async</span> Task&lt;IMedia&gt; <span class="title">GetTwitterImage</span>(<span class="params">IEntity content</span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> relation = content.GetRelation&lt;IParentToManyChildrenRelation&gt;(<span class="string">"CmpContentToLinkedAsset"</span>);</span><br><span class="line">    <span class="keyword">if</span>(relation != <span class="literal">null</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> ids = relation.GetIds();</span><br><span class="line">        <span class="keyword">var</span> asset = <span class="keyword">await</span> MConnector.Client.Entities.GetAsync(ids.First());</span><br><span class="line">        <span class="keyword">var</span> downloadReviewRenditions = asset.Renditions.Where(x =&gt; x.Name.Equals(<span class="string">"downloadPreview"</span>));</span><br><span class="line">        <span class="keyword">if</span>(downloadReviewRenditions != <span class="literal">null</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">var</span> href = downloadReviewRenditions.First().Items.First().Href;</span><br><span class="line">            <span class="keyword">using</span> (<span class="keyword">var</span> webClient = <span class="keyword">new</span> WebClient())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">byte</span>[] imageBytes = webClient.DownloadData(href);</span><br><span class="line">                <span class="keyword">var</span> media = Upload.UploadBinary(imageBytes);</span><br><span class="line">                <span class="keyword">return</span> media;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Content Hub sends a JSON object that contains the EntityID (among other properties not needed), so using the SDK, the code gets the Entity and the property (Advertisement_Body) to be used.</p>
+<p>It then logs in to twitter to be able to upload the image before it can we linked to the tweet. Retrieves the <code>downloadPreview</code> rendition of the first image linked (via attachments) to the Content entity and upload the byte array to twitter.</p>
+<p>Finally, it publishes the tweet with the text and the image.</p>
+<p>====================</p>
+<hr>
+<p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://josedbaez.com/2019/11/content-hub-cmp-to-twitter/" data-id="ck3bhkeey00061kpbetctwpny" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <!--
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                -->
+                <p>&copy; 2019 José Domínguez</p>
+                <p>Opinions expressed on this blog are my own, and not necessarily those of my employer.</p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'josedbaez';
+    
+    
+    var disqus_url = 'https://josedbaez.com/2019/11/content-hub-cmp-to-twitter/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>

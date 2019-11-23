@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://josedbaez.com/2019/11/content-hub-cmp-to-twitter/</loc>
+    
+    <lastmod>2019-11-23T11:09:13.526Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://josedbaez.com/files/supported-cultures.html</loc>
     
     <lastmod>2019-11-17T18:10:22.678Z</lastmod>
@@ -16,14 +23,14 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2019/08/trigger-action-script/</loc>
+    <loc>https://josedbaez.com/2016/09/wffm-encryption/</loc>
     
     <lastmod>2019-11-17T18:10:22.676Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2016/09/wffm-encryption/</loc>
+    <loc>https://josedbaez.com/2019/08/trigger-action-script/</loc>
     
     <lastmod>2019-11-17T18:10:22.676Z</lastmod>
     
@@ -58,13 +65,6 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/03/sitecore8-link-list/</loc>
-    
-    <lastmod>2019-11-17T18:10:22.674Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://josedbaez.com/2018/03/sitecore9-sso/</loc>
     
     <lastmod>2019-11-17T18:10:22.674Z</lastmod>
@@ -79,7 +79,14 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/09/sitecore-okta-login/</loc>
+    <loc>https://josedbaez.com/2017/03/sitecore8-link-list/</loc>
+    
+    <lastmod>2019-11-17T18:10:22.674Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2019/07/sitecore-polygon-search/</loc>
     
     <lastmod>2019-11-17T18:10:22.673Z</lastmod>
     
@@ -93,7 +100,7 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2019/07/sitecore-polygon-search/</loc>
+    <loc>https://josedbaez.com/2017/09/sitecore-okta-login/</loc>
     
     <lastmod>2019-11-17T18:10:22.673Z</lastmod>
     
