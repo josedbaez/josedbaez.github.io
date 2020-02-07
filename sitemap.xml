@@ -4,7 +4,7 @@
   <url>
     <loc>https://josedbaez.com/2020/02/sitecore-content-hub-cmp-connector-extensions/</loc>
     
-    <lastmod>2020-02-07T16:30:16.939Z</lastmod>
+    <lastmod>2020-02-07T16:59:21.566Z</lastmod>
     
   </url>
   
@@ -30,14 +30,14 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2016/09/wffm-encryption/</loc>
+    <loc>https://josedbaez.com/2019/08/trigger-action-script/</loc>
     
     <lastmod>2019-11-17T18:10:22.676Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2019/08/trigger-action-script/</loc>
+    <loc>https://josedbaez.com/2016/09/wffm-encryption/</loc>
     
     <lastmod>2019-11-17T18:10:22.676Z</lastmod>
     
@@ -72,7 +72,7 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/03/sitecore8-link-list/</loc>
+    <loc>https://josedbaez.com/2018/04/sitecore9-okta-login/</loc>
     
     <lastmod>2019-11-17T18:10:22.674Z</lastmod>
     
@@ -86,7 +86,7 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2018/04/sitecore9-okta-login/</loc>
+    <loc>https://josedbaez.com/2017/03/sitecore8-link-list/</loc>
     
     <lastmod>2019-11-17T18:10:22.674Z</lastmod>
     
@@ -100,14 +100,14 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2019/07/sitecore-polygon-search-part2/</loc>
+    <loc>https://josedbaez.com/2017/09/sitecore-okta-login/</loc>
     
     <lastmod>2019-11-17T18:10:22.673Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/09/sitecore-okta-login/</loc>
+    <loc>https://josedbaez.com/2019/07/sitecore-polygon-search-part2/</loc>
     
     <lastmod>2019-11-17T18:10:22.673Z</lastmod>
     
@@ -149,13 +149,6 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
-    
-    <lastmod>2019-11-17T18:10:22.670Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://josedbaez.com/2019/04/sitecore-add-non-listed-language/</loc>
     
     <lastmod>2019-11-17T18:10:22.670Z</lastmod>
@@ -164,6 +157,13 @@
   
   <url>
     <loc>https://josedbaez.com/2018/12/querystring-cache-size/</loc>
+    
+    <lastmod>2019-11-17T18:10:22.670Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2018/11/media-always-append-revision-bug/</loc>
     
     <lastmod>2019-11-17T18:10:22.670Z</lastmod>
     
@@ -191,13 +191,6 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2019/10/content-hub-test-connection-not-found/</loc>
-    
-    <lastmod>2019-11-17T18:10:22.668Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://josedbaez.com/2017/01/exm-get-contact/</loc>
     
     <lastmod>2019-11-17T18:10:22.668Z</lastmod>
@@ -205,14 +198,21 @@
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2018/10/azure-application-gateway-client-ip/</loc>
+    <loc>https://josedbaez.com/2019/10/content-hub-test-connection-not-found/</loc>
+    
+    <lastmod>2019-11-17T18:10:22.668Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://josedbaez.com/2017/08/binding-redirect-patch/</loc>
     
     <lastmod>2019-11-17T18:10:22.667Z</lastmod>
     
   </url>
   
   <url>
-    <loc>https://josedbaez.com/2017/08/binding-redirect-patch/</loc>
+    <loc>https://josedbaez.com/2018/10/azure-application-gateway-client-ip/</loc>
     
     <lastmod>2019-11-17T18:10:22.667Z</lastmod>
     
