@@ -1,5 +1,6 @@
 title: Extending Sitecore CMP connector to synchronize images
 date: 2020/02/07
+thumbnail: /images/cmp-connector-extensions_th.jpg
 categories:
 - Sitecore
 - Content Hub
@@ -9,7 +10,7 @@ tags:
 - cmp
 
 ---
-<img class="hero-img" src="/images/cmp-connector.jpg" alt="Sitecore Content Hub CMP Connector">
+<img class="hero-img" src="/images/cmp-connector-extensions.jpg" style="max-height:150px" alt="Sitecore Content Hub CMP Connector Extensions">
 ---
 How to extend Sitecore's Connect Hub CMP connector to synchronise images.
 <!-- more -->
