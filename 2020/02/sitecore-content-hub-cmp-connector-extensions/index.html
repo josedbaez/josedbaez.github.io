@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+
+    
+
+    
+    <title>Extending Sitecore CMP connector to synchronize images | José Domínguez</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="stylelabs,cmp,connector" />
+    
+    <meta name="description" content="How to extend Sitecore’s Connect Hub CMP connector to synchronise images.">
+<meta name="keywords" content="stylelabs,cmp,connector">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Extending Sitecore CMP connector to synchronize images">
+<meta property="og:url" content="https://josedbaez.com/2020/02/sitecore-content-hub-cmp-connector-extensions/index.html">
+<meta property="og:site_name" content="José Domínguez">
+<meta property="og:description" content="How to extend Sitecore’s Connect Hub CMP connector to synchronise images.">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://josedbaez.com/images/cmp-connector.jpg">
+<meta property="og:updated_time" content="2020-02-07T16:30:16.939Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Extending Sitecore CMP connector to synchronize images">
+<meta name="twitter:description" content="How to extend Sitecore’s Connect Hub CMP connector to synchronise images.">
+<meta name="twitter:image" content="https://josedbaez.com/images/cmp-connector.jpg">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="José Domínguez" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico" />
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+    
+        <script type="text/javascript">
+(function(i,s,o,g,r,a,m) {i['GoogleAnalyticsObject']=r;i[r]=i[r]||function() {
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-83689815-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">C#, .net, sitecore &amp; some other stuff</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><input type="hidden" name="sitesearch" value="https://josedbaez.com"></form>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner article">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Sitecore/">Sitecore</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Sitecore/Content-Hub/">Content Hub</a>
+    </h1>
+</div>
+
+                        <div class="main-body-content">
+                            <article id="post-sitecore-content-hub-cmp-connector-extensions" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Extending Sitecore CMP connector to synchronize images
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2020/02/sitecore-content-hub-cmp-connector-extensions/" class="article-date">
+            <time datetime="2020-02-07T00:00:00.000Z" itemprop="datePublished">2020-02-07</time>
+        </a>
+    </div>
+
+		
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/cmp/">cmp</a>, <a class="tag-link" href="/tags/connector/">connector</a>, <a class="tag-link" href="/tags/stylelabs/">stylelabs</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id=""><a href="#" class="headerlink" title=""></a><img class="hero-img" src="/images/cmp-connector.jpg" alt="Sitecore Content Hub CMP Connector"></h2><p>How to extend Sitecore’s Connect Hub CMP connector to synchronise images.<br><a id="more"></a></p>
+<p><em>Versions used: Sitecore Experience Platform 9.2 Initial Release. Content Hub 3.2.0</em></p>
+<p>This post is way overdue as I was supposed to release it after my last talk at <a href="https://www.meetup.com/The-Sitecore-Sessions/events/266315651/" target="_blank" rel="noopener">The Sitecore Sessions</a>. Sorry for the delay 😞.</p>
+<p>On a <a href="/2019/10/sitecore-content-hub-cmp-connector">previous post</a>, I explained how to install <a href="https://dev.sitecore.net/Downloads/Sitecore_Connect_for_Sitecore_CMP/10/Sitecore_Connect_for_Sitecore_CMP_100.aspx" target="_blank" rel="noopener">Sitecore Connect™ for Sitecore CMP</a> to automatically send entities from CMP to Sitecore. Alas, the connector only synchronises text fields. </p>
+<p>This post explains the <a href="https://github.com/josedbaez/Sitecore.SharedSource.CMP.Connector.Extensions" target="_blank" rel="noopener">CMP connector extension</a> that synchronises Content Hub images set on <code>M.Content</code> entities. Using the same methodology, this could grow into a module and include other field types (e.g. references to other entities). <a href="https://github.com/josedbaez/Sitecore.SharedSource.CMP.Connector.Extensions" target="_blank" rel="noopener">Source Code here</a>.</p>
+<p>This solution extends the existing CMP connector by adding a new processor to process a new mapping field type that maps an image relation to a Sitecore field using the same format supported by <a href="https://dev.sitecore.net/Downloads/Sitecore_Plugin_for_Stylelabs_DAM/20/Sitecore_Connect_for_Sitecore_DAM_200.aspx" target="_blank" rel="noopener">Sitecore connector for Content Hub DAM</a>; so DAM connector needs to be <a href="/2019/08/sitecore-content-hub-dam-connector/">installed</a>. </p>
+<p>The default connector will process items of template type <code>/sitecore/templates/CMP/Field Mapping</code>, so we need a new template item (<code>/sitecore/templates/CMP/Image Field Mapping</code>) that our custom processor can use to identify image mapping configurations. This template has <code>Field Mapping</code> as its base template plus 2 extra fields: <code>AssetIndex</code> to specify the index of the asset relation to grab (if multiple are allowed), and <code>RenditionToUse</code> to specify which asset rendition public link to use. <code>CMP Field Name</code> is used as the relation to find the asset on (<code>CmpContentToLinkedAsset</code> is available OOTB). </p>
+<p>The <a href="https://github.com/josedbaez/Sitecore.SharedSource.CMP.Connector.Extensions/blob/master/src/Sitecore.SharedSource.CMP.Connector.CustomFields/App_Config/Include/Feature/Sitecore.SharedSource.CMP.Connector.CustomFields.config" target="_blank" rel="noopener">new processor</a> runs after the default ones.<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">pipelines</span>&gt;</span>          </span><br><span class="line">    <span class="tag">&lt;<span class="name">cmp.importEntity</span>&gt;</span>                </span><br><span class="line">        <span class="tag">&lt;<span class="name">processor</span> <span class="attr">type</span>=<span class="string">"Sitecore.SharedSource.CMP.Connector.CustomFields.Pipelines.SaveImageFieldValues, Sitecore.SharedSource.CMP.Connector.CustomFields"</span> <span class="attr">patch:after</span>=<span class="string">"processor[@type='Sitecore.Connector.CMP.Pipelines.ImportEntity.SaveFieldValues, Sitecore.Connector.CMP']"</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">cmp.importEntity</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">pipelines</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>This processor <a href="https://github.com/josedbaez/Sitecore.SharedSource.CMP.Connector.Extensions/blob/master/src/Sitecore.SharedSource.CMP.Connector.CustomFields/Pipelines/SaveImageFieldValues.cs" target="_blank" rel="noopener">SaveImageFieldValues.cs</a> fetches all <code>Field Mapping</code> items (from <code>ImportEntityPipelineArgs</code> object) under the <code>Entity Mapping</code> item being processed, reads required field values to find the rendition from the relation and stores the formatted public link URL into the specified sitecore field.</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">foreach</span> (Item item <span class="keyword">in</span> <span class="keyword">from</span> i <span class="keyword">in</span> args.EntityMappingItem.Children</span><br><span class="line">                                              <span class="keyword">where</span> i.TemplateID == Constants.ImageFieldMappingTypeID</span><br><span class="line">                                              <span class="keyword">select</span> i)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">var</span> cmpFieldName = item[Sitecore.Connector.CMP.Constants.FieldMappingCmpFieldNameFieldId];</span><br><span class="line">    <span class="keyword">var</span> sitecoreFieldName = item[Sitecore.Connector.CMP.Constants.FieldMappingSitecoreFieldNameFieldId];</span><br><span class="line">        </span><br><span class="line">    <span class="keyword">var</span> renditionField = item[Constants.FieldMappingSitecoreRenditionFieldID];</span><br><span class="line">    <span class="keyword">var</span> publicLink = GetPublicLinkData(contentHubHost, args.Entity, cmpFieldName, renditionField, assetIndexField).GetAwaiter().GetResult();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(publicLink != <span class="literal">null</span> &amp;&amp; !<span class="keyword">string</span>.IsNullOrEmpty(publicLink.URL))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">var</span> imgElement = GetContentHubDamImageElement(contentHubHost, publicLink);</span><br><span class="line">        args.Item[item[Sitecore.Connector.CMP.Constants.FieldMappingSitecoreFieldNameFieldId]] = imgElement;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>As you can see, the code is quite simple. It loops through <code>ImageFieldMapping</code> items and reads the pertinent fields; gets or creates a public link to the defined rendition, and stores the formatted image tag into the image field value.</p>
+<p><code>&lt;image stylelabs-content-type=&quot;Image&quot; mediaid=&quot;&quot; src=&quot;https://HOST/api/public/content/364944895?v=779a&quot; height=&quot;1100&quot; alt=&quot;&quot; stylelabs-content-id=&quot;1235&quot; width=&quot;790&quot; thumbnailsrc=&quot;https://HOST/api/gateway/1235/thumbnail&quot; /&gt;</code></p>
+<p>====================<br>References:<br><a href="https://github.com/josedbaez/Sitecore.SharedSource.CMP.Connector.Extensions" target="_blank" rel="noopener">https://github.com/josedbaez/Sitecore.SharedSource.CMP.Connector.Extensions</a></p>
+<hr>
+<p>Please let me know what you think and/or if you can spot any errors.<br><em>/eom</em></p>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="https://josedbaez.com/2020/02/sitecore-content-hub-cmp-connector-extensions/" data-id="ck6cdru2l0000it99ipf2zv6o" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+
+                        </div>
+                    </section>
+                    
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <!--
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                -->
+                <p>&copy; 2020 José Domínguez</p>
+                <p>Opinions expressed on this blog are my own, and not necessarily those of my employer.</p>
+            </div>
+            <div class="footer-plugins">
+              
+    
+
+
+            </div>
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_shortname = 'josedbaez';
+    
+    
+    var disqus_url = 'https://josedbaez.com/2020/02/sitecore-content-hub-cmp-connector-extensions/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
