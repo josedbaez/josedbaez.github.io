@@ -1,34 +1,37 @@
 <aside id="sidebar">
-    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <a class="sidebar-toggle" title="Expand Sidebar">
+        <i class="toggle icon"></i>
+    </a>
     <div class="sidebar-top">
-        <p><%= __('sidebar.follow') %>:</p>
+        <p>
+            <%= __('sidebar.follow') %>:</p>
         <ul class="social-links">
             <% for (var i in theme.customize.social_links) { %>
                 <% if (theme.customize.social_links[i]) { %>
-                <li>
-                    <a class="social-tooltip" title="<%= i %>" href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" rel="noopener">
-                        <i class="icon fa fa-<%= i %>"></i>
-                    </a>
-                </li>
-                <% } %>
-            <% } %>
+                    <li>
+                        <a class="social-tooltip" title="<%= i %>" href="<%- url_for(theme.customize.social_links[i]) %>" target="_blank" rel="noopener">
+                            <i class="icon fa fa-<%= i %>"></i>
+                        </a>
+                    </li>
+                    <% } %>
+                        <% } %>
         </ul>
     </div>
     <% if (is_post()) { %>
         <%- partial('post/nav', {post: page}) %>
-    <% } %>
-    <div class="widgets-container">
-        <div class="widget-wrap highlights">                
-            <div class="widget">
-                <a href="https://www.sitecore.com/mvp" target="_blank">
-                    <img class="award" src="/images/mvp-logo.jpg" alt="Sitecore MVP Award" />
-                </a>
-            </div>
-        </div>
-        <% if (theme.widgets) { %>
-            <% theme.widgets.forEach(function(widget) { %>
-                <%- partial('widget/' + widget, {post: page}) %>
-            <% }) %>
-        <% } %>
-    </div>
+            <% } %>
+                <div class="widgets-container">
+                    <div class="widget-wrap highlights">
+                        <div class="widget">
+                            <a href="https://mvp.sitecore.com" target="_blank">
+                                <img class="award" src="/images/mvp-logo.jpg" alt="Sitecore MVP Award" />
+                            </a>
+                        </div>
+                    </div>
+                    <% if (theme.widgets) { %>
+                        <% theme.widgets.forEach(function(widget) { %>
+                            <%- partial('widget/' + widget, {post: page}) %>
+                                <% }) %>
+                                    <% } %>
+                </div>
 </aside>
